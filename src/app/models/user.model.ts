@@ -1,6 +1,6 @@
 import { Ticket } from './ticket.model';
 
-export enum User {
+export interface User {
     id:Number ;
 	name:String  ;
 	email:String ; 

@@ -1,5 +1,5 @@
 import { Time } from '@angular/common';
-import { PaymentMode } from './payment-mode.model';
+import { PaymentMode } from './paymentMode';
 import { Ticket } from './ticket.model';
 
 export interface Transaction {
