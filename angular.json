@@ -126,6 +126,10 @@
   },
   "defaultProject": "Frontend",
   "cli": {
+<<<<<<< HEAD
     "analytics": "f7d3c59f-ec62-4d1d-8bdd-4550220c153c"
+=======
+    "analytics": "e1c03584-846d-4ac3-9b6d-e8dae9dc426a"
+>>>>>>> Implemented user,theatre,ticket,show service
   }
 }

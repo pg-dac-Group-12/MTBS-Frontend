@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Seat } from './seat.model';
 import { Theatre } from './theatre.model';
 
@@ -9,3 +10,8 @@ export interface Audi {
     theatre:Theatre;
 
 }
+=======
+export class Audi{
+    
+}
+>>>>>>> Implemented user,theatre,ticket,show service

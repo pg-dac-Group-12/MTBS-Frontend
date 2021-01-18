@@ -1,9 +1,47 @@
 import { Injectable } from '@angular/core';
-
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Theatre } from '../models/theatre.model';
+import { Audi } from '../models/audi.model';
 @Injectable({
   providedIn: 'root'
 })
 export class TheatreService {
+  baseUrl:string = "http://localhost:8080/theatre/";
+  constructor(private http:HttpClient) { }
 
-  constructor() { }
+  getTheatre(id:number):Observable<HttpResponse<Theatre>>{
+    return this.http.get<Theatre>(`${this.baseUrl}${id}`,{observe:'response'});
+  }
+
+  createTheatre(theatre:Theatre):Observable<HttpResponse<Theatre>>{
+    return this.http.post<Theatre>(`${this.baseUrl}`,theatre,{observe:'response'});
+  }
+
+  updateTheatre(id:number,theatre:Theatre):Observable<HttpResponse<Theatre>>{
+    return this.http.put<Theatre>(`${this.baseUrl}${id}`,theatre,{observe:'response'});
+  }
+
+  deleteTheatre(id:number):Observable<HttpResponse<Theatre>>{
+    return this.http.delete<Theatre>(`${this.baseUrl}${id}`,{observe:'response'});
+  }
+  
+  getAllAudis(id:number):Observable<HttpResponse<Audi>>{
+    return this.http.get<Audi>(`${this.baseUrl}${id}/audis`,{observe:'response'});
+  }
+
+  getAudi(id:number,audiId:number):Observable<HttpResponse<Audi>>{
+    return this.http.get<Audi>(`${this.baseUrl}${id}/audi/${audiId}`,{observe:'response'});
+  }
+
+  createAudi(id:number,audiDetails:string):Observable<HttpResponse<Audi>>{
+    return this.http.post<Audi>(`${this.baseUrl}${id}/audi`,audiDetails ,{observe:'response'});
+  }
+  updateAudi(id:number,audiId:number,audi:Audi):Observable<HttpResponse<Audi>>{
+    return this.http.put<Audi>(`${this.baseUrl}${id}/audi/${audiId}`,audi,{observe:'response'});
+  }
+
+  deleteAudi(id:number,audiId:number):Observable<HttpResponse<Audi>>{
+    return this.http.delete<Audi>(`${this.baseUrl}${id}/audi/${audiId}`,{observe:'response'});
+  }
 }
