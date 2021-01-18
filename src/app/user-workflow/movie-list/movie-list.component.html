@@ -1,1 +1,6 @@
 <p>movie-list works!</p>
+
+<li *ngFor="let movie of movies">
+    <b> {{movie.title}} </b>   
+    <button (click)="getShowsForMovie(movie.id)">book</button>        
+ </li>

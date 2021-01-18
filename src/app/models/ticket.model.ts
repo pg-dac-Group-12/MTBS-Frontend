@@ -4,11 +4,11 @@ import { Transaction } from './transaction.model';
 import { User } from './user.model';
 
 export interface Ticket {
-    id:Number;
+    id:number;
     show:Shows;
 	user:User;
-    seats:Number;
-	amount:Number;
+    seats:number[];
+	amount:number;
     time:Time ;
     date:Date;
 	transaction:Transaction;

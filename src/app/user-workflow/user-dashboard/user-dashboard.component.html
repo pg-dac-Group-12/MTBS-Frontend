@@ -1,1 +1,12 @@
 <p>user-dashboard works!</p>
+<div>
+    <form novalidate #myform ngForm (ngSubmit) = "onSubmit(myform.value)">
+        Name: <input type = "text" name = "name" placeholder="Name" ngModel required><br>
+        password: <input [disabled] type = "password" name = "password" placeholder="password" ngModel required><br>
+        Email: <input [disabled] type = "text" name = "email" placeholder="email" #email ngModel required email="true"> <br>
+        Phone no: <input type = "number" name = "phone_no" placeholder="phone number" ngModel required><br>
+        <input type = "submit"  value = "submit" [disabled] = "!myform.valid"><br>
+    </form>
+        <button (click)="changePassword">Change password</button><br>
+        <button (click)="deleteUser">delete</button>
+</div>

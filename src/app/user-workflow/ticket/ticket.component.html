@@ -1,1 +1,22 @@
 <p>ticket works!</p>
+
+<table style="border:1">
+    <tr>
+        <th> show</th>
+        <th> User</th>
+        <th> seats</th>
+        <th> amount</th>
+        <th> Booking Time</th>
+        <th> Booking Date</th>
+        <th></th>
+    </tr>
+    <tr *ngFor = "let ticket of tickets">
+        <td> {{ticket.show.time}} {{ticket.show.date}}</td>
+        <td> {{ticket.user.name}}</td>
+        <td> {{ticket.seats}}</td>
+        <td> {{ticket.amount}</td>
+        <td> {{ticket.time}}</td>
+        <td> {{ticket.date}}</td>
+        <td> <button (click)="deleteTicket(ticket)">delete</button></td>
+    </tr>
+</table>

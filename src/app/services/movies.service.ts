@@ -28,7 +28,7 @@ export class MoviesService {
     return this.http.get<Movie>(`${this.baseUrl}${id}`,{observe:'response'});
   }
 // check pending
-  getAllMovie():Observable<HttpResponse<Movie>>
+  getAllMovies():Observable<HttpResponse<Movie>>
   {
     return this.http.get<Movie>(`${this.baseUrl}`,{observe:'response'});
   }

@@ -10,6 +10,9 @@ export class UserService {
 
   constructor(private http:HttpClient){}
 
+  getUser():Observable<HttpResponse<User>>{
+    return this.http.get<User>(this.baseUrl,{observe:'response'});
+  }
   
   createUser(user:User):Observable<HttpResponse<User>>{
     return this.http.post<User>(this.baseUrl,user,{observe:'response'});

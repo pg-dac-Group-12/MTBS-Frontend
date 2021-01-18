@@ -6,13 +6,13 @@ import { Theatre } from './theatre.model';
 import { Ticket } from './ticket.model';
 
 export interface Shows {
-    id:Number;
+    id:number;
     audi:Audi;
     movie:Movie;
     theatre:Theatre;
     tickets:Ticket[];
     time:Time;
     date:Date;
-    price:Number;
+    price:number;
     seatmap:Seat[];
 }
