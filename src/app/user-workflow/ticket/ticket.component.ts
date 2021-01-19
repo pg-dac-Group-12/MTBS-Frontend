@@ -32,7 +32,7 @@ export class TicketComponent implements OnInit {
        {}// no tickets booked so far(or all deleted)
   }
 
- deleteTicket(ticket:Ticket){
+ cancelTicket(ticket:Ticket){
    this.TicketService.cancelTicket(ticket).subscribe(response => this.response = response);
    if(this.response.status == 200){
      //ticket deleted

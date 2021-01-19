@@ -10,7 +10,7 @@ export class ShowsService {
   constructor(private http:HttpClient) { }
 
   getAllShowsByMovieIdAndDate(movieId:number,date:Date):Observable<HttpResponse<Shows>>{
-    let reqParams = new HttpParams();
+    let reqParams = new HttpParams()
     reqParams.append('movieId',String(movieId));
     reqParams.append('date',String(date))
     return this.http.get<Shows>(`${this.baseUrl}`,{observe:'response',params:reqParams});

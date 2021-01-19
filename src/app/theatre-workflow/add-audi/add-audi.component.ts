@@ -20,8 +20,8 @@ export class AddAudiComponent implements OnInit {
   }
   onSubmit(myFrom:NgForm){
     this.audi.theatre = this.theatre;
-    this.theatreService.createAudi(this.theatre.id, JSON.stringify(this.audi)).subscribe(
-      response => {
+    this.theatreService.createAudi(this.theatre.id, JSON.stringify(this.audi))
+    .subscribe(response => {
         if(response.status == 201){
           this.message = "Audi Added";
         }else if(response.status == 304){

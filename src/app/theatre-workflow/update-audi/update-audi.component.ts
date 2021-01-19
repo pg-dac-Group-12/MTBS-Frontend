@@ -12,7 +12,7 @@ import { TheatreService } from 'src/app/services/theatre.service';
 export class UpdateAudiComponent implements OnInit {
   theatreId!:number; //get from router link
   audiId!:number;    //get from router link
-  audi!:Audi;        //get from router link /service like rohan said
+  audi!:Audi;        //get from router link /service like Tanay said :p 
   response = new HttpResponse<any>();
   message:string = "";
   constructor(private theatreService:TheatreService) { }

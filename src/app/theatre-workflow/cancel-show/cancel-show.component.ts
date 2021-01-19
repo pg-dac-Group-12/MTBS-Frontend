@@ -16,7 +16,7 @@ export class CancelShowComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  deleteShow(){
+  deleteShow(){                                        //This is not the best practise 
     this.showsService.cancelShow(this.show).subscribe(response => this.response = response);
     if(this.response.status == 200){
       this.message ="show canceled successfully";
