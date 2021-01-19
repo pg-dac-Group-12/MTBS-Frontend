@@ -1,0 +1,17 @@
+<p>cancel-show works!</p>
+
+“Are you sure you want to cancel the show : the corresponding tickets will be automatically canceled?
+
+<tr *ngfor="let ticket of show.tickets">
+
+    <td> {{ticket.show.time}} {{ticket.show.date}}</td>
+    <td> {{ticket.user.name}}</td>
+    <td> {{ticket.seats}}</td>
+    <td> {{ticket.amount}</td>
+    <td> {{ticket.time}}</td>
+    <td> {{ticket.date}}</td>
+</tr>
+
+<button (click) = "delteShow">YES Cancel</button>
+
+{{message}}

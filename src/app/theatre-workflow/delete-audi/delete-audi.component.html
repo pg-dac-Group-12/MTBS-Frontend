@@ -1,0 +1,16 @@
+<p>delete-audi works!</p>
+
+
+
+<div *ngIf="showsByAudi.length == 0">
+    <button (click)="deleteAudi">Delete Audi</button>
+    {{message}}
+</div>
+<ng-template #elseBlock>
+    <h2>this Audi has the following shows still running or planned.</h2>
+    <li *ngfor="let show of showsByAudi">
+        <h5>Movie: {{show.movie.title}}</h5>
+        <span>Time : {{show.time}} {{show.date}}</span>
+        <span>Price: {{show.price}}</span>
+    </li>
+</ng-template>

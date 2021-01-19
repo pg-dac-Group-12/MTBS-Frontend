@@ -1,0 +1,13 @@
+<p>update-audi works!</p>
+
+<div>
+    <form novalidate #myform ngForm (ngSubmit) = "onSubmit(myform.value)">
+        Audi Number: <input type = "number" name = "number" placeholder="number" ngModel required><br>
+       
+        total Capacity: <input type = "number" name = "totalSeats" placeholder="total number of seats" ngModel required><br>
+        <!--seat map input-->
+        <input type = "submit"  value = "update" [disabled] = "!myform.valid"><br>
+    </form>
+
+    <div>{{message}}</div>
+</div>

@@ -1,11 +1,11 @@
 export interface Movie {
-    id:Number;
+    id:number;
     title:String;
     director:String;
     cast:String[];
-    duration:Number;
-    rating:Number;
+    duration:number;
+    rating:number;
     icon:String;
-    totalShows:Number;
+    totalShows:number;
     iconContentType:String;
 }

@@ -4,8 +4,8 @@ import { Ticket } from './ticket.model';
 
 export interface Transaction {
 
-    id:Number;
-    amount:Number;
+    id:number;
+    amount:number;
 	time:Time; 
 	ticket:Ticket;
     paymentMode:PaymentMode;

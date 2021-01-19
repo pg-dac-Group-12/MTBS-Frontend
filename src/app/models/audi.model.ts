@@ -2,10 +2,9 @@ import { Seat } from './seat.model';
 import { Theatre } from './theatre.model';
 
 export interface Audi {
-    id:Number;
-    number:Number;
+    id:number;
+    number:number;
     seatMap:Seat[];
-    totalSeats:Number;
+    totalSeats:number;
     theatre:Theatre;
-
 }

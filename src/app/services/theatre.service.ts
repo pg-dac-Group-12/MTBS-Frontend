@@ -10,6 +10,10 @@ export class TheatreService {
   baseUrl:string = "http://localhost:8080/theatre/";
   constructor(private http:HttpClient) { }
 
+  getTheatreFromSession():Observable<HttpResponse<Theatre>>{
+    return this.http.get<Theatre>(this.baseUrl,{observe:'response'});
+  }
+
   getTheatre(id:number):Observable<HttpResponse<Theatre>>{
     return this.http.get<Theatre>(`${this.baseUrl}${id}`,{observe:'response'});
   }

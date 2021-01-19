@@ -1,12 +1,12 @@
 import { Audi } from './audi.model';
 
 export interface Theatre {
-    id:Number;
-	email:String;
-	password:String;
-	name:String;
-	city:String;
-	location:String;
+    id:number;
+	email:string;
+	password:string;
+	name:string;
+	city:string;
+	location:string;
 	audis:Audi[]; 
 
 }

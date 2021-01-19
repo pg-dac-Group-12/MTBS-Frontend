@@ -36,7 +36,7 @@ export class ShowsService {
     return this.http.put<Shows>(`${this.baseUrl}${id}`,show,{observe:'response'});
   }
 
-  delteShow(id:number):Observable<HttpResponse<Shows>>{
+  deleteShow(id:number):Observable<HttpResponse<Shows>>{
     return this.http.delete<Shows>(`${this.baseUrl}${id}`,{observe:'response'});
   }
 

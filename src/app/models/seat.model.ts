@@ -1,4 +1,4 @@
 export interface Seat {
-    rowNumber:Number;
-    colNumber:String;
+    rowNumber:number;
+    colNumber:string;
 }
