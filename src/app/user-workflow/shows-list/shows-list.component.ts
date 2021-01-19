@@ -12,16 +12,26 @@ import { ShowsService } from 'src/app/services/shows.service';
 export class ShowsListComponent implements OnInit {
   movieId!: number; // to be brought in by the redirecting link
   shows!: Shows[];
-  theatres: Theatre[] = [];
+  date:Date = new Date(Date.now());
+  theatres: Set<Theatre> = new Set<Theatre>();
   response = new HttpResponse<any>();
   constructor(private showsService: ShowsService) { }
   
   ngOnInit(): void {
-    this.showsService.getAllShowsByMovieIdAndDate(this.movieId, new Date(Date.now())).subscribe(respone => this.response = respone);
+      this.getAllShowsByMovieIdAndDate();    
+  }
+
+  getAllShowsByMovieIdAndDate() {
+    this.showsService.getAllShowsByMovieIdAndDate(this.movieId, this.date).subscribe(respone => this.response = respone);
     if (this.response.status == 200) {
       this.shows = this.response.body;
+      this.shows.map(show=>this.theatres.add(show.theatre));
     } else if (this.response.status == 204) {
       this.shows = [];
-    }
+    } 
+  }
+
+  getShowSeatMap() {
+    
   }
 }

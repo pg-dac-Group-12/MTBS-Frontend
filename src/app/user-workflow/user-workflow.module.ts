@@ -4,13 +4,14 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { ShowsListComponent } from './shows-list/shows-list.component';
 import { TicketComponent } from './ticket/ticket.component';
+import { FormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [UserDashboardComponent, MovieListComponent, ShowsListComponent, TicketComponent],
   imports: [
-    CommonModule
+    CommonModule , FormsModule
   ]
 })
 export class UserWorkflowModule { }
