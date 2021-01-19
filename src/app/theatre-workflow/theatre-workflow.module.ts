@@ -6,6 +6,7 @@ import { DeleteAudiComponent } from './delete-audi/delete-audi.component';
 import { UpdateAudiComponent } from './update-audi/update-audi.component';
 import { AddShowComponent } from './add-show/add-show.component';
 import { CancelShowComponent } from './cancel-show/cancel-show.component';
+import { FormsModule } from '@angular/forms';
 
 
 

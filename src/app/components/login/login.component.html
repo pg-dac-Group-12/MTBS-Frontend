@@ -1,0 +1,18 @@
+<p>login works!</p>
+<div>
+    <form novalidate #myform = "ngForm" (ngSubmit) = "onSubmit(myform)">
+        Email: <input type = "text" name = "email" placeholder="email" #email = "ngModel" email = [(ngModel)] ngModel required email="true"> <br>
+        <div *ngIf = "!email.valid && (email.dirty || email.touched)">
+            <div *ngIf = "email.errors.email">
+                Invalid Email
+            </div>
+        </div>  
+        password: <input type = "password" name = "password" placeholder="password" ngModel [(ngModel)]="password" required><br>
+        isTheatre: <input type = "checkbox" name = "isTheatre" checked="false" ngModel [(ngModel)]="isTheatreAdmin">
+  
+        <div>{{message}}</div>
+        <input type = "submit"  value = "Login" [disabled] = "!myform.valid"><br>
+    </form>
+    <!--<a [routerLink] = "'/registerUser/'"> </a>-->
+    <!--<a [routerLink] = "'/registerTheatre/'"></a>-->
+</div>

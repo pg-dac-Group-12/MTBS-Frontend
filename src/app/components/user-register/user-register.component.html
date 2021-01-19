@@ -1,0 +1,21 @@
+<p>user-register works!</p>
+
+<div>
+    <form novalidate #myform ngForm (ngSubmit) = "onSubmit(myform.value)">
+        Name: <input type = "text" name = "name" placeholder="Name" ngModel required><br>
+        password: <input  type = "password" name = "password" placeholder="password" #pass ngModel required><br>
+        confirm password: <input type = "password" name = "confirmPassword" placeholder="confirm password" #confirmPass required><br>
+        Email: <input  type = "text" name = "email" placeholder="email" #email="ngModel" ngModel required email="true"> <br>
+        Phone no: <input type = "number" name = "phone_no" placeholder="phone number" ngModel required><br>
+        <div *ngIf = "!email.valid && (email.dirty || email.touched)">
+            <div *ngIf = "email.errors.email">
+                Invalid Email
+            </div>
+        </div>  
+        <div *ngIf = "pass != confirmPass">
+                Passwords don't match
+        </div>  
+        <input type = "submit"  value = "register" [disabled] = "!myform.valid"><br>
+    </form>
+        {{message}}
+</div>
