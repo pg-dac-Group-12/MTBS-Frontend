@@ -1,3 +1,4 @@
+import { identifierModuleUrl } from '@angular/compiler';
 import { Ticket } from './ticket.model';
 
 export interface User {
@@ -7,4 +8,5 @@ export interface User {
 	password:string ;
 	phone_no:string ;
 	tickets:Ticket[];
+
 }

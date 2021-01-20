@@ -34,7 +34,7 @@ export class DeleteAudiComponent implements OnInit {
     } else if (this.response.status == 204){
       //no audis registered
     }
-    this.shows.map(show=>{ if(show.id == this.audiId) this.showsByAudi.push(show);})
+    this.shows.map(show=>{ if(show.audi.id == this.audiId) this.showsByAudi.push(show);})
   }
 
   deleteAudi(){

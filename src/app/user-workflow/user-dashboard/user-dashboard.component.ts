@@ -17,22 +17,16 @@ export class UserDashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getUser().subscribe((response) => this.response = response);
-    if (this.response.status == 401) {
-      //DO NOT IMPLEMENT user not in session. redirection code goes here 
-    } else if (this.response.status == 200 && this.response.body != null) {
-      this.user = this.response.body;
+    if(this.userService.getUser()){
+      // this.user = this.userService.user;
     }
   }
 
   onSubmit(myform:NgForm) {
     this.user = myform.value ; 
-    this.userService.updateUser(this.user,this.user.id)
-    .subscribe((response) => {
-      if(response.status == 201)
-        //Display Succefully Created
-        console.log("User created");
-      })//subscribe later
+    if(this.userService.updateUser(this.user,this.user.id)){
+      this.user = this.userService.user;
+    }
   }
 
   deleteUser() {
