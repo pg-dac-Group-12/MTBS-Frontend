@@ -4,6 +4,12 @@ import { Injectable } from "@angular/core";
 
 @Injectable()
 export class MovieState {
+    getAllMoviesById(id: number) {
+        throw new Error("Method not implemented.");
+    }
+    getAllMovies() {
+        throw new Error("Method not implemented.");
+    }
     private movies$ = new BehaviorSubject<Movie[]>([]);
 
     getMovies() {
