@@ -4,34 +4,30 @@ import { Theatre } from "../models/theatre.model";
 
 @Injectable()
 export class TheatreState{
-    private theatre$ = new BehaviorSubject<Theatre[]>([]);
+    //private theatre$ = new BehaviorSubject<Theatre[]>([]);
+    
+    private theatre$ = new BehaviorSubject<Theatre>(null!);    
 
-    getTheatres() {
-        return this.theatre$.asObservable();
-    }
-
-    setTheatres(theatres :Theatre[]) {
-        this.theatre$.next(theatres);
+    getTheatre() {
+        return this.theatre$.value ;
     }
 
-    addTheatres(theatre :Theatre) {
-        const currentValue = this.theatre$.getValue();
-        this.theatre$.next([...currentValue, theatre]);
+    setTheatre(theatre :Theatre) {
+        this.theatre$.next(theatre);
     }
 
-    updateTheatre(theatre :Theatre) {
-        const currentTheatresList = this.theatre$.getValue();
-        const indexOfUpdated = currentTheatresList.findIndex(theatreItem => theatre.id == theatreItem.id); 
-        currentTheatresList[indexOfUpdated] = theatre ;
-    }
+    // addTheatres(theatre :Theatre) {
+    //     const currentValue = this.theatre$.getValue();
+    //     this.theatre$.next([...currentValue, theatre]);
+    // }
 
-    updateTheatreById(id:number, updatedTheatre:Theatre) {
-        const currentTheatresList = this.theatre$.getValue();
-        const indexToUpdate = currentTheatresList.findIndex(theatre => theatre.id == id);
-        currentTheatresList[indexToUpdate] = updatedTheatre;
-    }
-    removeTheatre(theatre: Theatre) {
-        const currentValue = this.theatre$.getValue();
-        this.theatre$.next(currentValue.filter(theatreItem => theatreItem !== theatre));
-    }
+    // updateTheatreById(id:number, updatedTheatre:Theatre) {
+    //     const currentTheatresList = this.theatre$.getValue();
+    //     const indexToUpdate = currentTheatresList.findIndex(theatre => theatre.id == id);
+    //     currentTheatresList[indexToUpdate] = updatedTheatre;
+    // }
+    // removeTheatre(theatre: Theatre) {
+    //     const currentValue = this.theatre$.getValue();
+    //     this.theatre$.next(currentValue.filter(theatreItem => theatreItem !== theatre));
+    // }
 }

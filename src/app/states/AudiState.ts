@@ -11,6 +11,12 @@ export class AudiState {
         return this.audis$.asObservable();
     }
 
+    getAudiByAudiNumber(audiNumber:number) {
+        const currentAudisList = this.audis$.getValue();
+        const indexOfMatchedAudi= currentAudisList.findIndex(audi=> audi.number == audiNumber  ); 
+        return currentAudisList[indexOfMatchedAudi]  ;
+    }
+
     setAudis(audis :Audi[]) {
         this.audis$.next(audis);
     }

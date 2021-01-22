@@ -9,7 +9,13 @@ export class TicketState{
     getTicket() {
         return this.ticket$.asObservable();
     }
-
+ 
+    getTicketById(id: number) {
+        const currentTicketsList = this.ticket$.getValue();
+        const indexOfMatchedTicket = currentTicketsList.findIndex(ticket=> ticket.id == id  ); 
+        return currentTicketsList[indexOfMatchedTicket]  ;
+    }
+ 
     setTicket(tickets :Ticket[]) {
         this.ticket$.next(tickets);
     }
@@ -19,17 +25,17 @@ export class TicketState{
         this.ticket$.next([...currentValue, ticket]);
     }
 
-    updateTicket(ticket :Ticket) {
-        const currentTicketsList = this.ticket$.getValue();
-        const indexOfUpdated = currentTicketsList.findIndex(ticketItem => ticket.id == ticketItem.id  ); 
-        currentTicketsList[indexOfUpdated] = ticket ;
-    }
+    // updateTicket(ticket :Ticket) {
+    //     const currentTicketsList = this.ticket$.getValue();
+    //     const indexOfUpdated = currentTicketsList.findIndex(ticketItem => ticket.id == ticketItem.id  ); 
+    //     currentTicketsList[indexOfUpdated] = ticket ;
+    // }
 
-    updateTicketById(id:number, updatedTicket:Ticket) {
-        const currentTicketsList = this.ticket$.getValue();
-        const indexToUpdate = currentTicketsList.findIndex(ticket => ticket.id == id);
-        currentTicketsList[indexToUpdate] = updatedTicket;
-    }
+    // updateTicketById(id:number, updatedTicket:Ticket) {
+    //     const currentTicketsList = this.ticket$.getValue();
+    //     const indexToUpdate = currentTicketsList.findIndex(ticket => ticket.id == id);
+    //     currentTicketsList[indexToUpdate] = updatedTicket;
+    // }
 
     removeTicket(ticket: Ticket) {
         const currentValue = this.ticket$.getValue();

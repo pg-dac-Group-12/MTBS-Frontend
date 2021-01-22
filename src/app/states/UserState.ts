@@ -10,7 +10,7 @@ export  class UserState {
         return this.user$.asObservable();
     }
 
-    SetUser(user$:User){
+    setUser(user$:User){
         this.user$.next(user$);
     }
 
