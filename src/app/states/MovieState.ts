@@ -1,6 +1,8 @@
 import { Movie } from "../models/movie.model"
 import {BehaviorSubject, Subject} from 'rxjs' 
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class MovieState {
     private movies$ = new BehaviorSubject<Movie[]>([]);
 
@@ -28,4 +30,8 @@ export class MovieState {
         const indexToUpdate = currentMoviesList.findIndex(movie => movie.id == id);
         currentMoviesList[indexToUpdate] = updatedMovie ;
     }
+    removeMovie(movie: Movie) {
+        const currentValue = this.movies$.getValue();
+        this.movies$.next(currentValue.filter(movieItem => movieItem !== movie));
+      }
 }

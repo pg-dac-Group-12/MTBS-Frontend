@@ -10,8 +10,8 @@
             </div>
         </div>  
         <div>{{message}}</div>
-        <input type = "submit"  value = "Login" [disabled] = "!myform.valid"><br>
+        <input type = "submit"  value = "Login" [disabled] = "!myform.valid" (click)="navigateToMovieList()"><br>
     </form>
-    <!--<a [routerLink] = "'/registerUser/'"> </a>-->
-    <!--<a [routerLink] = "'/registerTheatre/'"></a>-->
+        <a [routerLink] = "'/register-user/'"> Register as User </a>
+        <a [routerLink] = "'/register-theatre/'"> Register Theatre</a>
 </div>

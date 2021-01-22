@@ -67,7 +67,6 @@ export class UserService {
   }
 
   deleteUser(id: number): boolean{
-    
     let isDeleted:boolean = false;
     this.http.delete<User>(`${this.baseUrl}${id}`, { observe: 'response' })
       .subscribe(response => {

@@ -18,12 +18,9 @@ export class TicketComponent implements OnInit {
   constructor(private TicketService:TicketService, private userService:UserService) { }
 
   ngOnInit(): void {
-    this.userService.getUser().subscribe((response) => this.response = response);
-    if (this.response.status == 401) {
-      //user not in session. redirection code goes here
-    } else if (this.response.status == 200 && this.response.body != null) {
-      this.user = this.response.body;
-    }
+    if(this.userService.getUser())
+      this.user = this.userService.user;
+    
 
     this.TicketService.getAllTicketsByUserId(this.user.id).subscribe(response => this.response = response);
     if(this.response.status == 200)
