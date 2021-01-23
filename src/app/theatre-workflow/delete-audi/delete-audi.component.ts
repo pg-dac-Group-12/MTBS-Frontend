@@ -14,7 +14,7 @@ import { TheatreService } from 'src/app/services/theatre.service';
 })
 export class DeleteAudiComponent implements OnInit {
   audiId!:number;    //get from router link
-
+  showsByAudi!:Shows[]; //Fix Shows 
   constructor( private theatreFacade:TheatreFacade) {}
   
   ngOnInit(): void {
@@ -23,6 +23,9 @@ export class DeleteAudiComponent implements OnInit {
   deleteAudi(){
     this.theatreFacade.deleteAudi(this.theatreFacade.getTheatre().id,this.audiId);
   }
+
+
+
 }
 
 

@@ -25,4 +25,7 @@ export class ShowsListComponent implements OnInit {
   getShowSeatMap() {
     
   }
+  getAllShowsByMovieIdAndDate() {
+    
+  }
 }

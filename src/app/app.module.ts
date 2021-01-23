@@ -1,3 +1,4 @@
+import "zone.js" ;
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -33,7 +34,8 @@ import { UserWorkflowModule } from './user-workflow/user-workflow.module';
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
-    useClass: HttpInterceptorService
+    useClass: HttpInterceptorService,
+    multi:true
   }],
   bootstrap: [AppComponent]
 })

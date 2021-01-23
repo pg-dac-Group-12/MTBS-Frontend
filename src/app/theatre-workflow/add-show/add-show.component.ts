@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ShowsFacade } from 'src/app/facade/ShowsFacade';
 import { Shows } from 'src/app/models/shows.model';
 
@@ -17,7 +18,8 @@ export class AddShowComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addShow() {
+  onSubmit(myForm:NgForm) {
+    this.show = myForm.value ;
     this.showFacade.addShows(this.show,this.audiId,this.theatreId,this.movieId);
   }
 

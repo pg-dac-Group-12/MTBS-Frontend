@@ -13,11 +13,11 @@ export class AuthService {
   constructor(private http:HttpClient) { }
   
   authenticateUser(email:string,password:string,isThetreAdmin:boolean){
-    let params = new HttpParams();
-    params.append('email',email);
-    params.append('password',password);
-    params.append('isTheatrAdmin',String(isThetreAdmin));
-    //return this.setJWT(this.http.post<any>(`${this.baseUrl}`,null,{observe:'response',params:params}));
+    let params = new HttpParams()
+    .append('email',email)
+    .append('password',password)
+    .append('isTheatrAdmin',String(isThetreAdmin));
+    return this.setJWT(this.http.post<any>(`${this.baseUrl}`,null,{observe:'response',params:params}));
   }
 
   logOffUser():Observable<User>{
