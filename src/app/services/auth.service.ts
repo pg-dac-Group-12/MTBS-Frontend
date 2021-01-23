@@ -21,6 +21,7 @@ export class AuthService {
   }
 
   logOffUser():Observable<User>{
+    localStorage.removeItem("id_token");
     return this.http.get<any>(`${this.baseUrl}logoff`,);
   }
 
