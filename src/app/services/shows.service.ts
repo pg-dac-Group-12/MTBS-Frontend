@@ -9,11 +9,11 @@ export class ShowsService {
   baseUrl:string = "http://localhost:8080/shows/";
   constructor(private http:HttpClient) { }
 
-  getAllShowsByMovieIdAndDate(movieId:number,date:Date):Observable<HttpResponse<Shows>>{
+  getAllShowsByMovieIdAndDate(movieId:number,date:String):Observable<Shows[]>{
     let reqParams = new HttpParams()
-    reqParams.append('movieId',String(movieId));
-    reqParams.append('date',String(date))
-    return this.http.get<Shows>(`${this.baseUrl}`,{observe:'response',params:reqParams});
+    .append('movieId',String(movieId))
+    .append('date',String(date));
+    return this.http.get<Shows[]>(`${this.baseUrl}`, {params:reqParams});
   }
   
   getShowById(id:number):Observable<HttpResponse<Shows>>{

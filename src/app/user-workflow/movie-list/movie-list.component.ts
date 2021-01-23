@@ -1,6 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 import { MovieFacade } from 'src/app/facade/MovieFacade';
 import { ShowsFacade } from 'src/app/facade/ShowsFacade';
 import { Movie } from 'src/app/models/movie.model';
@@ -22,7 +23,7 @@ export class MovieListComponent implements OnInit {
   }
 
   getShowsForMovie(movieId:number){
-    this.showsFacade.loadShowsByMovieIdAndDate(movieId, new Date(Date.now()));
-    this.router.navigateByUrl("/shows_list");
-  }
+    this.showsFacade.loadShowsByMovieIdAndDate(movieId, moment().format("YYYY-MM-DD"));
+    this.router.navigate(["shows_list"], {state : {movieId:movieId}});
+  } 
 }

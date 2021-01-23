@@ -4,8 +4,6 @@ import { TicketFacade } from 'src/app/facade/TicketFacade';
 import { UserFacade } from 'src/app/facade/UserFacade';
 import { Ticket } from 'src/app/models/ticket.model';
 import { User } from 'src/app/models/user.model';
-import { TicketService } from 'src/app/services/ticket.service';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-ticket',
@@ -13,7 +11,6 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./ticket.component.css']
 })
 export class TicketComponent implements OnInit {
-  response = new HttpResponse<any>();
   tickets: Ticket[] = [];
   user!: User;
 

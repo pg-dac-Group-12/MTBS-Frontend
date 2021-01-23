@@ -31,8 +31,9 @@ export class ShowsFacade {
         //.subscribe(shows => this.showState$.setShows());
     }
 
-    loadShowsByMovieIdAndDate(movieId:number, date:Date) {
+    loadShowsByMovieIdAndDate(movieId:number, date:String) {
+        console.log("Loading Shows");
         return this.showService.getAllShowsByMovieIdAndDate(movieId,date)
-                .pipe(tap())
+                .subscribe(shows => this.showState$.setShows(shows));
     }
 }

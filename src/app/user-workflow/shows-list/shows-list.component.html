@@ -1,7 +1,8 @@
 <div>
 <p>shows-list works!</p>
-<select [(ngModel)]="date" (ngModelChange)="getAllShowsByMovieIdAndDate()">  
-    <option *ngFor="let number of [1,2,3,4,5]">{{  number }} </option>  
+<p>{{dates}}</p>
+<select [(ngModel)] = "selectedDate" (ngModelChange)="getAllShowsByMovieIdAndDate()">  
+    <option *ngFor="let date of dates; let i = index" [ngValue] = "date" >{{ date.format("MMM-Do") }} </option>  
 </select> 
 <ul>
 <li *ngFor="let theatre of theatres">
