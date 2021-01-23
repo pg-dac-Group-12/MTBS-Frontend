@@ -37,8 +37,8 @@ export class AudiState {
         const indexToUpdate = currentAudisList.findIndex(audi => audi.id == id);
         currentAudisList[indexToUpdate] = updatedAudi ;
     }
-    removeAudi(audi: Audi) {
+    removeAudi(id:number) {
         const currentValue = this.audis$.getValue();
-        this.audis$.next(currentValue.filter(audiItem => audiItem !== audi));
+        this.audis$.next(currentValue.filter(audiItem => audiItem.id !== id));
       }
 }

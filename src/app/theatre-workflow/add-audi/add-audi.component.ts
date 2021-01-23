@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Audi } from 'src/app/models/audi.model';
 import { Theatre } from 'src/app/models/theatre.model';
 import { TheatreService } from 'src/app/services/theatre.service';
+import { TheatreFacade } from '../../facade/TheatreFacade'
 
 @Component({
   selector: 'app-add-audi',
@@ -14,19 +15,12 @@ export class AddAudiComponent implements OnInit {
   theatre!:Theatre; //get from router link
   audi!:Audi
   message:string ="";
-  constructor(private theatreService:TheatreService) { }
+  constructor(private theatreFacade:TheatreFacade) { }
 
   ngOnInit(): void {
   }
   onSubmit(myFrom:NgForm){
     this.audi.theatre = this.theatre;
-    this.theatreService.createAudi(this.theatre.id, JSON.stringify(this.audi))
-    .subscribe(response => {
-        if(response.status == 201){
-          this.message = "Audi Added";
-        }else if(response.status == 304){
-          this.message = "failed to add";
-        }
-      });
+    this.theatreFacade.addAudi(this.theatreFacade.getTheatre().id, this.audi);
   }
 }

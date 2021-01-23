@@ -1,6 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { TheatreFacade } from 'src/app/facade/TheatreFacade';
 import { Audi } from 'src/app/models/audi.model';
 import { TheatreService } from 'src/app/services/theatre.service';
 
@@ -15,17 +16,13 @@ export class UpdateAudiComponent implements OnInit {
   audi!:Audi;        //get from router link /service like Tanay said :p 
   response = new HttpResponse<any>();
   message:string = "";
-  constructor(private theatreService:TheatreService) { }
+  constructor(private theatreFacade:TheatreFacade) { }
 
   ngOnInit(): void {
   }
   onSubmit(myForm:NgForm){
     this.audi = myForm.value;
-    this.theatreService.updateAudi(this.theatreId,this.audiId,this.audi).subscribe(response => this.response = response);
-    if(this.response.status == 201){
-      this.message = "Audi details updated successfully";
-    } else if (this.response.status == 304){
-      this.message = "Failed to update audi details";
-    }
+    this.theatreFacade.updateAudi(this.theatreId,this.audi);
+    
   }
 }

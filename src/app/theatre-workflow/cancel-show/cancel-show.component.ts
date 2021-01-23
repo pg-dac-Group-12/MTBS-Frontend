@@ -1,7 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ShowsFacade } from 'src/app/facade/ShowsFacade';
 import { Shows } from 'src/app/models/shows.model';
-import { ShowsService } from 'src/app/services/shows.service';
 
 @Component({
   selector: 'app-cancel-show',
@@ -10,18 +10,11 @@ import { ShowsService } from 'src/app/services/shows.service';
 })
 export class CancelShowComponent implements OnInit {
   show!:Shows // get from router someho
-  message:string = "";
-  response = new HttpResponse<any>();
-  constructor(private showsService:ShowsService) { }
+  constructor(private showFacade:ShowsFacade) { }
 
   ngOnInit(): void {
   }
-  deleteShow(){                                        //This is not the best practise 
-    this.showsService.cancelShow(this.show).subscribe(response => this.response = response);
-    if(this.response.status == 200){
-      this.message ="show canceled successfully";
-    } else if (this.response.status == 400){
-      this.message = "can't cancel this show";
-    }
+  deleteShow(){       
+    this.showFacade.cancelShows(this.show); 
   }
 }

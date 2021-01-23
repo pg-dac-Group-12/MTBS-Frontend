@@ -1,5 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ShowsFacade } from 'src/app/facade/ShowsFacade';
+import { TheatreFacade } from 'src/app/facade/TheatreFacade';
 import { Audi } from 'src/app/models/audi.model';
 import { Shows } from 'src/app/models/shows.model';
 import { Theatre } from 'src/app/models/theatre.model';
@@ -17,27 +19,31 @@ export class TheatreDashboardComponent implements OnInit {
   showsByAudi:Shows[]=[];
   theatre!: Theatre;
   response = new HttpResponse<any>();
-  constructor(private theatreService: TheatreService, private showsService: ShowsService) { }
+  constructor(private theatreFacade: TheatreFacade, private showFacade: ShowsFacade) { }
 
   ngOnInit(): void {
-    this.theatreService.getTheatreFromSession().subscribe((response) => this.response = response);
-    if (this.response.status == 401) {
-      //Theatre not in session. redirection code goes here
-    } else if (this.response.status == 200 && this.response.body != null) {
-      this.theatre = this.response.body;
-    }
-    this.theatreService.getAllAudis(this.theatre.id).subscribe(response=>this.response=response);
-    if(this.response.status == 200){
-      this.audis = this.response.body;
-    } else if (this.response.status == 204){
-      //no audis registered
-    }
-    this.showsService.getAllShowsByTheatreId(this.theatre.id).subscribe(response => this.response = response);
-    if(this.response.status == 200){
-      this.shows = this.response.body;
-    } else if (this.response.status == 204){
-      //no shows running for this theatre
-    }
+    this.theatreFacade.getAudis().subscribe(audis => this.audis = [...audis]);
+    this.theatre = this.theatreFacade.getTheatre();
+    this.showFacade.getShows().subscribe(shows => this.shows = [...shows]);
+
+    // this.theatreService.getTheatreFromSession().subscribe((response) => this.response = response);
+    // if (this.response.status == 401) {
+    //   //Theatre not in session. redirection code goes here
+    // } else if (this.response.status == 200 && this.response.body != null) {
+    //   this.theatre = this.response.body;
+    // }
+    // this.theatreService.getAllAudis(this.theatre.id).subscribe(response=>this.response=response);
+    // if(this.response.status == 200){
+    //   this.audis = this.response.body;
+    // } else if (this.response.status == 204){
+    //   //no audis registered
+    // }
+    // this.showsService.getAllShowsByTheatreId(this.theatre.id).subscribe(response => this.response = response);
+    // if(this.response.status == 200){
+    //   this.shows = this.response.body;
+    // } else if (this.response.status == 204){
+    //   //no shows running for this theatre
+    // }
   }
 
   getShowsByAudiId(audiId:number){

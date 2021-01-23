@@ -1,1 +1,13 @@
 <p>add-show works!</p>
+
+<div>
+    <form novalidate #myform ngForm (ngSubmit) = "onSubmit(myform.value)">
+        Time : <input type = "number" name = "time" placeholder="start time of the show" ngModel required><br>
+       
+        Price <input type = "number" name = "price" placeholder="price in INR" ngModel required><br>
+        <!--seat map input-->
+        <input type = "submit"  value = "Create Show" [disabled] = "!myform.valid"><br>
+    </form>
+
+    <div></div>
+</div>

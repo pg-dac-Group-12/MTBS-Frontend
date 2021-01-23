@@ -28,7 +28,7 @@ export class TheatreFacade {
     }
 
     getAudis() {
-        this.audiState$.getAudis();
+        return this.audiState$.getAudis();
     }
 
     getAudiByAudiNumber(audiNumber:number) {
@@ -40,14 +40,14 @@ export class TheatreFacade {
         this.audiState$.addAudi(audi);
     } 
 
-    updateAudi(theatreId:number , audiNumber:number ,audi:Audi) {
-        this.theatreService.updateAudi(theatreId, audiNumber, audi);
+    updateAudi(theatreId:number , audi:Audi) {
+        this.theatreService.updateAudi(theatreId, audi.number, audi);
         this.audiState$.updateAudiById(theatreId , audi);
     }
 
-    deleteAudi(theatreId:number, audiId:number, audi:Audi) {
+    deleteAudi(theatreId:number, audiId:number) {
         this.theatreService.deleteAudi(theatreId,audiId) ;
-        this.audiState$.removeAudi(audi);
+        this.audiState$.removeAudi(audiId);
     }    
     
     loadAudiByTheatreId(theatreId:number) {

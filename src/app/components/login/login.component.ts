@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   onSubmit(myform:NgForm){
     this.authService.authenticateUser(this.email,this.password,this.isTheatreAdmin);
   }
+  
   navigateToMovieList(){
     this.router.navigateByUrl("/movie-list")
   }
