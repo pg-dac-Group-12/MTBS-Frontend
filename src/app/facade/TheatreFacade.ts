@@ -1,11 +1,10 @@
 import { TheatreService } from "../services/theatre.service";
 import { TheatreState } from "../states/TheatreState";
-
 import "../states/MovieState";
 import { Theatre } from "../models/theatre.model";
 import { AudiState } from "../states/AudiState";
 import { Audi } from "../models/audi.model";
-export class MovieFacade {
+export class TheatreFacade {
     
     constructor(private theatreService:TheatreService , private theatreState$:TheatreState , private audiState$:AudiState ) {}
     

@@ -29,5 +29,4 @@ export class TicketFacade {
     loadTicketsByUserId(userId:number) {
         return this.ticketService.getAllTicketsByUserId(userId);
     }
-    
 }

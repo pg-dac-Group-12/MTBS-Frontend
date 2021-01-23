@@ -1,5 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MovieFacade } from 'src/app/facade/MovieFacade';
+import { ShowsFacade } from 'src/app/facade/ShowsFacade';
 import { Movie } from 'src/app/models/movie.model';
 import { MoviesService } from 'src/app/services/movies.service';
 
@@ -11,19 +13,14 @@ import { MoviesService } from 'src/app/services/movies.service';
 export class MovieListComponent implements OnInit {
   movies: Movie[]=[];
   response = new HttpResponse<any>();
-  constructor(private moviesService: MoviesService) { }
+  constructor(private moviesFacade: MovieFacade, private showsFace:ShowsFacade) { }
 
   ngOnInit(): void {
-    this.moviesService.getAllMovies().subscribe(response => this.response = response);
+    this.moviesFacade.loadMovieList();
 
-    if (this.response.status == 200) {
-      this.movies = this.response.body;
-    } else if (this.response.status == 204) {
-      //no movies found
-    }
   }
 
   getShowsForMovie(id:number){
-    //redirect to shows-list page
+    this.moviesFacade.getAllMoviesById(id);
   }
 }

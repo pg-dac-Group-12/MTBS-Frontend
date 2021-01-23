@@ -20,13 +20,7 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit(myform:NgForm){
-    this.authService.authenticateUser(this.email,this.password,this.isTheatreAdmin).subscribe(response =>{
-      if(response.status == 200){
-        //redirect to
-      } else if(response.status == 401){
-        this.message = "invalid credentials";
-      }
-    })
+    this.authService.authenticateUser(this.email,this.password,this.isTheatreAdmin);
   }
   navigateToMovieList(){
     this.router.navigateByUrl("/movie-list")

@@ -4,7 +4,10 @@ import { UserState } from "../states/UserState";
 import "../states/MovieState";
 import { tap } from "rxjs/operators";
 import { User } from "../models/user.model";
-export class MovieFacade {
+import { Injectable } from "@angular/core";
+
+
+export class UserFacade {
     
     constructor(private userService:UserService , private userState$:UserState) {}
     
@@ -22,7 +25,10 @@ export class MovieFacade {
         this.userService.deleteUser(user.id);
         this.userState$.setUser(null!);
     }
-
+    updateUser(user:User){
+        this.userService.updateUser(user,user.id);
+        this.userState$.setUser(user);
+    }
     loadUserById(id:number) {
         return this.userService.getUser(); // getUserById
     }

@@ -17,5 +17,4 @@ export class MovieFacade {
         return this.movieService.getAllMovies()
                .pipe(tap());
     }
-    
 }

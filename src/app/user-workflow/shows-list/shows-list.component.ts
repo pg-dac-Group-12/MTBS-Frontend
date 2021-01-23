@@ -1,5 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ShowsFacade } from 'src/app/facade/ShowsFacade';
 import { Shows } from 'src/app/models/shows.model';
 import { Theatre } from 'src/app/models/theatre.model';
 import { ShowsService } from 'src/app/services/shows.service';
@@ -15,22 +16,12 @@ export class ShowsListComponent implements OnInit {
   date:Date = new Date(Date.now());
   theatres: Set<Theatre> = new Set<Theatre>();
   response = new HttpResponse<any>();
-  constructor(private showsService: ShowsService) { }
+  constructor(private showsFacade: ShowsFacade) { }
   
   ngOnInit(): void {
-      this.getAllShowsByMovieIdAndDate();    
+      this.showsFacade.loadShowsByMovieIdAndDate(this.movieId,this.date);    
   }
-
-  getAllShowsByMovieIdAndDate() {
-    this.showsService.getAllShowsByMovieIdAndDate(this.movieId, this.date).subscribe(respone => this.response = respone);
-    if (this.response.status == 200) {
-      this.shows = this.response.body;
-      this.shows.map(show=>this.theatres.add(show.theatre));
-    } else if (this.response.status == 204) {
-      this.shows = [];
-    } 
-  }
-
+  
   getShowSeatMap() {
     
   }

@@ -1,5 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { TicketFacade } from 'src/app/facade/TicketFacade';
+import { UserFacade } from 'src/app/facade/UserFacade';
 import { Ticket } from 'src/app/models/ticket.model';
 import { User } from 'src/app/models/user.model';
 import { TicketService } from 'src/app/services/ticket.service';
@@ -12,32 +14,17 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class TicketComponent implements OnInit {
   response = new HttpResponse<any>();
-  tickets: Ticket[]=[];
+  tickets: Ticket[] = [];
   user!: User;
 
-  constructor(private TicketService:TicketService, private userService:UserService) { }
+  constructor(private ticketFacade: TicketFacade, private userFacade: UserFacade) { }
 
   ngOnInit(): void {
-    if(this.userService.getUser())
-      this.user = this.userService.user;
-    
-
-    this.TicketService.getAllTicketsByUserId(this.user.id).subscribe(response => this.response = response);
-    if(this.response.status == 200)
-      this.tickets = this.response.body;
-    else if(this.response.status == 204)
-       {}// no tickets booked so far(or all deleted)
+    this.userFacade.getUser();
+    this.ticketFacade.loadTicketsByUserId(this.user.id)
   }
 
- cancelTicket(ticket:Ticket){
-   this.TicketService.cancelTicket(ticket).subscribe(response => this.response = response);
-   if(this.response.status == 200){
-     //ticket deleted
-   } else if (this.response.status == 400){
-     //failed to delete ticket
-   } else {
-     //failed to delte only
-   }
-   //refresh the page to show updated list of tickets
- }
+  cancelTicket(ticket: Ticket) {
+    this.ticketFacade.cancelTicket(ticket);
+  }
 }

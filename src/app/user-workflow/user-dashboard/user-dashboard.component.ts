@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
+import { UserFacade} from 'src/app/facade/UserFacade';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -12,32 +13,21 @@ import { UserService } from 'src/app/services/user.service';
 export class UserDashboardComponent implements OnInit {
   response = new HttpResponse<User>();
   user!: User;
-  constructor(private userService: UserService) {
+  constructor(private userFacade : UserFacade) {
 
   }
 
   ngOnInit(): void {
-    if(this.userService.getUser()){
-      // this.user = this.userService.user;
-    }
+    this.userFacade.getUser();    
   }
 
   onSubmit(myform:NgForm) {
     this.user = myform.value ; 
-    if(this.userService.updateUser(this.user,this.user.id)){
-      this.user = this.userService.user;
-    }
+    this.userFacade.updateUser(this.user)
   }
 
   deleteUser() {
-    if (this.user.id != 0) {
-      this.userService.deleteUser(this.user.id).subscribe((response) => this.response = response);
-      if (this.response.status == 200) {
-        // user deleted
-      }
-    }else{
-      //failed to delete
-    }
+    this.userFacade.deleteUser(this.user)
   }
 
   changePassword(){
