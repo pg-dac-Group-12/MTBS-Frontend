@@ -2,7 +2,6 @@ import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
-import { UserDashboardComponent } from '../user-workflow/user-dashboard/user-dashboard.component';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +12,7 @@ export class AuthService {
   constructor(private http:HttpClient) { }
   
   authenticateUser(email:string,password:string,isThetreAdmin:boolean){
-    let params = new HttpParams()
-    .append('email',email)
-    .append('password',password)
-    .append('isTheatrAdmin',String(isThetreAdmin));
-    return this.setJWT(this.http.post<any>(`${this.baseUrl}`,null,{observe:'response',params:params}));
+     return this.setJWT(this.http.post<any>(`${this.baseUrl}`,{"userName": email, "password":password},{observe:'response'/*params:params*/}));
   }
 
   logOffUser():Observable<User>{
@@ -37,6 +32,7 @@ export class AuthService {
     let response:HttpResponse<any>
     auth.subscribe(resp =>{
       response = resp ;
+      console.log(resp.body);
       localStorage.setItem('id_token',resp.body);
     })
     // localStorage.setItem('id_token', auth.subscribe(auth=));

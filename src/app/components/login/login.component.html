@@ -1,6 +1,6 @@
 <p>login works!</p>
 <div>
-    <form novalidate #myform = "ngForm" (ngSubmit) = "login(email,pass)">
+    <form novalidate #myform = "ngForm" (ngSubmit) = "login(myform)">
         Email: <input  type = "email" name = "email" placeholder="email" #email="ngModel" ngModel required email="true"> <br>
         password: <input type = "password" name = "password" placeholder="password" #pass="ngModel" [(ngModel)]="password" required><br>
         isTheatre: <input type = "checkbox" name = "isTheatre" checked="false" [(ngModel)]="isTheatreAdmin">

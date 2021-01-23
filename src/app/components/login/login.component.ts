@@ -24,9 +24,9 @@ export class LoginComponent implements OnInit {
   //   this.authService.authenticateUser(myform.,this.password,this.isTheatreAdmin);
   // }
 
-  login(email:string, password:string) {
-    console.log(email);
-    this.authService.authenticateUser(email,password,this.isTheatreAdmin);
+  login(myform:NgForm) {
+    console.log(myform);
+    this.authService.authenticateUser(myform.value.email,myform.value.password,this.isTheatreAdmin);
     
   }
   
