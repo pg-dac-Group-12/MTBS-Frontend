@@ -2,7 +2,9 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { Shows } from "../models/shows.model";
 
-@Injectable()
+@Injectable({
+    providedIn:'root',
+})
 export class ShowState{
     private shows$ = new BehaviorSubject<Shows[]>([]);
 

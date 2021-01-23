@@ -2,21 +2,23 @@ import { Movie } from "../models/movie.model"
 import {BehaviorSubject, Subject} from 'rxjs' 
 import { Injectable } from "@angular/core";
 
-@Injectable()
+@Injectable({
+    providedIn:'root',
+})
 export class MovieState {
     getAllMoviesById(id: number) {
         throw new Error("Method not implemented.");
     }
     getAllMovies() {
-        throw new Error("Method not implemented.");
+        return this.movies$.asObservable();
     }
     private movies$ = new BehaviorSubject<Movie[]>([]);
 
     getMovies() {
-        return this.movies$.asObservable();
     }
 
     setMovies(movies :Movie[]) {
+        console.log("In Movie States")
         this.movies$.next(movies);
     }
 

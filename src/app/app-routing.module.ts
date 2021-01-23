@@ -10,13 +10,13 @@ import { TicketComponent } from './user-workflow/ticket/ticket.component';
 import { UserDashboardComponent } from './user-workflow/user-dashboard/user-dashboard.component';
 
 const routes: Routes = [
-  {path:'user',component: UserDashboardComponent , canActivate:[AuthGuard]},
-  {path: 'movie_list',component:MovieListComponent, canActivate:[AuthGuard]},
-  {path:'show_list',component: ShowsListComponent , canActivate:[AuthGuard]},
-  {path: 'ticket', component: TicketComponent, canActivate:[AuthGuard]},
-  {path: 'login',component:LoginComponent, canActivate:[AuthGuard]},
-  {path: 'register_user',component:UserRegisterComponent, canActivate:[AuthGuard]},
-  {path: 'register_theatre',component:TheatreRegisterComponent ,canActivate:[AuthGuard]}
+  {path: '',component:LoginComponent},
+  {path:'user',component: UserDashboardComponent },
+  {path: 'movie_list',component:MovieListComponent},
+  {path:'shows_list',component: ShowsListComponent },
+  {path: 'ticket', component: TicketComponent},
+  {path: 'register_user',component:UserRegisterComponent},
+  {path: 'register_theatre',component:TheatreRegisterComponent }
 ];
 
 @NgModule({

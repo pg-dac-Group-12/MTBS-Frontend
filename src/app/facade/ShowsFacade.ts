@@ -2,6 +2,11 @@ import { ShowsService } from "../services/shows.service";
 import {  ShowState } from "../states/ShowState";
 import { tap } from "rxjs/operators";
 import { Shows } from "../models/shows.model";
+import { Injectable } from "@angular/core";
+
+@Injectable({
+    providedIn:'root',
+})
 export class ShowsFacade {
     
     constructor(private showService:ShowsService , private showState$:ShowState) {}

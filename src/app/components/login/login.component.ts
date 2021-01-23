@@ -27,10 +27,9 @@ export class LoginComponent implements OnInit {
   login(myform:NgForm) {
     console.log(myform);
     this.authService.authenticateUser(myform.value.email,myform.value.password,this.isTheatreAdmin);
-    
+    this.router.navigateByUrl("/movie_list")
   }
   
   navigateToMovieList(){
-    this.router.navigateByUrl("/movie-list")
   }
 }

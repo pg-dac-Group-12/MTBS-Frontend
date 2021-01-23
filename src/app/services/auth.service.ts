@@ -12,7 +12,8 @@ export class AuthService {
   constructor(private http:HttpClient) { }
   
   authenticateUser(email:string,password:string,isThetreAdmin:boolean){
-     return this.setJWT(this.http.post<any>(`${this.baseUrl}`,{"userName": email, "password":password},{observe:'response'/*params:params*/}));
+    this.setJWT(this.http.post<any>(`${this.baseUrl}`,{"userName": email, "password":password},{/*observe:'response'params:params*/}));
+    
   }
 
   logOffUser():Observable<User>{
