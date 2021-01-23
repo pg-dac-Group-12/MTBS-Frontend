@@ -3,7 +3,9 @@ import {BehaviorSubject, Subject} from 'rxjs'
 import { Injectable } from "@angular/core";
 import { Audi } from "../models/audi.model";
 
-@Injectable()
+@Injectable({
+    providedIn:"root"
+})
 export class AudiState {
     private audis$ = new BehaviorSubject<Audi[]>([]);
 

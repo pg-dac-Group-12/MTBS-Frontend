@@ -4,12 +4,21 @@ import "../states/MovieState";
 import { Theatre } from "../models/theatre.model";
 import { AudiState } from "../states/AudiState";
 import { Audi } from "../models/audi.model";
+import { Injectable } from "@angular/core";
+@Injectable({
+    providedIn:"root"
+})
 export class TheatreFacade {
+
     
     constructor(private theatreService:TheatreService , private theatreState$:TheatreState , private audiState$:AudiState ) {}
     
     getTheatre() {
         return this.theatreState$.getTheatre();
+    }
+
+    setTheatre(theatre:Theatre) {
+        return this.theatreState$.setTheatre(theatre);
     }
 
     addTheatre(theatre:Theatre) {

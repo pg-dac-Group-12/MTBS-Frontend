@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TheatreFacade } from 'src/app/facade/TheatreFacade';
+import { UserFacade } from 'src/app/facade/UserFacade';
+import { Theatre } from 'src/app/models/theatre.model';
+import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -13,7 +17,7 @@ export class LoginComponent implements OnInit {
   email:string = "";
   password:string = "";
   isTheatreAdmin:boolean = false;
-  constructor(private authService:AuthService, private router:Router) { }
+  constructor(private authService:AuthService, private userFacade:UserFacade, private theatreFacade:TheatreFacade ,private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -26,8 +30,16 @@ export class LoginComponent implements OnInit {
 
   login(myform:NgForm) {
     console.log(myform);
-    this.authService.authenticateUser(myform.value.email,myform.value.password,this.isTheatreAdmin);
-    this.router.navigateByUrl("/movie_list")
+    let actor:User|Theatre = this.authService.authenticateUser(myform.value.email,myform.value.password,this.isTheatreAdmin);
+    
+    if(actor != null) {
+        if(!this.isTheatreAdmin)
+            this.userFacade.setUser(actor as User);
+        else
+            this.theatreFacade.setTheatre(actor as Theatre)
+    }
+      
+    this.router.navigateByUrl("/ticket")
   }
   
   navigateToMovieList(){

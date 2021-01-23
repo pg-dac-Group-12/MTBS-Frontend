@@ -2,11 +2,12 @@ import { UserService } from "../services/user.service";
 import { UserState } from "../states/UserState";
 
 import "../states/MovieState";
-import { tap } from "rxjs/operators";
 import { User } from "../models/user.model";
 import { Injectable } from "@angular/core";
 
-
+@Injectable({
+    providedIn:'root'
+})
 export class UserFacade {
     
     constructor(private userService:UserService , private userState$:UserState) {}

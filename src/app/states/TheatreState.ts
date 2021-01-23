@@ -2,7 +2,9 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { Theatre } from "../models/theatre.model";
 
-@Injectable()
+@Injectable({
+    providedIn:"root"
+})
 export class TheatreState{
     //private theatre$ = new BehaviorSubject<Theatre[]>([]);
     

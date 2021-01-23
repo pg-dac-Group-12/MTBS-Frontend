@@ -2,8 +2,11 @@ import { TicketService } from "../services/ticket.service";
 import { TicketState } from "../states/TicketState";
 
 import "../states/MovieState";
-import { tap } from "rxjs/operators";
 import { Ticket } from "../models/ticket.model";
+import { Injectable } from "@angular/core";
+@Injectable({
+    providedIn:"root"
+})
 export class TicketFacade {
     
     constructor(private ticketService:TicketService , private ticketState$:TicketState) {}
