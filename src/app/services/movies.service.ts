@@ -24,9 +24,10 @@ export class MoviesService {
   deleteMovie(id:number):Observable<HttpResponse<Movie>>{
     return Utils.validateResponse(this.http.delete<Movie>(`${this.baseUrl}${id}`,{observe:'response'}));
   }
+
   getAllMovieById(id:number):Observable<Movie> {
     return this.http.get<Movie>(`${this.baseUrl}${id}`);
-  }
+ }
 // check pending
   getAllMovies():Observable<Movie[]> {
     console.log("Hello")

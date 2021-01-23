@@ -13,6 +13,7 @@ export class ShowsService {
     let reqParams = new HttpParams()
     .append('movieId',String(movieId))
     .append('date',String(date));
+    console.log(reqParams);
     return this.http.get<Shows[]>(`${this.baseUrl}`, {params:reqParams});
   }
   

@@ -1,18 +1,21 @@
 <div>
-<p>shows-list works!</p>
-<p>{{dates}}</p>
-<select [(ngModel)] = "selectedDate" (ngModelChange)="getAllShowsByMovieIdAndDate()">  
-    <option *ngFor="let date of dates; let i = index" [ngValue] = "date" >{{ date.format("MMM-Do") }} </option>  
-</select> 
-<ul>
-<li *ngFor="let theatre of theatres">
-    <h3>{{theatre.name}}</h3>
+    <p>shows-list works!</p>
+    <p>{{dates}}</p>
+    <select [(ngModel)]="selectedDate" (ngModelChange)="getAllShowsByMovieIdAndDate()">
+        <option *ngFor="let date of dates; let i = index" [ngValue]="date">{{ date.format("MMM-Do") }} </option>
+    </select>
     <ul>
-    <li *ngFor = "let show of shows">
-        <button (click) = getShowSeatMap(show.id)>{{show.time}}</button>
-    </li>
-    </ul> 
-</li>
-</ul> 
- 
+
+        <li *ngFor="let theatre of theatres">
+            <h3>{{theatre.name}}</h3>
+            <div *ngFor="let show of shows">
+                <span *ngIf="show.theatre.id == theatre.id ">
+                    <div>
+                        <button (click)=getShowSeatMap(show.id)>{{show.time}}</button>
+                    </div> 
+                </span>
+            </div>
+
+        </li>
+    </ul>
 </div>

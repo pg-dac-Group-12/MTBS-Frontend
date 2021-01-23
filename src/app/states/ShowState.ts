@@ -9,6 +9,7 @@ export class ShowState{
     private shows$ = new BehaviorSubject<Shows[]>([]);
 
     getShows() {
+        console.log(this.shows$.getValue.toString)
         return this.shows$.asObservable();
     }
 
