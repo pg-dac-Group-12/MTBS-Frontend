@@ -1,13 +1,12 @@
 <p>add-audi works!</p>
 
 <div>
-    <form novalidate #myform ngForm (ngSubmit) = "onSubmit(myform.value)">
+    <form novalidate #myform="ngForm" (ngSubmit) = "onSubmit(myform)">
         Audi Number: <input type = "number" name = "number" placeholder="number" ngModel required><br>
        
         total Capacity: <input type = "number" name = "totalSeats" placeholder="total number of seats" ngModel required><br>
         <!--seat map input-->
-        <input type = "submit"  value = "add Audi" [disabled] = "!myform.valid"><br>
+        <input type = "submit"  value = "add Audi" ><br>
     </form>
-
     <div>{{message}}</div>
 </div>

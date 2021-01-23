@@ -13,7 +13,8 @@ import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [TheatreDashboardComponent, AddAudiComponent, DeleteAudiComponent, UpdateAudiComponent, AddShowComponent, CancelShowComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
 export class TheatreWorkflowModule { }

@@ -45,8 +45,9 @@ export class TheatreFacade {
     }
 
     addAudi(theatreId:number, audi:Audi) {
-        this.theatreService.createAudi(theatreId, audi.toString());
-        this.audiState$.addAudi(audi);
+        console.log("adding audi");
+        this.theatreService.createAudi(theatreId, audi).subscribe(audi => this.audiState$.addAudi(audi) );
+     //   this.audiState$.addAudi(audi);
     } 
 
     updateAudi(theatreId:number , audi:Audi) {

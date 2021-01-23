@@ -38,8 +38,8 @@ export class TheatreService {
     return this.http.get<Audi>(`${this.baseUrl}${id}/audi/${audiId}`,{observe:'response'});
   }
 
-  createAudi(id:number,audiDetails:string):Observable<HttpResponse<Audi>>{
-    return this.http.post<Audi>(`${this.baseUrl}${id}/audi`,audiDetails ,{observe:'response'});
+  createAudi(id:number,audi:Audi):Observable<Audi>{
+    return this.http.post<Audi>(`${this.baseUrl}${id}/audi`,audi);
   }
   updateAudi(id:number,audiId:number,audi:Audi):Observable<HttpResponse<Audi>>{
     return this.http.put<Audi>(`${this.baseUrl}${id}/audi/${audiId}`,audi,{observe:'response'});

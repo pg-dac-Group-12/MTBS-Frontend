@@ -4,6 +4,7 @@ import { AuthGuard } from 'src/auth.guard';
 import { LoginComponent } from './components/login/login.component';
 import { TheatreRegisterComponent } from './components/theatre-register/theatre-register.component';
 import { UserRegisterComponent } from './components/user-register/user-register.component';
+import { AddAudiComponent } from './theatre-workflow/add-audi/add-audi.component';
 import { TheatreDashboardComponent } from './theatre-workflow/theatre-dashboard/theatre-dashboard.component';
 import { MovieListComponent } from './user-workflow/movie-list/movie-list.component';
 import { ShowsListComponent } from './user-workflow/shows-list/shows-list.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path:'shows_list',component: ShowsListComponent },
   {path: 'ticket', component: TicketComponent},
   {path: 'theatre', component: TheatreDashboardComponent},
+  {path: 'add_audi', component: AddAudiComponent},
   {path: 'register_user',component:UserRegisterComponent},
   {path: 'register_theatre',component:TheatreRegisterComponent }
 ];

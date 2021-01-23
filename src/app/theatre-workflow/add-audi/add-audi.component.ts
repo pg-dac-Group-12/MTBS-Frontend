@@ -19,7 +19,8 @@ export class AddAudiComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  onSubmit(myFrom:NgForm){
+  onSubmit(myForm:NgForm){
+    this.audi = myForm.value ;
     this.audi.theatre = this.theatre;
     this.theatreFacade.addAudi(this.theatreFacade.getTheatre().id, this.audi);
   }
