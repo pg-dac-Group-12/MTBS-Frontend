@@ -28,7 +28,7 @@ export class ShowsFacade {
 
     loadShowsByTheatreId(theatreId : number) {
         return this.showService.getAllShowsByTheatreId(theatreId) 
-        //.subscribe(shows => this.showState$.setShows());
+        .subscribe(shows => this.showState$.setShows(shows));
     }
 
     loadShowsByMovieIdAndDate(movieId:number, date:String) {

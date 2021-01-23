@@ -5,8 +5,6 @@ import { TheatreFacade } from 'src/app/facade/TheatreFacade';
 import { Audi } from 'src/app/models/audi.model';
 import { Shows } from 'src/app/models/shows.model';
 import { Theatre } from 'src/app/models/theatre.model';
-import { ShowsService } from 'src/app/services/shows.service';
-import { TheatreService } from 'src/app/services/theatre.service';
 
 @Component({
   selector: 'app-theatre-dashboard',
@@ -22,10 +20,13 @@ export class TheatreDashboardComponent implements OnInit {
   constructor(private theatreFacade: TheatreFacade, private showFacade: ShowsFacade) { }
 
   ngOnInit(): void {
-    this.theatreFacade.getAudis().subscribe(audis => this.audis = [...audis]);
+    this.theatre =this.theatreFacade.getTheatre();
+    this.theatreFacade.loadAudiByTheatreId(this.theatre.id);
+    this.theatreFacade.getAudis().subscribe(audis => this.audis = audis);
     this.theatre = this.theatreFacade.getTheatre();
-    this.showFacade.getShows().subscribe(shows => this.shows = [...shows]);
-
+    this.showFacade.loadShowsByTheatreId(this.theatre.id);
+    this.showFacade.getShows().subscribe(shows => this.shows = shows);
+    console.log(this.shows);
     // this.theatreService.getTheatreFromSession().subscribe((response) => this.response = response);
     // if (this.response.status == 401) {
     //   //Theatre not in session. redirection code goes here
@@ -47,6 +48,7 @@ export class TheatreDashboardComponent implements OnInit {
   }
 
   getShowsByAudiId(audiId:number){
+    console.log(audiId);
     this.shows.map(show=>{ if(show.id == audiId) this.showsByAudi.push(show);})
   }
   

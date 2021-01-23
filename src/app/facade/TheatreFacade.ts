@@ -60,11 +60,11 @@ export class TheatreFacade {
     }    
     
     loadAudiByTheatreId(theatreId:number) {
-        this.theatreService.getAllAudis(theatreId);
+        this.theatreService.getAllAudis(theatreId).subscribe(audis => this.audiState$.setAudis(audis));
     }
 
     loadTheatreById(id:number) {
-        return this.theatreService.getTheatre(id);
+        return this.theatreService.getTheatre(id).subscribe();
     }
 }
 

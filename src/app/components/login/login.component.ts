@@ -35,13 +35,13 @@ export class LoginComponent implements OnInit {
       if(resp == null)
         this.router.navigateByUrl("/login");
       else {
-            if(!this.isTheatreAdmin) {
+          if(!this.isTheatreAdmin) {
               this.userFacade.setUser(resp.actor);
           } else {
             this.theatreFacade.setTheatre(resp.actor);
           }
       }
-      this.router.navigateByUrl("/user")
+      this.router.navigateByUrl("/theatre")
     })
   }   
 }

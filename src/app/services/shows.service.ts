@@ -21,8 +21,8 @@ export class ShowsService {
     return this.http.get<Shows>(`${this.baseUrl}${id}`,{observe:'response'});
   }
 
-  getAllShowsByTheatreId(theatreId:number):Observable<HttpResponse<Shows>>{
-    return this.http.get<Shows>(`${this.baseUrl}theatre/${theatreId}`,{observe:'response'});
+  getAllShowsByTheatreId(theatreId:number):Observable<Shows[]>{
+    return this.http.get<Shows[]>(`${this.baseUrl}theatre/${theatreId}`);
   }
 
   createShow(show:Shows,theatreId:number,audiId:number,movieId:number):Observable<HttpResponse<Shows>>{

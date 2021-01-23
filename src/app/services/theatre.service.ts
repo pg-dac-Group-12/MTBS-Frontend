@@ -30,8 +30,8 @@ export class TheatreService {
     return this.http.delete<Theatre>(`${this.baseUrl}${id}`,{observe:'response'});
   }
   
-  getAllAudis(id:number):Observable<HttpResponse<Audi>>{
-    return this.http.get<Audi>(`${this.baseUrl}${id}/audis`,{observe:'response'});
+  getAllAudis(id:number):Observable<Audi[]>{
+    return this.http.get<Audi[]>(`${this.baseUrl}${id}/audis`);
   }
 
   getAudi(id:number,audiId:number):Observable<HttpResponse<Audi>>{
