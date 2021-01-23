@@ -7,7 +7,7 @@
 </div>
 <ng-template #elseBlock>
     <h2>this Audi has the following shows still running or planned.</h2>
-    <li *ngfor="let show of showsByAudi">
+    <li *ngFor="let show of showsByAudi">
         <h5>Movie: {{show.movie.title}}</h5>
         <span>Time : {{show.time}} {{show.date}}</span>
         <span>Price: {{show.price}}</span>

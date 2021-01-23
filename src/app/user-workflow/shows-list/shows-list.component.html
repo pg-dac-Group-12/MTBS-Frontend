@@ -1,10 +1,17 @@
+<div>
 <p>shows-list works!</p>
 <select [(ngModel)]="date" (ngModelChange)="getAllShowsByMovieIdAndDate()">  
     <option *ngFor="let number of [1,2,3,4,5]">{{ new Date().getDate() + number }} </option>  
 </select> 
+<ul>
 <li *ngFor="let theatre of theatres">
     <h3>{{theatre.name}}</h3>
+    <ul>
     <li *ngFor = "let show of shows">
         <button (click) = getShowSeatMap(show.id)>{{show.time}}</button>
     </li>
+    </ul> 
 </li>
+</ul> 
+ 
+</div>

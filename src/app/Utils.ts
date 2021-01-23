@@ -9,7 +9,7 @@ export class Utils {
         201: (response:HttpResponse<any>)=> {
             return response.body;
         },
-        401: (response:HttpResponse<any>)=>{
+        401: (response:HttpResponse<any>):any=>{
             //directives
             return null;
         }
