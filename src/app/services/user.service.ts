@@ -11,8 +11,8 @@ export class UserService {
   
   constructor(private http: HttpClient) { }
 
-  getUser(): Observable<HttpResponse<User>> {
-    return this.http.get<User>(this.baseUrl, { observe: 'response' });
+  getUser(): Observable<User>{
+    return this.http.get<User>(this.baseUrl);
   }
 
   createUser(user: User): Observable<HttpResponse<User>> {

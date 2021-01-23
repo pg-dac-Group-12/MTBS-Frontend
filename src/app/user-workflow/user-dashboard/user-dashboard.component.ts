@@ -2,7 +2,6 @@ import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { User } from 'src/app/models/user.model';
-import { UserService } from 'src/app/services/user.service';
 import { UserFacade} from 'src/app/facade/UserFacade';
 
 @Component({
@@ -14,15 +13,16 @@ export class UserDashboardComponent implements OnInit {
   response = new HttpResponse<User>();
   user!: User;
   constructor(private userFacade : UserFacade) {
-
   }
 
   ngOnInit(): void {
-    this.userFacade.getUser();    
+    this.userFacade.getUser().subscribe(user => this.user = user)   
+    console.log(this.user);
   }
 
   onSubmit(myform:NgForm) {
-    this.user = myform.value ; 
+    //this.user = myform.value ; 
+    console.log(this.user);
     this.userFacade.updateUser(this.user)
   }
 
@@ -31,6 +31,6 @@ export class UserDashboardComponent implements OnInit {
   }
 
   changePassword(){
-    //redirect to change password page
+
   }
 }

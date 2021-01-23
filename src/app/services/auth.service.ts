@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { UserFacade } from '../facade/UserFacade';
 import { Theatre } from '../models/theatre.model';
 import { User } from '../models/user.model';
 
@@ -9,11 +10,12 @@ import { User } from '../models/user.model';
 })
 export class AuthService {
   baseUrl:string = "http://localhost:8080/login/";
+  actor!:User|Theatre ;
   
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private userFacade:UserFacade) { }
   
-  authenticateUser(email:string,password:string,isThetreAdmin:boolean):User|Theatre{
-    return this.setJWT(this.http.post<any>(`${this.baseUrl}`,{"userName": email, "password":password}));
+  authenticateUser(email:string,password:string,isThetreAdmin:boolean):Observable<any>{
+    return this.http.post<any>(`${this.baseUrl}`,{"userName": email, "password":password});
   }
 
   logOffUser():Observable<User>{

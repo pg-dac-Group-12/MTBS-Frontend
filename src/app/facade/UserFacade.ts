@@ -23,15 +23,15 @@ export class UserFacade {
         this.userState$.setUser(user);
     }
     deleteUser(user:User) {
-        this.userService.deleteUser(user.id);
-        this.userState$.setUser(null!);
+        this.userService.deleteUser(user.id).subscribe();
+        this.userState$.setEmptyUser();
     }
     updateUser(user:User){
-        this.userService.updateUser(user,user.id);
+        this.userService.updateUser(user,user.id).subscribe();
         this.userState$.setUser(user);
     }
     loadUserById(id:number) {
-        return this.userService.getUser(); // getUserById
+        return this.userService.getUser().subscribe(user => this.userState$.setUser(user)) // getUserById
     }
     
 }

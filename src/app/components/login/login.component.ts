@@ -29,19 +29,19 @@ export class LoginComponent implements OnInit {
   // }
 
   login(myform:NgForm) {
-    console.log(myform);
-    let actor:User|Theatre = this.authService.authenticateUser(myform.value.email,myform.value.password,this.isTheatreAdmin);
-    
-    if(actor != null) {
-        if(!this.isTheatreAdmin)
-            this.userFacade.setUser(actor as User);
-        else
-            this.theatreFacade.setTheatre(actor as Theatre)
-    }
-      
-    this.router.navigateByUrl("/ticket")
-  }
-  
-  navigateToMovieList(){
-  }
+    this.authService.authenticateUser(myform.value.email,myform.value.password,this.isTheatreAdmin)
+    .subscribe(resp => {
+      localStorage.setItem('id_token', resp.jwt)
+      if(resp == null)
+        this.router.navigateByUrl("/login");
+      else {
+            if(!this.isTheatreAdmin) {
+              this.userFacade.setUser(resp.actor);
+          } else {
+            this.theatreFacade.setTheatre(resp.actor);
+          }
+      }
+      this.router.navigateByUrl("/user")
+    })
+  }   
 }

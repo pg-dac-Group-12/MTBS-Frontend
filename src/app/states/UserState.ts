@@ -6,7 +6,7 @@ import { User } from "../models/user.model";
     providedIn:'root'
 })
 export  class UserState {
-    private user$ = new BehaviorSubject<User>({"email":"","id":0,"name":"","password":"","phone_no":"","tickets":[]});
+    private user$ = new BehaviorSubject<User>({"email":"","id":0,"name":"","password":"","phoneNo":"","tickets":[]});
 
     getUser(){
         return this.user$.asObservable();
@@ -16,6 +16,9 @@ export  class UserState {
         this.user$.next(user$);
     }
 
+    setEmptyUser() {
+        this.user$.next({"email":"","id":0,"name":"","password":"","phoneNo":"","tickets":[]})
+    }
     // updateUser(user:User){
     //     let currentUser = this.user$.getValue();
     //     currentUser = user;

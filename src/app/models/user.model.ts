@@ -6,7 +6,7 @@ export interface User {
 	name:string  ;
 	email:string ; 
 	password:string ;
-	phone_no:string ;
+	phoneNo:string ;
 	tickets:Ticket[];
 
 }
