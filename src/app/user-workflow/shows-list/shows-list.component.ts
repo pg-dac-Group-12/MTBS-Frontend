@@ -48,11 +48,11 @@ export class ShowsListComponent implements OnInit {
       .subscribe(shows => {
         console.log(shows);
         this.shows = shows;
-        this.updateTheatre();
+        this.updateTheatres();
       });
   }
 
-  updateTheatre() {
+  updateTheatres() {
     this.shows.map(show => {
       this.theatres.push(show.theatre);
     })
