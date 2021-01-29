@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ShowsFacade } from 'src/app/facade/ShowsFacade';
 import { Shows } from 'src/app/models/shows.model';
 
@@ -13,9 +14,10 @@ export class AddShowComponent implements OnInit {
   audiId:number = null! ;
   theatreId:number = null!;
   movieId:number = null!;
-  constructor(private showFacade:ShowsFacade) { }
+  constructor(private showFacade:ShowsFacade, private router:Router) { }
 
   ngOnInit(): void {
+    this.audiId = this.router.getCurrentNavigation()?.extras.state!.audiId;
   }
 
   onSubmit(myForm:NgForm) {

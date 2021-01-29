@@ -6,5 +6,5 @@ export interface Audi {
     number:number;
     seatMap:Seat[];
     totalSeats:number;
-    theatre:Theatre;
+    theatre?:Theatre;
 }

@@ -40,8 +40,8 @@ export class TheatreFacade {
         return this.audiState$.getAudis();
     }
 
-    getAudiByAudiNumber(audiNumber:number) {
-        this.audiState$.getAudiByAudiNumber(audiNumber) ;
+    getAudiByAudiNumber(audiNumber:number) : Audi {
+        return this.audiState$.getAudiByAudiNumber(audiNumber) ;
     }
 
     addAudi(theatreId:number, audi:Audi) {

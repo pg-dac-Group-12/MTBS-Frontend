@@ -1,5 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ShowsFacade } from 'src/app/facade/ShowsFacade';
 import { TheatreFacade } from 'src/app/facade/TheatreFacade';
 import { Audi } from 'src/app/models/audi.model';
@@ -17,7 +18,7 @@ export class TheatreDashboardComponent implements OnInit {
   showsByAudi:Shows[]=[];
   theatre!: Theatre;
   response = new HttpResponse<any>();
-  constructor(private theatreFacade: TheatreFacade, private showFacade: ShowsFacade) { }
+  constructor(private theatreFacade: TheatreFacade, private showFacade: ShowsFacade, private router:Router) { }
 
   ngOnInit(): void {
     this.theatre =this.theatreFacade.getTheatre();
@@ -54,7 +55,7 @@ export class TheatreDashboardComponent implements OnInit {
   
   cancelShow(show:Shows){
     //redirect to cancel shows
-
+    this.showFacade.cancelShows(show);
     // this.showsService.cancelShow(show).subscribe(respone=>this.response = respone);
     // if(this.response.status == 200){
     //     //show canceled
@@ -63,4 +64,11 @@ export class TheatreDashboardComponent implements OnInit {
     // }
   }
 
+  addShow(audiId:number) {
+    this.router.navigate(['/add_show'],{state : { audiId : audiId}});
+  }
+
+  deleteAudi(audiId:number) {
+    this.theatreFacade.deleteAudi(this.theatre.id, audiId);
+  }
 }

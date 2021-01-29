@@ -1,11 +1,10 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Audi } from 'src/app/models/audi.model';
 import { Seat } from 'src/app/models/seat.model';
 import { Theatre } from 'src/app/models/theatre.model';
-import { TheatreService } from 'src/app/services/theatre.service';
-import { SeatState } from 'src/app/states/SeatState';
 import { TheatreFacade } from '../../facade/TheatreFacade'
 
 @Component({
@@ -15,17 +14,25 @@ import { TheatreFacade } from '../../facade/TheatreFacade'
 })
 export class AddAudiComponent implements OnInit {
   theatre!:Theatre; //get from router link
-  audi!:Audi
+  audi!:Audi ;
   message:string ="";
   seatMap:Seat[]=[];
-  constructor(private theatreFacade:TheatreFacade) { }
-  
+  constructor(private theatreFacade:TheatreFacade, private router:Router) {
+    let audiNumber = this.router.getCurrentNavigation()?.extras.state!.audiNumber
+    console.log(audiNumber);
+    if(audiNumber != null) {
+      this.audi = this.theatreFacade.getAudiByAudiNumber(audiNumber); 
+    }  
+  }
 
   ngOnInit(): void {
+
   }
   onSubmit(myForm:NgForm){
     this.audi = myForm.value ;
     this.audi.theatre = this.theatre;
+    if(this.audi != null) 
+      this.theatreFacade.updateAudi(this.theatreFacade.getTheatre().id,this.audi);
     this.theatreFacade.addAudi(this.theatreFacade.getTheatre().id, this.audi);
     this.audi.seatMap = this.seatMap;
   }

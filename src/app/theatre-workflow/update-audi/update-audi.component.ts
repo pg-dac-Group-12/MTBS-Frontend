@@ -1,6 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TheatreFacade } from 'src/app/facade/TheatreFacade';
 import { Audi } from 'src/app/models/audi.model';
 import { TheatreService } from 'src/app/services/theatre.service';
@@ -16,13 +17,12 @@ export class UpdateAudiComponent implements OnInit {
   audi!:Audi;        //get from router link /service like Tanay said :p 
   response = new HttpResponse<any>();
   message:string = "";
-  constructor(private theatreFacade:TheatreFacade) { }
+  constructor(private theatreFacade:TheatreFacade, private route:Router) { }
 
   ngOnInit(): void {
   }
   onSubmit(myForm:NgForm){
     this.audi = myForm.value;
-    this.theatreFacade.updateAudi(this.theatreId,this.audi);
-    
+    this.theatreFacade.updateAudi(this.theatreId,this.audi); 
   }
 }
