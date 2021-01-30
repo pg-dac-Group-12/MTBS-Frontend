@@ -1,6 +1,20 @@
 <p>movie-list works!</p>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-<li *ngFor="let movie of movies">
+<!-- <li *ngFor="let movie of movies">
     <b> {{movie.title}} </b>   
-    <button (click)="getShowsForMovie(movie.id)">book</button>        
- </li>
+    <button  class="btn btn-primary" (click)="getShowsForMovie(movie.id)">book</button>        
+ </li> -->
+<div class="row">
+    <div *ngFor="let movie of movies" class="card" style="width: 18rem;">
+        <div class="col-sm-12">
+            <img class="card-img-top" src="../../../assets/dummy-pics/deja-vu-1920×1080.jpg" alt="{{movie.title}}">
+            <div class="card-body">
+                <h4 class="card-title"><strong>{{movie.title}}</strong></h4>
+                <p class="card-text">{{movie.duration}} mins | {{movie.rating}}</p>
+                <button class="btn btn-primary" (click)="getShowsForMovie(movie.id)">book</button>
+            </div>
+        </div>
+    </div>
+</div>
