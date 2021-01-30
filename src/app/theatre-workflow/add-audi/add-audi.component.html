@@ -16,24 +16,25 @@
 </div>
 <br><br>
 <div>
+
     <div>
         <span style="white-space: nowrap;" *ngFor="let seat of seatMap;let i = index;let last = last">
             <button style='margin-right:16px'>
                 {{seat.rowNumber}} {{seat.colNumber}}
             </button>
-            <!--code for lane in between. couldn't figure it out. its 9:02 ffs-->
-            <!-- <span *ngIf="(i+1)== (columns.value/2) || (i+1) == (columns.value/2*i%rows.value) 
-                || (i+1) ==(columns.value/2 -0.5) || (i+1) == (columns.value/2 + columns - 0.5) "> -->
-            <!-- <span *ngIf="((i+1)%(column.value) === ((columns.value)%2) "> -->
-            <!-- <span style="display:inline-block; width: 10px;"></span>
-            </span> -->
+
+            <span style="white-space: nowrap;" *ngIf="seatMap[i].rowNumber === 0">
+
+                <span style="padding-left:40px"></span>
+
+            </span>
 
             <span style="white-space: nowrap;" *ngIf="!last">
+                <div
+                    *ngIf="seatMap[i                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ].rowNumber == rows.value;">
 
-                <div *ngIf="seatMap[i+1].colNumber == 'A'">
                     <br>
                 </div>
-
             </span>
         </span>
     </div>

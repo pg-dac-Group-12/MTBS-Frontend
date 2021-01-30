@@ -15,7 +15,10 @@ export class ShowsFacade {
     getShows() {
         return this.showState$.getShows();
     }
-
+    getShowByID(showId:number){
+        return this.showState$.getShowById(showId);
+    }
+    
     addShows(show:Shows, theatreId:number , audiId:number , movieId:number) {
         this.showService.createShow(show,theatreId,audiId,movieId)
         .subscribe(shows => this.showState$.addShows(shows.body!))

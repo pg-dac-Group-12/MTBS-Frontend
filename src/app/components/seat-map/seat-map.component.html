@@ -1,0 +1,51 @@
+Columns:<input type="number" #rows> Rows:<input type="number" #columns l>
+<button type="button" class="btn btn-info btn-lg" data-bs-toggle="modal" data-bs-target="#myModal"
+    (click)="createSeatMap(rows.value,columns.value)" data-toggle="modal">Preview</button><br>
+<div class="modal "  data-bs-backdrop="static" id="myModal" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <legend class="modal-title">Seat Map</legend>
+                <button (click)="resetSelectedSeats()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body mx-auto">
+                <div >
+                    <div style="text-align: center; margin-top: 3vh;margin-bottom: 3vh;">
+                        <legend> Screen this side  </legend>
+                     </div>
+                    <div>
+                        <legend style="text-align: right;">INR {{show.price}} / seat</legend>
+                    </div>
+                 
+                    <div class="container-fluid">
+                        <span style="white-space: nowrap;" *ngFor="let seat of seatMap;let i = index;let last = last">
+
+                            <button class="seat" id="seat-{{i}}" *ngIf="seatMap[i].rowNumber !== 0" [disabled]="seatMap[i].isBooked" value={{i}}
+                                (click)="addSeat(seatID.value)" #seatID>
+                            </button>
+                            <span style="white-space: nowrap;" *ngIf="seatMap[i].rowNumber === 0">
+                                <span style="padding-left:40px"></span>
+                            </span>
+                            <span style="white-space: nowrap;" *ngIf="!last">
+                                <div *ngIf="seatMap[i].rowNumber == rows.value;">
+                                    <span class="br"></span>  
+                                </div>
+                            </span>
+                        </span>
+                        <div style="text-align: right;">
+                            <label>{{selectedSeats.length}} x {{show.price}} = INR {{selectedSeats.length * show.price}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="text-align: left;">
+              
+                <div style="text-align: right;">
+                    <button class="btn btn-primary" (click)="bookSeats()">
+                        Book Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

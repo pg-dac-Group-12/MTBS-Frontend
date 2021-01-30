@@ -12,7 +12,10 @@ export class ShowState{
         console.log(this.shows$.getValue.toString)
         return this.shows$.asObservable();
     }
-
+    getShowById(showId:number){
+        const currentShowsList = this.shows$.getValue();
+        return currentShowsList[currentShowsList.findIndex(showItem => showId == showItem.id)]; 
+    }
     setShows(shows :Shows[]) {
         this.shows$.next(shows);
     }

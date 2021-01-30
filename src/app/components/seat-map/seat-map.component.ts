@@ -1,44 +1,34 @@
-import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Audi } from 'src/app/models/audi.model';
+import { ShowsFacade } from 'src/app/facade/ShowsFacade';
 import { Seat } from 'src/app/models/seat.model';
-import { Theatre } from 'src/app/models/theatre.model';
-import { TheatreFacade } from '../../facade/TheatreFacade'
+import { Shows } from 'src/app/models/shows.model';
 
 @Component({
-  selector: 'app-add-audi',
-  templateUrl: './add-audi.component.html',
-  styleUrls: ['./add-audi.component.css']
+  selector: 'app-seat-map',
+  templateUrl: './seat-map.component.html',
+  styleUrls: ['./seat-map.component.css']
 })
-export class AddAudiComponent implements OnInit {
-  theatre!: Theatre; //get from router link
-  audi!: Audi;
-  message: string = "";
-  seatMap: Seat[] = [];
-  space:string = "    ";
-  constructor(private theatreFacade: TheatreFacade, private router: Router) {
-    // let audiNumber = this.router.getCurrentNavigation()?.extras.state!.audiNumber
-    // console.log(audiNumber);
-    // if (audiNumber != null) {
-    //   this.audi = this.theatreFacade.getAudiByAudiNumber(audiNumber);
-    // }
-  }
+export class SeatMapComponent implements OnInit {
+  seatMap: Seat[]=[];
+  selectedSeats:Seat[]=[];
+  show:any={
+    price:200
+  };
+  showID!:number;
+  // rows!:number;
+  // columns!:number;
+
+  constructor(private showsFacade:ShowsFacade) { }
 
   ngOnInit(): void {
-
-  }
-  onSubmit(myForm: NgForm) {
-    this.audi = myForm.value;
-    this.audi.theatre = this.theatre;
-    if (this.audi != null)
-      this.theatreFacade.updateAudi(this.theatreFacade.getTheatre().id, this.audi);
-    this.theatreFacade.addAudi(this.theatreFacade.getTheatre().id, this.audi);
-    this.audi.seatMap = this.seatMap;
+    //this.show = this.showsFacade.getShowByID(this.showID);
+ 
   }
 
+
+  // from add audi
   createSeatMap(rows: number, columns: number) {
+    this.seatMap=[];
     const alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
     console.log(rows + " " + columns);
     for (var col = 1; col <= columns; col++) {
@@ -53,11 +43,19 @@ export class AddAudiComponent implements OnInit {
             }
           )
         }
+        if(row%2==1){
+          this.seatMap.push({
+            "rowNumber": row,
+            "colNumber": alphabets[col - 1],
+            "isBooked": true
+          })
+        }else {
         this.seatMap.push({
           "rowNumber": row,
           "colNumber": alphabets[col - 1],
           "isBooked": false
         })
+      }
       }
     }
 
@@ -82,7 +80,23 @@ export class AddAudiComponent implements OnInit {
     console.log(this.seatMap);
   }
   addSeat(seatId:number){
-    console.log(seatId);
+    const output = document.getElementById('seat-'+seatId);
+    if(output?.classList.contains("isSelected")){
+      output.classList.remove("isSelected");  
+      this.selectedSeats = this.selectedSeats.filter(seat => seat !== this.seatMap[seatId]);
+      console.log(this.selectedSeats);
+    } else if(output) {
+      output.classList.add('isSelected');
+      this.selectedSeats.push(this.seatMap[seatId]);
+      console.log(this.selectedSeats); 
+    }
+  }
+  bookSeats(){
+    console.log(this.selectedSeats);
+  }
+  resetSelectedSeats(){
+    this.selectedSeats=[];
   }
 }
+
 

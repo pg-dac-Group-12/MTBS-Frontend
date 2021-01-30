@@ -14,6 +14,7 @@ import { TicketPageComponent } from './user-workflow/ticket-page/ticket-page.com
 import { TicketComponent } from './user-workflow/ticket/ticket.component';
 import { UserDashboardComponent } from './user-workflow/user-dashboard/user-dashboard.component';
 import { ShowPageComponent } from './user-workflow/show-page/show-page.component';
+import { SeatMapComponent } from './components/seat-map/seat-map.component';
 
 const routes: Routes = [
   {path: '',component:LoginComponent},
@@ -29,7 +30,8 @@ const routes: Routes = [
   {path: 'register_theatre',component:TheatreRegisterComponent },
   {path: 'add_audi',component:AddAudiComponent},
   {path: 'carousel',component:CarouselComponent},
-  {path: 'movie',component:MovieComponent}
+  {path: 'movie',component:MovieComponent},
+  {path: 'seat_map',component:SeatMapComponent}
 ];
 
 @NgModule({

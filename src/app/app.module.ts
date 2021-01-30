@@ -15,12 +15,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TheatreWorkflowModule } from './theatre-workflow/theatre-workflow.module';
 import { UserWorkflowModule } from './user-workflow/user-workflow.module';
 import { SharedModule } from "./shared/shared.module";
+import { SeatMapComponent } from "./components/seat-map/seat-map.component";
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     UserRegisterComponent,
     TheatreRegisterComponent,
+    SeatMapComponent,
   ],
   imports: [
     HttpClientModule,
