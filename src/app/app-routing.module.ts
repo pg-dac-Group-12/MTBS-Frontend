@@ -5,10 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { TheatreRegisterComponent } from './components/theatre-register/theatre-register.component';
 import { UserRegisterComponent } from './components/user-register/user-register.component';
 import { AddAudiComponent } from './theatre-workflow/add-audi/add-audi.component';
-<<<<<<< HEAD
 import { TheatreDashboardComponent } from './theatre-workflow/theatre-dashboard/theatre-dashboard.component';
-=======
->>>>>>> Added Seat Map preview
 import { MovieListComponent } from './user-workflow/movie-list/movie-list.component';
 import { ShowsListComponent } from './user-workflow/shows-list/shows-list.component';
 import { TicketComponent } from './user-workflow/ticket/ticket.component';

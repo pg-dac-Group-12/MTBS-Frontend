@@ -1,0 +1,25 @@
+<div>
+    <form novalidate #myform = "ngForm" (ngSubmit) = "onSubmit(myform)">
+        ID: <input type = "number" name = "id" #id ngModel placeholder="id" required ><br>
+        Name: <input type = "text" name = "name" placeholder="name" ngModel required><br>
+        Email: <input type = "text" name = "email" placeholder="email" #email = "ngModel" ngModel required email="true"> <br>
+        <div *ngIf = "!email.valid && (email.dirty || email.touched)">
+            <div *ngIf = "email.errors.email">
+                Invalid Email
+            </div>
+        </div>
+        Phone_No: <input type = "text" name = "phone_no" placeholder="Phone no" #phone_no = "ngModel" ngModel required minlength="10" pattern="^[0-9]+$"><br>
+        <div *ngIf = "!phone_no.valid && (phone_no.dirty || phone_no.touched)">
+            <div *ngIf = "phone_no.errors.minlength">
+                Phone number should be min 10 digits 
+            </div>
+            <div *ngIf = "phone_no.errors.pattern">
+                Invalid Phone Number
+            </div>
+        </div>
+        <input type = "submit"  value = "submit" [disabled] = "!myform.valid"><br>
+    </form>
+
+    <input type="button" value="delete" (click)= "deleteUser(id)">
+
+</div>  
