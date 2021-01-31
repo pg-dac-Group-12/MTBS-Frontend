@@ -16,12 +16,8 @@ export class TicketComponent implements OnInit {
   tickets: Ticket[] = [];
   ticket!:Ticket;
   user!: User; 
-<<<<<<< HEAD
   responseMessage:string="";
-  constructor(private ticketFacade: TicketFacade, private userFacade: UserFacade) { }
-=======
   constructor(private ticketFacade: TicketFacade, private userFacade: UserFacade , private router:Router) { }
->>>>>>> 33fd6b6... Razorpay Integration
 
   ngOnInit(): void {
     this.userFacade.getUser().subscribe(user=> this.user=user);

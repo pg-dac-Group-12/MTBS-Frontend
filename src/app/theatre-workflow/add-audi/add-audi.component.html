@@ -1,10 +1,10 @@
 <p>add-audi works!</p>
 
 <div>
-    <form novalidate #myform="ngForm" (ngSubmit)="onSubmit(myform)">
-        Audi Number: <input type="number" name="number" placeholder="number" ngModel required><br>
-
-        total Capacity: <input type="number" name="totalSeats" placeholder="total number of seats" ngModel required><br>
+       <form novalidate #myform="ngForm" (ngSubmit) = "onSubmit(myform)">
+        Audi Number: <input type = "number" [(ngModel)] = "audi.number" name = "number" placeholder="number" ngModel required><br>
+       
+        total Capacity: <input type = "number" [(ngModel)] = "audi.totalSeats" name = "totalSeats" placeholder="total number of seats" ngModel required><br>
         <!--seat map input-->
         Rows:<input type="number" #rows> Columns:<input type="number" #columns l><button type='button'
             (click)="createSeatMap(rows.value,columns.value)">Preview</button><br>

@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { MovieFacade } from 'src/app/facade/MovieFacade';
 import { ShowsFacade } from 'src/app/facade/ShowsFacade';
 import { Movie } from 'src/app/models/movie.model';
+import { MoviesService } from 'src/app/services/movies.service';
 
 @Component({
   selector: 'app-movie-list',
