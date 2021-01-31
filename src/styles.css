@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    background-color:#1F1F1F ;
+}
+
+.btn-primary {
+        background-color: #1F1F1F;
+        color: #FFFFFF;
+}
+
+.btn-primary:focus {
+    background-color: #FF2C1F;
+
+}
+.btn-secondary {
+    background-color: #FFFFFF;
+    color: #1F1F1F;
+}
+
+.link-primary {
+    font-family: 'lato' , sans-serif;
+    font-weight: 700;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.text-primary  {
+    font-family: 'lato' , sans-serif;
+    font-weight: 700;
+    color: #FFFFFF;   
+}
+
+.link-primary:hover {
+    opacity: 50%;
+    color: #FFFFFF;
+}
+
+.text-muted {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+}

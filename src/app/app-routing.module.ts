@@ -8,6 +8,7 @@ import { AddAudiComponent } from './theatre-workflow/add-audi/add-audi.component
 import { TheatreDashboardComponent } from './theatre-workflow/theatre-dashboard/theatre-dashboard.component';
 import { MovieListComponent } from './user-workflow/movie-list/movie-list.component';
 import { ShowsListComponent } from './user-workflow/shows-list/shows-list.component';
+import { TicketPageComponent } from './user-workflow/ticket-page/ticket-page.component';
 import { TicketComponent } from './user-workflow/ticket/ticket.component';
 import { UserDashboardComponent } from './user-workflow/user-dashboard/user-dashboard.component';
 
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'movie_list',component:MovieListComponent},
   {path:'shows_list',component: ShowsListComponent },
   {path: 'ticket', component: TicketComponent},
+  {path: 'ticket_page', component:TicketPageComponent},
   {path: 'theatre', component: TheatreDashboardComponent},
   {path: 'add_audi', component: AddAudiComponent},
   {path: 'register_user',component:UserRegisterComponent},

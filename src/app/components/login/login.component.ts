@@ -41,7 +41,8 @@ export class LoginComponent implements OnInit {
             this.theatreFacade.setTheatre(resp.actor);
           }
       }
-      this.router.navigateByUrl("/add_audi", {state:{audiNumber:19}})
+
+      this.router.navigate(['/ticket_page'])
     })
   }   
 }

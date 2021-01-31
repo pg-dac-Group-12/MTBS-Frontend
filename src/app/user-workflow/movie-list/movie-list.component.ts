@@ -5,7 +5,6 @@ import * as moment from 'moment';
 import { MovieFacade } from 'src/app/facade/MovieFacade';
 import { ShowsFacade } from 'src/app/facade/ShowsFacade';
 import { Movie } from 'src/app/models/movie.model';
-import { MoviesService } from 'src/app/services/movies.service';
 
 @Component({
   selector: 'app-movie-list',
@@ -18,8 +17,59 @@ export class MovieListComponent implements OnInit {
   constructor(private moviesFacade: MovieFacade, private showsFacade:ShowsFacade , private router:Router) { }
 
   ngOnInit(): void {
-    this.moviesFacade.loadMovieList();
-    this.moviesFacade.getAllMovies().subscribe(movieList => this.movies = movieList);
+   // this.moviesFacade.loadMovieList();
+   // this.moviesFacade.getAllMovies().subscribe(movieList => this.movies = movieList);
+      this.movies = [{
+        id:1234,
+        cast :["Cast"],
+        director:"d1",
+        icon:"",
+        rating:5,
+        totalShows:5,
+        iconContentType:"image/png",
+        title:"Movie-Name",
+        duration:200
+      },{
+        id:1234,
+        cast :["Cast"],
+        director:"d1",
+        icon:"",
+        rating:5,
+        totalShows:5,
+        iconContentType:"image/png",
+        title:"Movie-Name",
+        duration:200
+      },{
+        id:1234,
+        cast :["Cast"],
+        director:"d1",
+        icon:"",
+        rating:5,
+        totalShows:5,
+        iconContentType:"image/png",
+        title:"Movie-Name",
+        duration:200
+      },{
+        id:1234,
+        cast :["Cast"],
+        director:"d1",
+        icon:"",
+        rating:5,
+        totalShows:5,
+        iconContentType:"image/png",
+        title:"Movie-Name",
+        duration:200
+      },{
+        id:1234,
+        cast :["Cast"],
+        director:"d1",
+        icon:"",
+        rating:5,
+        totalShows:5,
+        iconContentType:"image/png",
+        title:"Movie-Name",
+        duration:200
+      }];
   }
 
   getShowsForMovie(movieId:number){
