@@ -34,16 +34,18 @@ export class ShowsListComponent implements OnInit {
     //Fix This
   }
 
-  getShowSeatMap() {
-
+  getShowSeatMap(showId:number) {
+    console.log(showId);
   }
   getDate() {
 
   }
-  getAllShowsByMovieIdAndDate() {
+  getAllShowsByMovieIdAndDate(movieDate:moment.Moment) {
+    // this.selectedDate = movieDate.toDate();
+    // console.log(this.selectedDate);
     // let movieId= this.router.getCurrentNavigation()!.extras.state!.movieId;
     //console.log(this.selectedDate.format("YYYY-MM-DD"))
-    this.showsFacade.loadShowsByMovieIdAndDate(this.movieId, this.selectedDate.format("YYYY-MM-DD"));
+    this.showsFacade.loadShowsByMovieIdAndDate(this.movieId, movieDate.format("YYYY-MM-DD"));
     this.showsFacade.getShows()
       .subscribe(shows => {
         console.log(shows);
@@ -53,6 +55,9 @@ export class ShowsListComponent implements OnInit {
   }
 
   updateTheatres() {
+    if(this.shows.length === 0){
+      this.theatres = [];
+    }
     this.shows.map(show => {
       this.theatres.push(show.theatre);
     })

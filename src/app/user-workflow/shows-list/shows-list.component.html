@@ -1,21 +1,50 @@
+<p>shows-list works!</p>
 <div>
-    <p>shows-list works!</p>
-    <p>{{dates}}</p>
-    <select [(ngModel)]="selectedDate" (ngModelChange)="getAllShowsByMovieIdAndDate()">
+    <div class="btn-group" role="group" aria-label="Basic example" *ngFor="let date of dates">
+        <input type="button" class="btn btn-dark m-1" value="{{date.format('MMM-Do')}}" #movieDate
+            (click)="getAllShowsByMovieIdAndDate(date)" />
+    </div>
+    <!-- <select [(ngModel)]="selectedDate" (ngModelChange)="getAllShowsByMovieIdAndDate()">
         <option *ngFor="let date of dates; let i = index" [ngValue]="date">{{ date.format("MMM-Do") }} </option>
-    </select>
-    <ul>
+    </select> -->
 
-        <li *ngFor="let theatre of theatres">
-            <h3>{{theatre.name}}</h3>
-            <div *ngFor="let show of shows">
-                <span *ngIf="show.theatre.id == theatre.id ">
-                    <div>
-                        <button (click)=getShowSeatMap(show.id)>{{show.time}}</button>
-                    </div> 
-                </span>
+
+    <!-- <div *ngFor="let theatre of theatres">
+        <div class="jumbotron">
+            <div>
+                <h3>{{theatre.name}}</h3>
+
+                    <span *ngFor="let show of shows">
+                        <span *ngIf="show.theatre.id == theatre.id ">
+
+                            <button (click)=getShowSeatMap(show.id)>{{show.time}} |</button>
+
+                        </span>
+                    </span>          
             </div>
+        </div>
+    </div> -->
+    <div *ngFor="let theatre of theatres">
+        <div class="container mt-6">
+            <div class="row no-gutters m-3">
 
-        </li>
-    </ul>
+            </div>
+            <div class="col col-lg-2 m-3">
+                <h3>{{theatre.name}}</h3>
+            </div>
+            <div class="col-md-auto">
+
+                <div class="col">
+                    <span *ngFor="let show of shows">
+                        <span class="m-3" *ngIf="show.theatre.id == theatre.id ">
+
+                            <button class="btn btn-outline-dark mt-1" (click)=getShowSeatMap(show.id)>{{show.time}}</button>
+
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
