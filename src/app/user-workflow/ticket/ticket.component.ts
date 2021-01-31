@@ -13,14 +13,17 @@ import { User } from 'src/app/models/user.model';
 export class TicketComponent implements OnInit {
   tickets: Ticket[] = [];
   user!: User; 
+  responseMessage:string="";
   constructor(private ticketFacade: TicketFacade, private userFacade: UserFacade) { }
 
   ngOnInit(): void {
     this.userFacade.getUser().subscribe(user=> this.user=user);
-    this.ticketFacade.loadTicketsByUserId(this.user.id);
+    this.ticketFacade.loadTicketsByUserId(5).subscribe(tickets => this.tickets = tickets);
   }
 
   cancelTicket(ticket: Ticket) {
-    this.ticketFacade.cancelTicket(ticket);
+    console.log("cancel " +ticket.id)
+    this.ticketFacade.cancelTicket(ticket).subscribe(resp => console.log(resp));
+
   }
 }

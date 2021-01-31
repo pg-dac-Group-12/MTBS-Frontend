@@ -29,7 +29,7 @@
                 Invalid Email
             </div>
         </div>  
-        <div *ngIf = "pass != confirmPass">
+        <div *ngIf = "pass.value != confirmPass.value">
                 Passwords don't match
         </div>  
              

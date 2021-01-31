@@ -24,9 +24,9 @@ export class TicketFacade {
         this.ticketState$.addTicket(ticket);
     }
     
-    cancelTicket(ticket:Ticket) {
-        this.ticketService.cancelTicket(ticket);
+    cancelTicket(ticket:Ticket) { 
         this.ticketState$.removeTicket(ticket);
+        return this.ticketService.cancelTicket(ticket);
     }
 
     loadTicketsByUserId(userId:number) {

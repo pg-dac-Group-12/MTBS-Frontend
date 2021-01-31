@@ -10,7 +10,7 @@ import { UserFacade} from 'src/app/facade/UserFacade';
   styleUrls: ['./user-dashboard.component.css']
 })
 export class UserDashboardComponent implements OnInit {
-  response = new HttpResponse<User>();
+  // response = new HttpResponse<User>();
   user!: User;
   constructor(private userFacade : UserFacade) {
   }
@@ -31,6 +31,9 @@ export class UserDashboardComponent implements OnInit {
   }
 
   changePassword(){
-
+    console.log(this.user.id);
+  }
+  getTickets(){
+    console.log(this.user.id);
   }
 }

@@ -1,12 +1,29 @@
 <p>user-dashboard works!</p>
-<div>
-    <form novalidate #myform = "ngForm" (ngSubmit) = "onSubmit(myform)">
-        Name: <input type = "text" [(ngModel)] = "user.name" name = "name" placeholder="Name" ngModel required><br>
-        password: <input disabled = true [(ngModel)] = "user.password" type = "password" name = "password" placeholder="password" ngModel required><br>
-        Email: <input disabled = true [(ngModel)] = "user.email" type = "text" name = "email" placeholder="email" #email ngModel required email="true"> <br>
-        Phone no: <input type = "number" [(ngModel)] = "user.phoneNo" name = "phone_no" placeholder="phone number" ngModel required><br>
-        <input type = "submit"  value = "submit" ><br>
+<div class="container"> 
+    <form novalidate #myform="ngForm" (ngSubmit)="onSubmit(myform)">
+        <div class="form-group mb-2" style="max-width: 50%;">
+            <label for="username">Name</label>
+            <input id="username" class="form-control" type="text" [(ngModel)]="user.name" name="name" placeholder="Name"
+                ngModel required>
+        </div>
+        <div class="form-group mb-2" style="max-width: 50%;">
+            <label for="email">Email</label>
+            <input id="email" class="form-control" disabled=true [(ngModel)]="user.email" type="text" name="email"
+                placeholder="email" #email ngModel required email="true">
+        </div>
+        <div class="form-group mb-2" style="max-width: 50%;"> 
+            <label for="password">Password</label>
+            <input id="password" class="form-control" disabled=true [(ngModel)]="user.password" type="password"
+                name="password" placeholder="password" ngModel required>
+        </div>
+        <div class="form-group mb-2" style="max-width: 50%;">
+            <label for="phoneNo">Phone No</label>
+            <input id="phoneNo" class="form-control" type="number" [(ngModel)]="user.phoneNo" name="phone_no" placeholder="phone number" ngModel
+            required>
+        </div>
+        <button type="submit" class="btn btn-dark">Update</button>
     </form>
-        <button (click)="changePassword">Change password</button><br>
-        <button (click)="deleteUser()">delete</button>
+    <button class="btn btn-dark" (click)="changePassword">Change password</button>
+    <button class="btn btn-danger m-3" (click)="deleteUser()">delete</button>
+    <button class="btn btn-dark m-3" (click)="getTickets()">Tickets</button>
 </div>

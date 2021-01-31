@@ -11,10 +11,10 @@ export class TicketService {
   baseUrl: string = "http://localhost:8080/ticket/";
   constructor(private http: HttpClient) { }
 
-  getAllTicketsByUserId(userId: number): Observable<Ticket> {
+  getAllTicketsByUserId(userId: number): Observable<Ticket[]> {
     let reqParams = new HttpParams()
     .append('userId', String(userId));
-    return this.http.get<Ticket>(`${this.baseUrl}`, { params: reqParams });
+    return this.http.get<Ticket[]>(`${this.baseUrl}`, { params: reqParams });
   }
   getTicketById(id: number):Ticket {
     return Utils.validateResponse(this.http.get<Ticket>(`${this.baseUrl}${id}`, { observe: 'response' }));
@@ -24,8 +24,8 @@ export class TicketService {
     reqParams.append('seats', String(seats));
     return Utils.validateResponse(this.http.post<Ticket>(`${this.baseUrl}${showId}`, null, { observe: 'response', params: reqParams }));
   }
-  cancelTicket(ticket: Ticket): Ticket{
-    return Utils.validateResponse(this.http.post<Ticket>(`${this.baseUrl}`, ticket, { observe: 'response' }));
+  cancelTicket(ticket: Ticket): Observable<any>{
+    return this.http.post<Ticket>(`${this.baseUrl}cancel/${ticket.id}`, ticket, { observe: 'response'});
   }
 }
 

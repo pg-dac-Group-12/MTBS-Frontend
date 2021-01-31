@@ -1,22 +1,19 @@
 <p>ticket works!</p>
-
-<table style="border:1">
-    <tr>
-        <th> show</th>
-        <th> User</th>
-        <th> seats</th>
-        <th> amount</th>
-        <th> Booking Time</th>
-        <th> Booking Date</th>
-        <th></th>
-    </tr>
-    <tr *ngFor = "let ticket of tickets">
-        <td> {{ticket.show.time}} {{ticket.show.date}}</td>
-        <td> {{ticket.user.name}}</td>
-        <td> {{ticket.seats}}</td>
-        <td> {{ticket.amount}</td>
-        <td> {{ticket.time}}</td>
-        <td> {{ticket.date}}</td>
-        <td> <button (click)="cancelTicket(ticket)">Cancel</button></td>
-    </tr>
-</table>
+<div *ngFor="let ticket of tickets">
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img class="img-thumbnail img-fluid" src="../../../assets/dummy-pics/deja-vu-1920×1080.jpg" alt="{{ticket.show.movie.title}}">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{ticket.show.movie.title}}</h5>
+              <p class="card-text">{{ticket.show.time}} {{ticket.show.date}}</p>
+              <p class="card-text"> INR: {{ticket.amount}}</p>
+              <button class="btn btn-danger" (click)="cancelTicket(ticket)">Cancel</button>
+              <p class="card-text"><small class="text-muted">{{ticket.time}} {{ticket.date}}</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
