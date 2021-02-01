@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Ticket } from '../models/ticket.model';
 import { Shows } from '../models/shows.model';
 import { Utils} from '../Utils';
+import { Seat } from '../models/seat.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,13 +20,12 @@ export class TicketService {
   getTicketById(id: number):Ticket {
     return Utils.validateResponse(this.http.get<Ticket>(`${this.baseUrl}${id}`, { observe: 'response' }));
   }
-  createTicket(showId: number, seats: number[]): Ticket {
-    let reqParams = new HttpParams();
-    reqParams.append('seats', String(seats));
-    return Utils.validateResponse(this.http.post<Ticket>(`${this.baseUrl}${showId}`, null, { observe: 'response', params: reqParams }));
+  createTicket(showId: number, seats: Seat[]): Observable<Ticket> {
+    let reqParams = new HttpParams().append('seats', String(seats));
+    return this.http.post<Ticket>(`${this.baseUrl}${showId}`, null, { params: reqParams });
   }
   cancelTicket(ticket: Ticket): Observable<any>{
-    return this.http.post<Ticket>(`${this.baseUrl}cancel/${ticket.id}`, ticket, { observe: 'response'});
+    return this.http.post<Ticket>(`${this.baseUrl}cancel/${ticket.id}`, ticket);
   }
 }
 

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/auth.guard';
 import { LoginComponent } from './components/login/login.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { TheatreRegisterComponent } from './components/theatre-register/theatre-register.component';
 import { UserRegisterComponent } from './components/user-register/user-register.component';
 import { AddAudiComponent } from './theatre-workflow/add-audi/add-audi.component';
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path: 'add_audi', component: AddAudiComponent},
   {path: 'register_user',component:UserRegisterComponent},
   {path: 'register_theatre',component:TheatreRegisterComponent },
-  {path: 'add_audi',component:AddAudiComponent}
+  {path: 'add_audi',component:AddAudiComponent},
+  {path: 'navbar',component:NavbarComponent}
 ];
 
 @NgModule({

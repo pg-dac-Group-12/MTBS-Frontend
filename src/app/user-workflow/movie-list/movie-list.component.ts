@@ -18,59 +18,59 @@ export class MovieListComponent implements OnInit {
   constructor(private moviesFacade: MovieFacade, private showsFacade:ShowsFacade , private router:Router) { }
 
   ngOnInit(): void {
-   // this.moviesFacade.loadMovieList();
-   // this.moviesFacade.getAllMovies().subscribe(movieList => this.movies = movieList);
-      this.movies = [{
-        id:1234,
-        cast :["Cast"],
-        director:"d1",
-        icon:"",
-        rating:5,
-        totalShows:5,
-        iconContentType:"image/png",
-        title:"Movie-Name",
-        duration:200
-      },{
-        id:1234,
-        cast :["Cast"],
-        director:"d1",
-        icon:"",
-        rating:5,
-        totalShows:5,
-        iconContentType:"image/png",
-        title:"Movie-Name",
-        duration:200
-      },{
-        id:1234,
-        cast :["Cast"],
-        director:"d1",
-        icon:"",
-        rating:5,
-        totalShows:5,
-        iconContentType:"image/png",
-        title:"Movie-Name",
-        duration:200
-      },{
-        id:1234,
-        cast :["Cast"],
-        director:"d1",
-        icon:"",
-        rating:5,
-        totalShows:5,
-        iconContentType:"image/png",
-        title:"Movie-Name",
-        duration:200
-      },{
-        id:1234,
-        cast :["Cast"],
-        director:"d1",
-        icon:"",
-        rating:5,
-        totalShows:5,
-        iconContentType:"image/png",
-        title:"Movie-Name",
-        duration:200
-      }];
+   this.moviesFacade.loadMovieList();
+   this.moviesFacade.getAllMovies().subscribe(movieList => this.movies = movieList);
+      // this.movies = [{
+      //   id:1234,
+      //   cast :["Cast"],
+      //   director:"d1",
+      //   icon:"",
+      //   rating:5,
+      //   totalShows:5,
+      //   iconContentType:"image/png",
+      //   title:"Movie-Name",
+      //   duration:200
+      // },{
+      //   id:1234,
+      //   cast :["Cast"],
+      //   director:"d1",
+      //   icon:"",
+      //   rating:5,
+      //   totalShows:5,
+      //   iconContentType:"image/png",
+      //   title:"Movie-Name",
+      //   duration:200
+      // },{
+      //   id:1234,
+      //   cast :["Cast"],
+      //   director:"d1",
+      //   icon:"",
+      //   rating:5,
+      //   totalShows:5,
+      //   iconContentType:"image/png",
+      //   title:"Movie-Name",
+      //   duration:200
+      // },{
+      //   id:1234,
+      //   cast :["Cast"],
+      //   director:"d1",
+      //   icon:"",
+      //   rating:5,
+      //   totalShows:5,
+      //   iconContentType:"image/png",
+      //   title:"Movie-Name",
+      //   duration:200
+      // },{
+      //   id:1234,
+      //   cast :["Cast"],
+      //   director:"d1",
+      //   icon:"",
+      //   rating:5,
+      //   totalShows:5,
+      //   iconContentType:"image/png",
+      //   title:"Movie-Name",
+      //   duration:200
+      // }];
   }
 
   getShowsForMovie(movieId:number){

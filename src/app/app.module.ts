@@ -14,6 +14,7 @@ import { HttpInterceptorService } from './services/HttpInterceptorService';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TheatreWorkflowModule } from './theatre-workflow/theatre-workflow.module';
 import { UserWorkflowModule } from './user-workflow/user-workflow.module';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { UserWorkflowModule } from './user-workflow/user-workflow.module';
     LoginComponent,
     UserRegisterComponent,
     TheatreRegisterComponent,
+    NavbarComponent,
   ],
   imports: [
     HttpClientModule,
