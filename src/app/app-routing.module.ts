@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/auth.guard';
+import { CarouselComponent } from './components/carousel/carousel.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TheatreRegisterComponent } from './components/theatre-register/theatre-register.component';
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path: 'register_user',component:UserRegisterComponent},
   {path: 'register_theatre',component:TheatreRegisterComponent },
   {path: 'add_audi',component:AddAudiComponent},
-  {path: 'navbar',component:NavbarComponent}
+  {path: 'navbar',component:NavbarComponent},
+  {path: 'carousel',component:CarouselComponent}
 ];
 
 @NgModule({

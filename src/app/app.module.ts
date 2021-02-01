@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TheatreWorkflowModule } from './theatre-workflow/theatre-workflow.module';
 import { UserWorkflowModule } from './user-workflow/user-workflow.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     UserRegisterComponent,
     TheatreRegisterComponent,
     NavbarComponent,
+    CarouselComponent,
   ],
   imports: [
     HttpClientModule,
