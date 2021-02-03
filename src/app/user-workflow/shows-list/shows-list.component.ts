@@ -7,6 +7,9 @@ import * as moment from 'moment';
 import { Router } from '@angular/router';
 import { SeatMapComponent } from 'src/app/components/seat-map/seat-map.component';
 import { NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserFacade } from 'src/app/facade/UserFacade';
+import { User } from 'src/app/models/user.model';
+import { LoginComponent } from 'src/app/components/login/login.component';
 
 @Component({
   selector: 'app-shows-list',
@@ -16,12 +19,13 @@ import { NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 export class ShowsListComponent implements OnInit {
   @Input() movieId!: number; // to be brought in by the redirecting link
   shows!: Shows[];
+  user!:User;
   dates: moment.Moment[] = [];
   selectedDate!: moment.Moment;
   selectedIndex!: number;
   theatres: Theatre[] = [];
   currentDialog:any;
-  constructor(private showsFacade: ShowsFacade, private router: Router, private modalService:NgbModal) {
+  constructor(private showsFacade: ShowsFacade, private userFacade:UserFacade, private router: Router, private modalService:NgbModal) {
    // this.movieId = this.router.getCurrentNavigation()?.extras.state!.movieId;
   }
 
@@ -36,9 +40,15 @@ export class ShowsListComponent implements OnInit {
 
   getShowSeatMap(showId:number) {
     console.log(showId);
-    let show = this.showsFacade.getShowById(showId);
-    this.currentDialog = this.modalService.open(SeatMapComponent,{});
-    this.currentDialog.componentInstance.showID = showId;
+    this.user = this.userFacade.getUser();
+    if(this.user == null) {
+      this.currentDialog = this.modalService.open(LoginComponent,{}).closed
+      .subscribe(resp => this.getShowSeatMap(showId));
+    } else {
+        let show = this.showsFacade.getShowById(showId);
+        this.currentDialog = this.modalService.open(SeatMapComponent,{});
+        this.currentDialog.componentInstance.showID = showId;
+    }
   }
   getDate() {
 

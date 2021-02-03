@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ShowsFacade } from 'src/app/facade/ShowsFacade';
 import { Seat } from 'src/app/models/seat.model';
 import { Shows } from 'src/app/models/shows.model';
+import { TicketPageComponent } from 'src/app/user-workflow/ticket-page/ticket-page.component';
+import { TicketComponent } from 'src/app/user-workflow/ticket/ticket.component';
 
 @Component({
   selector: 'app-seat-map',
@@ -19,7 +22,7 @@ export class SeatMapComponent implements OnInit {
   // rows!:number;
   // columns!:number;
 
-  constructor(private showsFacade:ShowsFacade) { }
+  constructor(private showsFacade:ShowsFacade , private modalService:NgbModal) { }
 
   ngOnInit(): void {
     //this.show = this.showsFacade.getShowByID(this.showID);
@@ -107,6 +110,8 @@ export class SeatMapComponent implements OnInit {
   }
   bookSeats(){
     console.log(this.selectedSeats);
+    this.modalService.open(TicketPageComponent);
+
   }
   resetSelectedSeats(){
     this.selectedSeats=[];

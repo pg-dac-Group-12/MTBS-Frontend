@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TicketFacade } from 'src/app/facade/TicketFacade.js';
 import { UserFacade } from 'src/app/facade/UserFacade.js';
 import { RazorpayDTO } from 'src/app/models/razorpayDTO.model';
 import { Ticket } from 'src/app/models/ticket.model';
@@ -64,7 +65,7 @@ export class TicketPageComponent implements OnInit {
     amount: 2000
   };
 
-  constructor(private paymentService: PaymentService, private userFacade: UserFacade) {
+  constructor(private paymentService: PaymentService, private userFacade: UserFacade, private ticketFacade:TicketFacade) {
   }
 
   ngOnInit(): void {
@@ -110,6 +111,8 @@ export class TicketPageComponent implements OnInit {
   paymentSuccess(razorpayDTO: RazorpayDTO) {
     this.paymentService.paymentSuccess(razorpayDTO).subscribe(ticket => {
       this.ticket = ticket
+      this.ticketFacade.addTicket(ticket);
+
     });
 
   }

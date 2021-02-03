@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TheatreFacade } from 'src/app/facade/TheatreFacade';
 import { UserFacade } from 'src/app/facade/UserFacade';
 import { Theatre } from 'src/app/models/theatre.model';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserRegisterComponent } from '../user-register/user-register.component';
+
 
 @Component({
   selector: 'app-login',
@@ -17,7 +20,7 @@ export class LoginComponent implements OnInit {
   email:string = "";
   password:string = "";
   isTheatreAdmin:boolean = false;
-  constructor(private authService:AuthService, private userFacade:UserFacade, private theatreFacade:TheatreFacade ,private router:Router) { }
+  constructor(private authService:AuthService, private modalService:NgbModal ,private userFacade:UserFacade, private theatreFacade:TheatreFacade ,private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -41,7 +44,10 @@ export class LoginComponent implements OnInit {
             this.theatreFacade.setTheatre(resp.actor);
           }
       }
-      this.router.navigateByUrl("/add_audi", {state:{audiNumber:19}})
+      this.router.navigateByUrl("/")
     })
   }   
+  openUserRegisterModal() {
+    this.modalService.open(UserRegisterComponent);
+  }
 }
