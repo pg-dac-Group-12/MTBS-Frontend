@@ -1,7 +1,16 @@
-<div class="container">
-    <form class="form-control form-control-lg form-horizontal" novalidate #myform ngForm (ngSubmit) = "onSubmit(myform.value)">
-    
-    <legend >Register</legend>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userForm">
+    Register as User    
+</button>
+
+<div class="modal " tabindex="-1" id = "userForm">
+    <div class = "modal-dialog modal-dialog-centered modal-lg modal-dialog-scorllable">
+        <div class = "modal-content">
+            <div class = "modal-header">
+                <h4>Register </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class = "modal-body">
+        <form class="form-control form-control-lg form-horizontal" novalidate #myform ngForm (ngSubmit) = "onSubmit(myform.value)">
     <div class="col-md-4">
         <input type="text" class="form-control form-control-lg margin-bottom" name="name" placeholder="Name" ngModel required>
     </div>
@@ -35,9 +44,14 @@
             <button type = "submit" class="btn btn-primary btn-lg" value = "register" [disabled] = "!myform.valid">Sign Up</button>
         </div>
         <br>
-        <div class="hint-text  margin-bottom">Already have an account? <a href="#">Login here</a></div>
-   
+        
     </form>
+            </div>
     {{message}}
-
+    <div class = "footer">
+    <div class="hint-text  margin-bottom">Already have an account? <a href="#">Login here</a></div>
+   
+</div>
+</div>
+</div>
 </div>
