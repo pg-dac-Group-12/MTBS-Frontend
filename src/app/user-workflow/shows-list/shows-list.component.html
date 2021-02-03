@@ -1,9 +1,12 @@
-<p>shows-list works!</p>
+
 <div>
-    <div class="btn-group" role="group" aria-label="Basic example" *ngFor="let date of dates">
-        <input type="button" class="btn btn-dark m-1" value="{{date.format('MMM-Do')}}" #movieDate
-            (click)="getAllShowsByMovieIdAndDate(date)" />
+    <div style="margin-left: 8vw;" >
+        <div class="btn-group" role="group" aria-label="Basic example" *ngFor="let date of dates">
+            <input type="button" class="btn btn-dark m-1" value="{{date.format('MMM-Do')}}" #movieDate
+                (click)="getAllShowsByMovieIdAndDate(date)" style="height: 5vh;margin-right: 10vw;text-align: center;"/>
+        </div>
     </div>
+
     <!-- <select [(ngModel)]="selectedDate" (ngModelChange)="getAllShowsByMovieIdAndDate()">
         <option *ngFor="let date of dates; let i = index" [ngValue]="date">{{ date.format("MMM-Do") }} </option>
     </select> -->
@@ -24,7 +27,7 @@
             </div>
         </div>
     </div> -->
-    <div *ngFor="let theatre of theatres">
+    <div style="margin-top: 10vh;" *ngFor="let theatre of theatres">
         <div class="container mt-6">
             <div class="row no-gutters m-3">
 

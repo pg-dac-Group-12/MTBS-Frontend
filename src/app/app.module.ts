@@ -14,19 +14,13 @@ import { HttpInterceptorService } from './services/HttpInterceptorService';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TheatreWorkflowModule } from './theatre-workflow/theatre-workflow.module';
 import { UserWorkflowModule } from './user-workflow/user-workflow.module';
-
 import { SharedModule } from "./shared/shared.module";
-
-import { MovieComponent } from './components/movie/movie.component';
-
-
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     UserRegisterComponent,
     TheatreRegisterComponent,
-    MovieComponent,
   ],
   imports: [
     HttpClientModule,

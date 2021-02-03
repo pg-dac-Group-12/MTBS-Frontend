@@ -75,6 +75,6 @@ export class MovieListComponent implements OnInit {
 
   getShowsForMovie(movieId:number){
     this.showsFacade.loadShowsByMovieIdAndDate(movieId, moment().format("YYYY-MM-DD"));
-    this.router.navigate(["shows_list"], {state : {movieId:movieId}});
+    this.router.navigate(["shows_page"], {state : {movieId:movieId}});
   } 
 }

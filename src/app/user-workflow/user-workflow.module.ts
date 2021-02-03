@@ -12,11 +12,13 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
 import { CarouselComponent } from '../shared/carousel/carousel.component';
 import { AppModule } from '../app.module';
 import { SharedModule } from '../shared/shared.module';
+import { ShowPageComponent } from './show-page/show-page.component';
 
 
 
 @NgModule({
-  declarations: [HomepageComponent , UserDashboardComponent, MovieListComponent, ShowsListComponent, TicketComponent, TicketPageComponent],
+  declarations: [HomepageComponent , UserDashboardComponent, MovieListComponent, ShowsListComponent, TicketComponent,
+     TicketPageComponent, ShowPageComponent],
   imports: [
     CommonModule , FormsModule , SharedModule
   ]

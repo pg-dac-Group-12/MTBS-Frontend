@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-show-page',
@@ -6,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./show-page.component.css']
 })
 export class ShowPageComponent implements OnInit {
-
-  constructor() { }
+  movieId:number;
+  constructor(private router: Router) {
+    this.movieId = this.router.getCurrentNavigation()?.extras.state!.movieId;
+  }
 
   ngOnInit(): void {
   }

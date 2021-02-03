@@ -1,2 +1,19 @@
-<banner></banner>
-<app-show-list></app-show-list>
+<app-banner></app-banner>
+
+<div class="row" style="margin-top: 10vh;">
+    <div class="col-1">
+    </div>
+    <div class="col-3">
+        <app-movie></app-movie>  
+    </div>
+    <div class="col-1">
+    </div>
+    <div class="col-7">
+        <app-shows-list [movieId]="movieId"></app-shows-list>
+    </div>
+</div>
+    
+
+
+
+

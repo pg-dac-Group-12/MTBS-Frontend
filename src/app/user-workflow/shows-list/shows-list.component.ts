@@ -1,5 +1,5 @@
 import { HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ɵisDefaultChangeDetectionStrategy } from '@angular/core';
 import { ShowsFacade } from 'src/app/facade/ShowsFacade';
 import { Shows } from 'src/app/models/shows.model';
 import { Theatre } from 'src/app/models/theatre.model';
@@ -12,14 +12,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./shows-list.component.css'] 
 })
 export class ShowsListComponent implements OnInit {
-  movieId!: number; // to be brought in by the redirecting link
+  @Input() movieId!: number; // to be brought in by the redirecting link
   shows!: Shows[];
   dates: moment.Moment[] = [];
   selectedDate!: moment.Moment;
   selectedIndex!: number;
   theatres: Theatre[] = [];
   constructor(private showsFacade: ShowsFacade, private router: Router) {
-    this.movieId = this.router.getCurrentNavigation()?.extras.state!.movieId;
+   // this.movieId = this.router.getCurrentNavigation()?.extras.state!.movieId;
   }
 
   ngOnInit(): void {
