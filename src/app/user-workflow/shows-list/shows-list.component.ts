@@ -1,18 +1,15 @@
 import { HttpResponse } from '@angular/common/http';
-import { Component, OnInit, ɵisDefaultChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ShowsFacade } from 'src/app/facade/ShowsFacade';
 import { Shows } from 'src/app/models/shows.model';
 import { Theatre } from 'src/app/models/theatre.model';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
-import { getLocaleDateFormat } from '@angular/common';
-import { ConditionalExpr, ThrowStmt } from '@angular/compiler';
-import { Console } from 'console';
 
 @Component({
   selector: 'app-shows-list',
   templateUrl: './shows-list.component.html',
-  styleUrls: ['./shows-list.component.css']
+  styleUrls: ['./shows-list.component.css'] 
 })
 export class ShowsListComponent implements OnInit {
   movieId!: number; // to be brought in by the redirecting link
