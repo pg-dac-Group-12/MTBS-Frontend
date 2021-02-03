@@ -1,0 +1,18 @@
+<p>movie works!</p>
+
+
+<div class="card" style="width: 25rem;">
+    <img src="../../../assets/dummy-pics/{{movie.icon}}" class="img-fluid" alt="{{movie.title}}">
+    <div class="card-body">
+      <h5 class="card-title">{{movie.title}}</h5>
+      <p class="card-text"></p>
+    </div>
+    
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><small class="text-muted">Directed by: </small>{{movie.director}}</li>
+            <li class="list-group-item"><small class="text-muted">Cast: </small>{{movie.cast}}</li>
+            <li class="list-group-item"><small class="text-muted">Runtime: </small>{{movie.duration}} mins</li>
+            <li class="list-group-item"><small class="text-muted">IMDB: </small>&#9733; {{movie.rating}} /10</li>
+          </ul> 
+    
+  </div>
