@@ -1,17 +1,31 @@
-<form novalidate #myform ngForm (ngSubmit) = "onSubmit(myform.value)">
-    
-                <input type = "text" class="form-control" name = "name" placeholder="Name" ngModel required>
+<div class="container">
+
+
+<form class="form-control form-control-lg form-horizontal" novalidate #myform ngForm (ngSubmit) = "onSubmit(myform.value)">
+    <div class="col-md-4">  
+        <input type = "text" class="form-control form-control-lg margin-bottom" name = "name" placeholder="Name" ngModel required>
+    </div>
+
+    <div class="col-md-4">  
+        <input  type = "email" class="form-control form-control-lg margin-bottom" name = "email" placeholder="Email" #email="ngModel" ngModel required email="true">
+    </div>
+
+    <div class="col-md-4">
+        <input type = "text" class="form-control form-control-lg margin-bottom" name = "city" placeholder="City" ngModel required>
+    </div>
+
+    <div class="col-md-4">
+        <input type = "text"  class="form-control form-control-lg margin-bottom" name = "location" placeholder="Address" ngModel required>
+    </div>    
         
-            <input  type = "email" class="form-control" name = "email" placeholder="Email" #email="ngModel" ngModel required email="true">
-       
-            <input type = "text" class="form-control" name = "city" placeholder="City" ngModel required>
-        
-            <input type = "text"  class="form-control" name = "location" placeholder="Address" ngModel required>
-        
-            <input  type = "password"  class="form-control"name = "password" placeholder="Password" #pass ngModel required>
-        
-            <input type = "password" class="form-control" name = "confirmPassword" placeholder="Confirm Password" #confirmPass required>
-               
+    <div class="col-md-4">
+        <input  type = "password"  class="form-control form-control-lg margin-bottom"name = "password" placeholder="Password" #pass ngModel required>
+    </div>
+
+    <div class="col-md-4">
+        <input type = "password" class="form-control form-control-lg margin-bottom" name = "confirmPassword" placeholder="Confirm Password" #confirmPass required>
+    </div>  
+
         <div *ngIf = "!email.valid && (email.dirty || email.touched)">
             <div *ngIf = "email.errors.email">
                 Invalid Email
@@ -24,7 +38,11 @@
 		<div class="form-group">
             <button type = "submit"  class="btn btn-primary btn-lg" value = "register" [disabled] = "!myform.valid">Sign Up</button>
         </div>
+
+        <div class="hint-text">Already have an account? <a href="#">Login here</a></div>
     </form>
     {{message}}
 
-	<div class="hint-text">Already have an account? <a href="#">Login here</a></div>
+    
+    
+</div>

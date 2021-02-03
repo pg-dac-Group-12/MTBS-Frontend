@@ -1,14 +1,26 @@
+<div class="container">
 
-    <form novalidate #myform = "ngForm" (ngSubmit) = "login(myform)">
-  
-                <input  type = "email" class="form-control" name = "email" placeholder="email" #email="ngModel" ngModel required email="true"> <br>
-        
-                <input type = "password" class="form-control" name = "password" placeholder="password" #pass="ngModel" [(ngModel)]="password" required><br>
-     
-            <button type = "sign in" class="btn btn-primary login-btn btn-block" value = "Login" [disabled] = "!myform.valid">Sign in</button>
-       
+<form class="form-control-lg " novalidate #myform = "ngForm" (ngSubmit) = "login(myform)">
+    <div class="mb-3">  
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <div class="col-md-4">
+            <input  type = "email" width="5" id="exampleInputEmail1" class="form-control-lg form-control" name = "email" placeholder="abc@xyz.com" #email="ngModel" ngModel required email="true">
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <div class="col-md-4">
+            <input type = "password" class="form-control form-control-lg" id="exampleInputPassword1" name = "password" placeholder="password" #pass="ngModel" [(ngModel)]="password" required><br>
+        </div>
+    </div>
+    
+    <button type="SignIn" class="btn btn-lg btn-primary" value = "Login" [disabled] = "!myform.valid">Sign In</button>
+
     </form>
-   
-    <a [routerLink] = "'/register_user/'"> Register as User </a>
-    <a [routerLink] = "'/register_theatre/'"> Register Theatre</a>
+    <div class="row-md-6">
+    <a [routerLink] = "'/register_user/'"class="nav-link" > Register as User </a>
+    <a [routerLink] = "'/register_theatre/'" class="nav-link"> Register Theatre</a>
+
+</div>
 
