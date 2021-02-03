@@ -1,28 +1,39 @@
 <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">
     LoginComponent
 </button>
-<div class = "modal" tabindex="-1" id = "loginModal">
-    <div class="modal-dialog" >
-        <div class = "modal-content"> -->
-<div class="modal-header">
-    <h5 class="modal-title">Login</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-</div>
-<div class="modal-body container-fluid">
-    <form class="form-control-lg" novalidate #myform="ngForm" (ngSubmit)="login(myform)">
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email</label>
-            <div class="col-md-8">
-                <input type="email" width="5" id="exampleInputEmail1" class="form-control-lg form-control" name="email"
-                    placeholder="abc@xyz.com" #email="ngModel" ngModel required email="true">
+<div class = "modal " tabindex="-1" id = "loginModal">
+    <div class="modal-dialog-centered modal-dialog" >
+        <div class = "modal-content row justify-content-md-center">
+            <div class="modal-header">
+                <h1 class="modal-title">Login</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-        </div>
+            
+            <div class = "modal-body container-fluid col-md-10 offset-md-1 ">
+                <form class="form-control-lg " novalidate #myform = "ngForm" (ngSubmit) = "login(myform)">
+                    <div class="mb-3">  
+                        <label for="exampleInputEmail1" class="form-label ">Email</label>
+                    <div>
+                        <input  type = "email" width="5" id="exampleInputEmail1" class="form-control-lg form-control" name = "email" placeholder="abc@xyz.com" #email="ngModel" ngModel required email="true">
+                    </div>
+                    </div>
 
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <div class="col-md-8">
-                <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" name="password"
-                    placeholder="password" #pass="ngModel" [(ngModel)]="password" required><br>
+                    <div>
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <div>
+                        <input type = "password" class="form-control form-control-lg" id="exampleInputPassword1" name = "password" placeholder="password" #pass="ngModel" [(ngModel)]="password" required><br>
+                    </div>
+                    </div>
+                    <button type="SignIn" class="btn btn-lg btn-primary col-md-8 offset-md-2" value = "Login" [disabled] = "!myform.valid">Sign In</button>
+                </form>
+            </div>
+            <div class="footer py-4 col-md-10 offset-md-2 ">
+                <div>
+                    <a [routerLink] = "'/register_user/'" > Register as User </a>
+                    |
+                    <a [routerLink] = "'/register_theatre/'" > Register Theatre</a>
+                </div>    
+                    
             </div>
         </div>
         <button type="SignIn" class="btn btn-lg btn-primary" value="Login" [disabled]="!myform.valid">Sign In</button>
