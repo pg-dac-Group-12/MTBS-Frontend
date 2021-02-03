@@ -15,7 +15,7 @@ export class ShowsFacade {
     getShows() {
         return this.showState$.getShows();
     }
-    getShowByID(showId:number){
+    getShowById(showId:number){
         return this.showState$.getShowById(showId);
     }
     

@@ -1,9 +1,9 @@
-Columns:<input type="number" #rows> Rows:<input type="number" #columns l>
+<!-- Columns:<input type="number" #rows> Rows:<input type="number" #columns l>
 <button type="button" class="btn btn-info btn-lg" data-bs-toggle="modal" data-bs-target="#myModal"
-    (click)="createSeatMap(rows.value,columns.value)" data-toggle="modal">Preview</button><br>
-<div class="modal "  data-bs-backdrop="static" id="myModal" tabindex="-1">
+    (click)="createSeatMap(rows.value,columns.value)" data-toggle="modal">Preview</button><br> -->
+<!-- <div class="modal "  data-bs-backdrop="static" id="myModal" tabindex="-1">
     <div class="modal-dialog modal-xl modal-dialog-centered">
-        <div class="modal-content">
+        <div class="modal-content"> -->
             <div class="modal-header">
                 <legend class="modal-title">Seat Map</legend>
                 <button (click)="resetSelectedSeats()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -27,7 +27,7 @@ Columns:<input type="number" #rows> Rows:<input type="number" #columns l>
                                 <span style="padding-left:40px"></span>
                             </span>
                             <span style="white-space: nowrap;" *ngIf="!last">
-                                <div *ngIf="seatMap[i].rowNumber == rows.value;">
+                                <div *ngIf="seatMap[i].rowNumber == rows;">
                                     <span class="br"></span>  
                                 </div>
                             </span>
@@ -46,6 +46,6 @@ Columns:<input type="number" #rows> Rows:<input type="number" #columns l>
                     </button>
                 </div>
             </div>
-        </div>
+        <!-- </div>
     </div>
-</div>
+</div> -->

@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~11.0.1",
     "@angular/platform-browser-dynamic": "~11.0.1",
     "@angular/router": "~11.0.1",
+    "@ng-bootstrap/ng-bootstrap": "^9.0.2",
     "bootstrap": "^5.0.0-beta1",
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.1",

@@ -5,6 +5,8 @@ import { Shows } from 'src/app/models/shows.model';
 import { Theatre } from 'src/app/models/theatre.model';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
+import { SeatMapComponent } from 'src/app/components/seat-map/seat-map.component';
+import { NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-shows-list',
@@ -18,7 +20,8 @@ export class ShowsListComponent implements OnInit {
   selectedDate!: moment.Moment;
   selectedIndex!: number;
   theatres: Theatre[] = [];
-  constructor(private showsFacade: ShowsFacade, private router: Router) {
+  currentDialog:any;
+  constructor(private showsFacade: ShowsFacade, private router: Router, private modalService:NgbModal) {
    // this.movieId = this.router.getCurrentNavigation()?.extras.state!.movieId;
   }
 
@@ -27,12 +30,15 @@ export class ShowsListComponent implements OnInit {
   }
 
   fillDateArray(date: number) {
-    [1, 2, 3, 4, 5].map(number => this.dates.push(moment(new Date()).add(number, "days")))
+    [0, 1, 2, 3, 4].map(number => this.dates.push(moment(new Date()).add(number, "days")))
     //Fix This
   }
 
   getShowSeatMap(showId:number) {
     console.log(showId);
+    let show = this.showsFacade.getShowById(showId);
+    this.currentDialog = this.modalService.open(SeatMapComponent,{});
+    this.currentDialog.componentInstance.showID = showId;
   }
   getDate() {
 

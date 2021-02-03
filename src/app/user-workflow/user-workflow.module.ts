@@ -13,6 +13,7 @@ import { CarouselComponent } from '../shared/carousel/carousel.component';
 import { AppModule } from '../app.module';
 import { SharedModule } from '../shared/shared.module';
 import { ShowPageComponent } from './show-page/show-page.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -20,7 +21,7 @@ import { ShowPageComponent } from './show-page/show-page.component';
   declarations: [HomepageComponent , UserDashboardComponent, MovieListComponent, ShowsListComponent, TicketComponent,
      TicketPageComponent, ShowPageComponent],
   imports: [
-    CommonModule , FormsModule , SharedModule
+    CommonModule , FormsModule , SharedModule, NgbModalModule
   ]
 })
 export class UserWorkflowModule { }

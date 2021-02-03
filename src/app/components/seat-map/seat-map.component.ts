@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ShowsFacade } from 'src/app/facade/ShowsFacade';
 import { Seat } from 'src/app/models/seat.model';
 import { Shows } from 'src/app/models/shows.model';
@@ -9,11 +9,12 @@ import { Shows } from 'src/app/models/shows.model';
   styleUrls: ['./seat-map.component.css']
 })
 export class SeatMapComponent implements OnInit {
-  seatMap: Seat[]=[];
+  @Input() seatMap: Seat[]=[];
+  @Input() showId!:number;
+  rows!:number;
+  columns!:number;
   selectedSeats:Seat[]=[];
-  show:any={
-    price:200
-  };
+  show!:Shows;
   showID!:number;
   // rows!:number;
   // columns!:number;
@@ -22,9 +23,22 @@ export class SeatMapComponent implements OnInit {
 
   ngOnInit(): void {
     //this.show = this.showsFacade.getShowByID(this.showID);
- 
+    console.log(this.showID);
+    this.show = this.showsFacade.getShowById(this.showID);
+    console.log(this.show);
+    this.seatMap = this.show.seatmap;
+    console.log(this.seatMap);
+    this.countRowsAndColumns();
   }
-
+  countRowsAndColumns(){
+    for ( var i = 0 ; i < this.seatMap.length; i++){     
+      if(this.seatMap[i].colNumber === 'B'){
+        this.rows = i -1;
+        break;
+      }
+    }
+    this.columns = Math.floor(this.seatMap.length/this.rows);
+  }
 
   // from add audi
   createSeatMap(rows: number, columns: number) {
