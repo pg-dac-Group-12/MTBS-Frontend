@@ -6,13 +6,19 @@ import { ShowsListComponent } from './shows-list/shows-list.component';
 import { TicketComponent } from './ticket/ticket.component';
 import { FormsModule } from '@angular/forms';
 import { TicketPageComponent } from './ticket-page/ticket-page.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { BannerComponent } from '../shared/banner/banner.component';
+import { NavbarComponent } from '../shared/navbar/navbar.component';
+import { CarouselComponent } from '../shared/carousel/carousel.component';
+import { AppModule } from '../app.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 
 @NgModule({
-  declarations: [UserDashboardComponent, MovieListComponent, ShowsListComponent, TicketComponent, TicketPageComponent],
+  declarations: [HomepageComponent , UserDashboardComponent, MovieListComponent, ShowsListComponent, TicketComponent, TicketPageComponent],
   imports: [
-    CommonModule , FormsModule
+    CommonModule , FormsModule , SharedModule
   ]
 })
 export class UserWorkflowModule { }

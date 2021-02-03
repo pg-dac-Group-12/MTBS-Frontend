@@ -14,8 +14,7 @@ import { HttpInterceptorService } from './services/HttpInterceptorService';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TheatreWorkflowModule } from './theatre-workflow/theatre-workflow.module';
 import { UserWorkflowModule } from './user-workflow/user-workflow.module';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { CarouselComponent } from './components/carousel/carousel.component';
+import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -23,8 +22,6 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     LoginComponent,
     UserRegisterComponent,
     TheatreRegisterComponent,
-    NavbarComponent,
-    CarouselComponent,
   ],
   imports: [
     HttpClientModule,
@@ -34,13 +31,14 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     BrowserAnimationsModule,
     UserWorkflowModule,
     TheatreWorkflowModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    SharedModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: HttpInterceptorService,
     multi:true
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
