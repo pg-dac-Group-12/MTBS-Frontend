@@ -17,7 +17,9 @@ export class TheatreRegisterComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit(myform:NgForm) {
+    console.log(myform);
     this.theatre = myform.value ; 
+    console.log(this.theatre);
     this.theatreService.createTheatre(this.theatre).subscribe(response =>{
       if(response.status == 201){
         //registered. redirect?

@@ -13,38 +13,43 @@ import { TheatreFacade } from '../../facade/TheatreFacade'
   styleUrls: ['./add-audi.component.css']
 })
 export class AddAudiComponent implements OnInit {
-  theatre!: Theatre; //get from router link
-  audi!: Audi;
+  theatreId!:number;
+  seatMap:Seat[]=[];
+  audi: Audi ={
+    number :0,
+    totalSeats :0,
+    seatMap : []  
+  };
   message: string = "";
-  seatMap: Seat[] = [];
-  space:string = "    ";
+ 
   constructor(private theatreFacade: TheatreFacade, private router: Router) {
-    // let audiNumber = this.router.getCurrentNavigation()?.extras.state!.audiNumber
-    // console.log(audiNumber);
-    // if (audiNumber != null) {
-    //   this.audi = this.theatreFacade.getAudiByAudiNumber(audiNumber);
-    // }
+    this.theatreId = this.router.getCurrentNavigation()?.extras.state?.theatreId;
+    console.log(this.theatreId);
   }
 
   ngOnInit(): void {
-
+  
   }
   onSubmit(myForm: NgForm) {
-    this.audi = myForm.value;
-    this.audi.theatre = this.theatre;
-    if (this.audi != null)
-      this.theatreFacade.updateAudi(this.theatreFacade.getTheatre().id, this.audi);
-    this.theatreFacade.addAudi(this.theatreFacade.getTheatre().id, this.audi);
-    this.audi.seatMap = this.seatMap;
+    if(this.audi.seatMap == []){
+      this.message="seatmap can't be empty"
+    }else if(this.audi.number === 0){
+      this.message = "audinumber cant be zero";
+    }
+    else {
+      this.message = "";
+      this.theatreFacade.addAudi(this.theatreId,this.audi);
+    }
   }
+  
 
   createSeatMap(rows: number, columns: number) {
+    this.seatMap = [];
     const alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
     console.log(rows + " " + columns);
     for (var col = 1; col <= columns; col++) {
       for (var row = 1; row <= rows; row++) {
-
-        if(row === Math.floor(rows/2)+1){
+        if (row === Math.floor(rows / 2) + 1) {
           this.seatMap.push(
             {
               "rowNumber": 0,
@@ -52,37 +57,27 @@ export class AddAudiComponent implements OnInit {
               "isBooked": false
             }
           )
+          this.seatMap.push(
+            {
+              "rowNumber": row,
+              "colNumber": alphabets[col - 1],
+              "isBooked": false
+            }
+          )
         }
-        this.seatMap.push({
-          "rowNumber": row,
-          "colNumber": alphabets[col - 1],
-          "isBooked": false
-        })
+        else {
+          this.seatMap.push({
+            "rowNumber": row,
+            "colNumber": alphabets[col - 1],
+            "isBooked": false
+          })
+        }
       }
     }
-
-    // for (var i = 1; i <= rows; i++) {
-    //   this.seatMap.push(
-    //     {
-    //       "rowNumber": 0,
-    //       "colNumber": '0',
-    //       "isBooked": false
-    //     }
-    //   )
-    // }
-    // for (var col = Math.floor(columns/2)+1; col < columns; col ++){
-    //   for (var row = 1; row <= rows; row++) {
-    //     this.seatMap.push({
-    //       "rowNumber": row,
-    //       "colNumber": alphabets[col - 1],
-    //       "isBooked": false
-    //     })
-    //   }
-    // }
-    console.log(this.seatMap);
-  }
-  addSeat(seatId:number){
-    console.log(seatId);
+    
+    this.audi.totalSeats = rows*columns;
+    this.audi.seatMap = this.seatMap;
+    console.log(this.audi.seatMap);
+    console.log(this.audi.totalSeats);
   }
 }
-

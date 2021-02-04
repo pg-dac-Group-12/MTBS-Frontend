@@ -39,6 +39,8 @@ export class TheatreService {
   }
 
   createAudi(id:number,audi:Audi):Observable<Audi>{
+    console.log(id);
+    console.log("createAudi sErive" +audi);
     return this.http.post<Audi>(`${this.baseUrl}${id}/audi`,audi);
   }
   updateAudi(id:number,audiId:number,audi:Audi):Observable<HttpResponse<Audi>>{

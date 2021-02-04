@@ -18,7 +18,7 @@ export class TheatreFacade {
     }
 
     setTheatre(theatre:Theatre) {
-        return this.theatreState$.setTheatre(theatre);
+        this.theatreState$.setTheatre(theatre);
     }
 
     addTheatre(theatre:Theatre) {

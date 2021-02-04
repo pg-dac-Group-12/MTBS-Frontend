@@ -16,7 +16,7 @@ export class UserFacade {
         return this.userState$.getUser();
     }
     setUser(user:User) {
-        return this.userState$.setUser(user);
+        this.userState$.setUser(user);
     }
     createUser(user:User) {
         this.userService.createUser(user);

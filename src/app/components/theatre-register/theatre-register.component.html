@@ -12,7 +12,7 @@
     </div>
     <div class = "modal-body">
         
-<form class="form-control form-control-lg form-horizontal" novalidate #myform ngForm (ngSubmit) = "onSubmit(myform.value)">
+<form class="form-control form-control-lg form-horizontal" novalidate #myform="ngForm" (ngSubmit) = "onSubmit(myform)">
     <div class="col-md-4">  
         <input type = "text" class="form-control form-control-lg margin-bottom" name = "name" placeholder="Name" ngModel required>
     </div>
@@ -58,6 +58,4 @@
    
     </div>
 </div>
-</div>    
-</div>    
-</div>
+

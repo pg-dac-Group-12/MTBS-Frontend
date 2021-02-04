@@ -1,12 +1,12 @@
 <p>theatre-dashboard works!</p>
 
-<li *ngFor = "let audi of audis">
+<li *ngFor = "let audi of theatre.audis">
     <button (click) = "getShowsByAudiId(audi.id)">{{audi.number}}</button>
     <!--<a [routerLink] = "'/updateAudi/{{theatre.id}}/{{audi.id}}'"></a>-->
     <!--<a [routerLink] = "'/deleteAudi/{{theatre.id}}/{{auidi.id}}'"> </a>-->
     <!--<a [routerLink] = "'/addShow/{{Audi.id}}'"></a>-->
 </li>
-<!--<a [routerLink] = "'/addAudi/{theatre.id}}'"></a>-->
+<button class="btn btn-primary" (click)="addAudi()">Add Audi</button>
 <li *ngFor = "let show of showsByAudi">
     <h5>Movie: {{show.movie.title}}</h5>
     <span>Time : {{show.time}} {{show.date}}</span>

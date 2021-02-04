@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   message:string = "";
   email:string = "";
   password:string = "";
-  isTheatreAdmin:boolean = false;
+  isTheatreAdmin:boolean = true;
   constructor(private authService:AuthService, private modalService:NgbModal ,private userFacade:UserFacade, private theatreFacade:TheatreFacade ,private router:Router) { }
 
   ngOnInit(): void {
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
               this.router.navigateByUrl("/movie_list");
           } else {
             this.theatreFacade.setTheatre(resp.actor);
-            this.router.navigateByUrl("/theatre_dashboard");
+            this.router.navigateByUrl("/theatre");
           }
       }
       

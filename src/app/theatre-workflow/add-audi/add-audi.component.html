@@ -1,41 +1,54 @@
 <p>add-audi works!</p>
 
 <div>
-       <form novalidate #myform="ngForm" (ngSubmit) = "onSubmit(myform)">
-        Audi Number: <input type = "number" [(ngModel)] = "audi.number" name = "number" placeholder="number" ngModel required><br>
-       
-        total Capacity: <input type = "number" [(ngModel)] = "audi.totalSeats" name = "totalSeats" placeholder="total number of seats" ngModel required><br>
+    <form novalidate #myform="ngForm" (ngSubmit)="onSubmit(myform)">
+        Audi Number: <input type="number" [(ngModel)]="audi.number" name="number" placeholder="number" ngModel
+            required><br>
+
         <!--seat map input-->
-        Rows:<input type="number" #rows> Columns:<input type="number" #columns l><button type='button'
-            (click)="createSeatMap(rows.value,columns.value)">Preview</button><br>
+        Columns:<input type="number" #rows required> Rows:<input type="number" #columns required>
+        <button type="button" class="btn btn-info btn-lg" data-bs-toggle="modal" data-bs-target="#myModal"
+            (click)="createSeatMap(rows.value,columns.value)" data-toggle="modal">Preview</button><br>
         <input type="submit" value="add Audi"><br>
     </form>
     <div>
-    <div>{{message}}</div>
+        <div>{{message}}</div>
     </div>
 </div>
-<br><br>
-<div>
 
-    <div>
-        <span style="white-space: nowrap;" *ngFor="let seat of seatMap;let i = index;let last = last">
-            <button style='margin-right:16px'>
-                {{seat.rowNumber}} {{seat.colNumber}}
-            </button>
+<div class="modal " data-bs-backdrop="static" id="myModal" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <legend class="modal-title">Seat Map</legend>
+                <button  type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body mx-auto">
+                <div>
+                    <div style="text-align: center; margin-top: 3vh;margin-bottom: 3vh;">
+                        <legend> Screen this side </legend>
+                    </div>
+                    <div class="container-fluid">
+                        <span style="white-space: nowrap;" *ngFor="let seat of seatMap;let i = index;let last = last">
 
-            <span style="white-space: nowrap;" *ngIf="seatMap[i].rowNumber === 0">
-
-                <span style="padding-left:40px"></span>
-
-            </span>
-
-            <span style="white-space: nowrap;" *ngIf="!last">
-                <div
-                    *ngIf="seatMap[i                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ].rowNumber == rows.value;">
-
-                    <br>
+                            <button class="seat" id="seat-{{i}}" *ngIf="seatMap[i].rowNumber !== 0"
+                                [disabled]="seatMap[i].isBooked" value={{i}} (click)="addSeat(seatID.value)" #seatID>
+                            </button>
+                            <span style="white-space: nowrap;" *ngIf="seatMap[i].rowNumber === 0">
+                                <span style="padding-left:40px"></span>
+                            </span>
+                            <span style="white-space: nowrap;" *ngIf="!last">
+                                <div *ngIf="seatMap[i].rowNumber == rows.value;">
+                                    <span class="br"></span>
+                                </div>
+                            </span>
+                        </span>
+                    </div>
                 </div>
-            </span>
-        </span>
+            </div>
+            <div class="modal-footer" style="text-align: left;">
+            </div>
+        </div>
     </div>
 </div>

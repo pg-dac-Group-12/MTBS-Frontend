@@ -21,10 +21,11 @@ export class TheatreDashboardComponent implements OnInit {
   constructor(private theatreFacade: TheatreFacade, private showFacade: ShowsFacade, private router:Router) { }
 
   ngOnInit(): void {
-    this.theatre =this.theatreFacade.getTheatre();
-    this.theatreFacade.loadAudiByTheatreId(this.theatre.id);
-    this.theatreFacade.getAudis().subscribe(audis => this.audis = audis);
     this.theatre = this.theatreFacade.getTheatre();
+    console.log(this.theatre);
+    //this.theatreFacade.loadAudiByTheatreId(this.theatre.id);
+    //this.theatreFacade.getAudis().subscribe(audis => this.audis = audis);
+    // this.theatre = this.theatreFacade.getTheatre();
     this.showFacade.loadShowsByTheatreId(this.theatre.id);
     this.showFacade.getShows().subscribe(shows => this.shows = shows);
     console.log(this.shows);
@@ -49,8 +50,10 @@ export class TheatreDashboardComponent implements OnInit {
   }
 
   getShowsByAudiId(audiId:number){
+    this.showsByAudi =[];
     console.log(audiId);
-    this.shows.map(show=>{ if(show.id == audiId) this.showsByAudi.push(show);})
+    this.shows.map(show=>{ if(show.audi.id == audiId) this.showsByAudi.push(show);});
+    console.log(this.showsByAudi);
   }
   
   cancelShow(show:Shows){
@@ -69,6 +72,9 @@ export class TheatreDashboardComponent implements OnInit {
   }
 
   deleteAudi(audiId:number) {
-    this.theatreFacade.deleteAudi(this.theatre.id, audiId);
+    //this.theatreFacade.deleteAudi(this.theatre.id, audiId);
+  }
+  addAudi(){
+    this.router.navigate(['/add_audi'],{state:{theatreId:this.theatre.id}})
   }
 }

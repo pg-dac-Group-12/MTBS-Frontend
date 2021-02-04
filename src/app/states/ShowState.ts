@@ -9,7 +9,7 @@ export class ShowState{
     private shows$ = new BehaviorSubject<Shows[]>([]);
 
     getShows() {
-        console.log(this.shows$.getValue.toString)
+        console.log(this.shows$.getValue())
         return this.shows$.asObservable();
     }
     getShowById(showId:number){
@@ -17,6 +17,7 @@ export class ShowState{
         return currentShowsList[currentShowsList.findIndex(showItem => showId == showItem.id)]; 
     }
     setShows(shows :Shows[]) {
+        console.log(shows);
         this.shows$.next(shows);
     }
 

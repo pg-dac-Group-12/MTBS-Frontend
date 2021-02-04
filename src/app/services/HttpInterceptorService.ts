@@ -18,7 +18,6 @@ export class HttpInterceptorService implements HttpInterceptor {
                         this.toasterService.success(evt.body.success.message, evt.body.success.title, { positionClass: 'toast-bottom-center' });
                     return req.body;
                 }
-
             }),
             catchError((err: any) => {
                 if (err instanceof HttpErrorResponse) {
