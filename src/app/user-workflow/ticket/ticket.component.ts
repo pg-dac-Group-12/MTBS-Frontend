@@ -20,14 +20,10 @@ export class TicketComponent implements OnInit {
   constructor(private ticketFacade: TicketFacade, private userFacade: UserFacade , private router:Router) { }
 
   ngOnInit(): void {
-    this.userFacade.getUser().subscribe(user=> this.user=user);
-    this.ticketFacade.loadTicketsByUserId(5).subscribe(tickets => this.tickets = tickets);
+    this.user = this.userFacade.getUser();
+    this.ticketFacade.loadTicketsByUserId(this.user.id).subscribe(tickets => this.tickets = tickets);
   }
-  
-  createTicket(showId :number , seats :Seat[]) {
-      this.ticket = this.ticketFacade.createTicket(showId,seats);
-      this.router.navigate(['/ticket_page'],{state:{ticket:this.ticket}})
-  }
+
   
   cancelTicket(ticket: Ticket) {
     console.log("cancel " +ticket.id)

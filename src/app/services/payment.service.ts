@@ -18,8 +18,13 @@ export class PaymentService {
   }
 
   paymentSuccess(razorpayDTO:RazorpayDTO): Observable<Ticket> {
-    let params = new HttpParams().append('razorpayDTO', razorpayDTO.toString());
-    return this.http.get<Ticket>(`${this.baseUrl}success`, { params: params });
+    //let params = new HttpParams().append('razorpayDTO', razorpayDTO.toString());
+    console.log(razorpayDTO);
+    return this.http.post<Ticket>(`${this.baseUrl}success`, {
+      "razorpayOrderId": razorpayDTO.razorpay_order_id,
+      "razorpayPaymentId": razorpayDTO.razorpay_payment_id,
+      "razorpaySignature": razorpayDTO.razorpay_signature
+    });
     
   }
 }

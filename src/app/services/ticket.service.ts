@@ -22,7 +22,7 @@ export class TicketService {
   }
   createTicket(showId: number, seats: Seat[]): Observable<Ticket> {
     let reqParams = new HttpParams().append('seats', String(seats));
-    return this.http.post<Ticket>(`${this.baseUrl}${showId}`, null, { params: reqParams });
+    return this.http.post<Ticket>(`${this.baseUrl}${showId}`, seats);
   }
   cancelTicket(ticket: Ticket): Observable<any>{
     return this.http.post<Ticket>(`${this.baseUrl}cancel/${ticket.id}`, ticket);

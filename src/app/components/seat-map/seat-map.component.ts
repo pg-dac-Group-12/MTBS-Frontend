@@ -18,7 +18,7 @@ export class SeatMapComponent implements OnInit {
   columns!:number;
   selectedSeats:Seat[]=[];
   show!:Shows;
-  showID!:number;
+  currentDialog!:any;
   // rows!:number;
   // columns!:number;
 
@@ -26,8 +26,8 @@ export class SeatMapComponent implements OnInit {
 
   ngOnInit(): void {
     //this.show = this.showsFacade.getShowByID(this.showID);
-    console.log(this.showID);
-    this.show = this.showsFacade.getShowById(this.showID);
+    console.log(this.showId);
+    this.show = this.showsFacade.getShowById(this.showId);
     console.log(this.show);
     this.seatMap = this.show.seatmap;
     console.log(this.seatMap);
@@ -110,8 +110,9 @@ export class SeatMapComponent implements OnInit {
   }
   bookSeats(){
     console.log(this.selectedSeats);
-    this.modalService.open(TicketPageComponent);
-
+    this.currentDialog = this.modalService.open(TicketPageComponent,{});
+    this.currentDialog.componentInstance.showId = this.showId;
+    this.currentDialog.componentInstance.selectedSeats = this.selectedSeats;
   }
   resetSelectedSeats(){
     this.selectedSeats=[];

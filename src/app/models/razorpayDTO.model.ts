@@ -1,5 +1,5 @@
 export interface RazorpayDTO {
-    razorpayPaymentId:string;
-    razorpayOrderId:string  ;
-    razorpaySignature:string;
+    razorpay_order_id:string;
+    razorpay_payment_id:string  ;
+    razorpay_signature:string;
 }

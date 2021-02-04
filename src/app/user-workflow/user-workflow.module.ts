@@ -14,6 +14,9 @@ import { AppModule } from '../app.module';
 import { SharedModule } from '../shared/shared.module';
 import { ShowPageComponent } from './show-page/show-page.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpInterceptorService } from '../services/HttpInterceptorService';
+import { JwtInterceptor } from 'src/JwtInterceptor';
 
 
 
@@ -22,6 +25,12 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
      TicketPageComponent, ShowPageComponent],
   imports: [
     CommonModule , FormsModule , SharedModule, NgbModalModule
-  ]
+  ],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: JwtInterceptor,
+    multi:true
+  }]
 })
+
 export class UserWorkflowModule { }

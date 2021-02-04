@@ -15,6 +15,7 @@ import { TheatreWorkflowModule } from './theatre-workflow/theatre-workflow.modul
 import { UserWorkflowModule } from './user-workflow/user-workflow.module';
 import { SharedModule } from "./shared/shared.module";
 import { SeatMapComponent } from "./components/seat-map/seat-map.component";
+import { JwtInterceptor } from "src/JwtInterceptor";
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,7 @@ import { SeatMapComponent } from "./components/seat-map/seat-map.component";
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
-    useClass: HttpInterceptorService,
+    useClass: JwtInterceptor,
     multi:true
   }],
   bootstrap: [AppComponent],

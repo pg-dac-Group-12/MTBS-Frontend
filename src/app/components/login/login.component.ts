@@ -40,11 +40,13 @@ export class LoginComponent implements OnInit {
       else {
           if(!this.isTheatreAdmin) {
               this.userFacade.setUser(resp.actor);
+              this.router.navigateByUrl("/movie_list");
           } else {
             this.theatreFacade.setTheatre(resp.actor);
+            this.router.navigateByUrl("/theatre_dashboard");
           }
       }
-      this.router.navigateByUrl("/")
+      
     })
   }   
   openUserRegisterModal() {

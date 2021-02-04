@@ -5,6 +5,7 @@ import "../states/MovieState";
 import { Ticket } from "../models/ticket.model";
 import { Injectable } from "@angular/core";
 import { Seat } from "../models/seat.model";
+import { Observable } from "rxjs";
 @Injectable({
     providedIn:"root"
 })
@@ -24,10 +25,9 @@ export class TicketFacade {
         this.ticketState$.addTicket(ticket);
     }
 
-    createTicket(showId:number , seats : Seat[]): Ticket {
-        let tempTicket!:Ticket;
-        this.ticketService.createTicket(showId,seats).subscribe(ticket => tempTicket = ticket );
-        return tempTicket;
+    createTicket(showId:number , seats : Seat[]): Observable<Ticket> {
+       
+        return this.ticketService.createTicket(showId,seats);
     }
     
     cancelTicket(ticket:Ticket) { 

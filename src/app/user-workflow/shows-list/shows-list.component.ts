@@ -45,9 +45,10 @@ export class ShowsListComponent implements OnInit {
       this.currentDialog = this.modalService.open(LoginComponent,{}).closed
       .subscribe(resp => this.getShowSeatMap(showId));
     } else {
+        console.log(this.user);
         let show = this.showsFacade.getShowById(showId);
         this.currentDialog = this.modalService.open(SeatMapComponent,{});
-        this.currentDialog.componentInstance.showID = showId;
+        this.currentDialog.componentInstance.showId = showId;
     }
   }
   getDate() {
