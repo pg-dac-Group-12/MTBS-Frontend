@@ -25,7 +25,7 @@ export class ShowsFacade {
     }
 
     cancelShows(show:Shows) {
-        this.showService.cancelShow(show);
+        this.showService.cancelShow(show.id).subscribe();
         this.showState$.removeShow(show);
     }
 

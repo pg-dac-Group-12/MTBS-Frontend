@@ -14,8 +14,8 @@ export class TheatreService {
     return this.http.get<Theatre>(this.baseUrl,{observe:'response'});
   }
 
-  getTheatre(id:number):Observable<HttpResponse<Theatre>>{
-    return this.http.get<Theatre>(`${this.baseUrl}${id}`,{observe:'response'});
+  getTheatre(id:number):Observable<Theatre>{
+    return this.http.get<Theatre>(`${this.baseUrl}${id}`);
   }
 
   createTheatre(theatre:Theatre):Observable<HttpResponse<Theatre>>{
@@ -47,7 +47,8 @@ export class TheatreService {
     return this.http.put<Audi>(`${this.baseUrl}${id}/audi/${audiId}`,audi,{observe:'response'});
   }
 
-  deleteAudi(id:number,audiId:number):Observable<HttpResponse<Audi>>{
-    return this.http.delete<Audi>(`${this.baseUrl}${id}/audi/${audiId}`,{observe:'response'});
+  deleteAudi(id:number,audiId:number){
+    console.log("theatreService-deleteAudi "+ id + " "+ audiId);
+    return this.http.delete(`${this.baseUrl}${id}/audi/${audiId}`);
   }
 }

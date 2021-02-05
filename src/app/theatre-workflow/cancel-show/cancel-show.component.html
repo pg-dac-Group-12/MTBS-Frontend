@@ -1,6 +1,6 @@
 <p>cancel-show works!</p>
 
-“Are you sure you want to cancel the show : the corresponding tickets will be automatically canceled?
+“Are you sure you want to cancel the show : the corresponding tickets will be automatically canceled?"
 
 <tr *ngFor="let ticket of show.tickets">
 
@@ -12,4 +12,4 @@
     <td> {{ticket.date}}</td>
 </tr>
 
-<button (click) = "deleteShow">YES Cancel</button>
+<button (click) = "cancelShow()">YES Cancel</button>

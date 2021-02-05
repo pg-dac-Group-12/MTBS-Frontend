@@ -15,11 +15,13 @@ import { TicketComponent } from './user-workflow/ticket/ticket.component';
 import { UserDashboardComponent } from './user-workflow/user-dashboard/user-dashboard.component';
 import { ShowPageComponent } from './user-workflow/show-page/show-page.component';
 import { SeatMapComponent } from './components/seat-map/seat-map.component';
+import { AddShowComponent } from './theatre-workflow/add-show/add-show.component';
+import { CancelShowComponent } from './theatre-workflow/cancel-show/cancel-show.component';
 
 const routes: Routes = [
   {path:'user',component: UserDashboardComponent },
   {path: '',component:HomepageComponent},
-  {path:'shows_list',component: ShowsListComponent },
+  {path: 'shows_list',component: ShowsListComponent },
   {path: 'shows_page',component:ShowPageComponent},
   {path: 'ticket', component: TicketComponent},
   {path: 'ticket_page', component:TicketPageComponent},
@@ -29,7 +31,9 @@ const routes: Routes = [
   {path: 'register_theatre',component:TheatreRegisterComponent },
   {path: 'carousel',component:CarouselComponent},
   {path: 'movie',component:MovieComponent},
-  {path: 'seat_map',component:SeatMapComponent}
+  {path: 'seat_map',component:SeatMapComponent},
+  {path: 'add_show',component:AddShowComponent},
+  {path: 'cancel_show',component:CancelShowComponent}
 ];
 
 @NgModule({

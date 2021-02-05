@@ -24,15 +24,12 @@
         <div class="col-md-7">
             <div class="card-body">
                 <h5 class="card-title">{{show.movie.title}}</h5>
-                <p class="card-text">Audi-number: {{ticket.show.audi.number}}</p>
+                <p class="card-text">Audi-number: {{show.audi.number}}</p>
                 <p class="card-text">time: {{show.time +" on "+ show.date}}</p>
-                <p class="card-text">Seats: <span style="display: inline;"
-                        *ngFor="let seat of ticket.seats"><strong>{{seat.rowNumber}} {{seat.colNumber}},
-                        </strong></span></p>
                 <p class="card-text">Price: INR {{show.price}}</p>
                 <p class="card-text">tickets booked: {{show.tickets.length}}</p>
                 <div>
-                    <button i class="btn btn-danger" (click)=cancelShow(show.id)>CancelShow</button>
+                    <button i class="btn btn-danger" (click)=cancelShow(show)>CancelShow</button>
                 </div>
             </div>
         </div>

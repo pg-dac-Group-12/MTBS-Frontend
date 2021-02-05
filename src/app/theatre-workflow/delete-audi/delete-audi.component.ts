@@ -1,6 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ShowsFacade } from 'src/app/facade/ShowsFacade';
 import { TheatreFacade } from 'src/app/facade/TheatreFacade';
 import { Audi } from 'src/app/models/audi.model';
@@ -17,15 +18,21 @@ export class DeleteAudiComponent implements OnInit {
   @Input() audiId!:number;    //get from router link
   @Input() showsByAudi!:Shows[]; //Fix Shows 
   @Input() theatreId!:number;
+
   
-  constructor( private theatreFacade:TheatreFacade, private modalService:NgbModal) {}
+  constructor( private theatreFacade:TheatreFacade, private modalService:NgbModal,
+     private activeModal:NgbActiveModal, private router:Router) {}
   
   ngOnInit(): void {
   }
 
   deleteAudi(){
-    console.log("in delete audi");
+    console.log("in deleteAudi() of delete audi component audi-"+this.audiId);
     this.theatreFacade.deleteAudi(this.theatreId,this.audiId);
+    this.close();
+  }
+  close() {
+    this.activeModal.close();
   }
 }
 

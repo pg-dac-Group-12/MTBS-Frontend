@@ -26,10 +26,8 @@ export class ShowsService {
   }
 
   createShow(show:Shows,theatreId:number,audiId:number,movieId:number):Observable<HttpResponse<Shows>>{
-    let reqParams = new HttpParams();
-    reqParams.append('theatreID',String(theatreId));
-    reqParams.append('audiID',String(audiId));
-    reqParams.append('movieID',String(movieId));
+    let reqParams = new HttpParams().append('theatreID',String(theatreId)).append('audiID',String(audiId)).append('movieID',String(movieId));
+    console.log(reqParams);
     return this.http.post<Shows>(`${this.baseUrl}`,show,{observe:'response',params:reqParams});
   }
 
@@ -41,7 +39,7 @@ export class ShowsService {
     return this.http.delete<Shows>(`${this.baseUrl}${id}`,{observe:'response'});
   }
 
-  cancelShow(show:Shows):Observable<HttpResponse<Shows>>{
-    return this.http.post<Shows>(`${this.baseUrl}`,show,{observe:'response'});  
+  cancelShow(showId:number){
+    return this.http.delete(`${this.baseUrl}cancel/${showId}`);  
   }
 }

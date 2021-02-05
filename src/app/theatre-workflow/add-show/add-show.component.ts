@@ -12,26 +12,44 @@ import { Time } from '@angular/common';
   styleUrls: ['./add-show.component.css']
 })
 export class AddShowComponent implements OnInit {
-  show!:Shows;
+  show:Shows={
+    id:0,
+    audi:null!,
+    date:new Date(),
+    time:{
+      hours:0,
+      minutes:0
+    },
+    price:0,
+    tickets:[],
+    seatmap:[]
+  };
+  
   audiId!:number;
   theatreId!:number;
   movieId!:number;
   movies!:Movie[];
   constructor(private showFacade:ShowsFacade, private moviesFacade:MovieFacade,
     private router:Router) { 
+      console.log("in constr of add audi ");
       this.audiId = this.router.getCurrentNavigation()?.extras.state!.audiId;
       this.theatreId = this.router.getCurrentNavigation()?.extras.state!.theatreId;
+      console.log("in constr of add audi " + this.audiId + " "+this.theatreId);
     }
 
   ngOnInit(): void {
     
   }
 
-  addShow(myForm:NgForm) {
+  addShow(date:Date,time:Time,price:number) {
    // this.validateShow(myForm.value);
-    this.show = myForm.value ;
+   console.log(date+" "+time+ " "+price);
+    this.show.date = date;
+    this.show.time = time;
+    this.show.price = price;
+    console.log(this.show);
     console.log("addShow T-"+this.theatreId+" A-"+this.audiId+" M-"+this.movieId);
-    this.showFacade.addShows(this.show,this.audiId,this.theatreId,this.movieId);
+    this.showFacade.addShows(this.show,this.theatreId,this.audiId,this.movieId);
   }
 
   loadMovieList(){

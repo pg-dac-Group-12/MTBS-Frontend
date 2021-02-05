@@ -56,7 +56,7 @@ export class TheatreFacade {
     }
 
     deleteAudi(theatreId:number, audiId:number) {
-        this.theatreService.deleteAudi(theatreId,audiId) ;
+        this.theatreService.deleteAudi(theatreId,audiId).subscribe() ;
         this.audiState$.removeAudi(audiId);
     }    
     
@@ -65,7 +65,11 @@ export class TheatreFacade {
     }
 
     loadTheatreById(id:number) {
-        return this.theatreService.getTheatre(id).subscribe();
+        this.theatreService.getTheatre(id).subscribe(
+            theatre=>{
+                console.log(theatre);
+            this.theatreState$.setTheatre(theatre);
+        })
     }
 }
 

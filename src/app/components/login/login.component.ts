@@ -17,8 +17,10 @@ export class LoginComponent implements OnInit {
   message:string = "";
   email:string = "";
   password:string = "";
-  isTheatreAdmin:boolean = false;
-  constructor(private authService:AuthService, private activeModal:NgbActiveModal, private modalService:NgbModal ,private userFacade:UserFacade, private theatreFacade:TheatreFacade ,private router:Router) { }
+  isTheatreAdmin:boolean = true;
+  constructor(private authService:AuthService, private activeModal:NgbActiveModal,
+     private modalService:NgbModal ,private userFacade:UserFacade, private theatreFacade:TheatreFacade ,
+     private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -34,7 +36,6 @@ export class LoginComponent implements OnInit {
   }
 
   login(myform:NgForm) {
-    close();
     this.authService.authenticateUser(myform.value.email,myform.value.password,this.isTheatreAdmin)
     .subscribe(resp => {
       localStorage.setItem('id_token', resp.jwt)

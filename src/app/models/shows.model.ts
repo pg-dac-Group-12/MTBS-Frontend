@@ -8,8 +8,8 @@ import { Ticket } from './ticket.model';
 export interface Shows {
     id:number;
     audi:Audi;
-    movie:Movie;
-    theatre:Theatre;
+    movie?:Movie;
+    theatre?:Theatre;
     tickets:Ticket[];
     time:Time;
     date:Date;

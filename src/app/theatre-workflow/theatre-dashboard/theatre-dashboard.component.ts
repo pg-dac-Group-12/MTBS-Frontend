@@ -2,6 +2,7 @@ import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { stat } from 'fs';
 import { ShowsFacade } from 'src/app/facade/ShowsFacade';
 import { TheatreFacade } from 'src/app/facade/TheatreFacade';
 import { Audi } from 'src/app/models/audi.model';
@@ -25,8 +26,9 @@ export class TheatreDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.theatre = this.theatreFacade.getTheatre();
+    this.theatreFacade.loadTheatreById(this.theatre.id);
+    this.theatre = this.theatreFacade.getTheatre();
     console.log(this.theatre);
-
     this.showFacade.loadShowsByTheatreId(this.theatre.id);
     this.showFacade.getShows().subscribe(shows => this.shows = shows);
     console.log(this.shows);
@@ -40,20 +42,12 @@ export class TheatreDashboardComponent implements OnInit {
   }
   
   cancelShow(show:Shows){
-    //redirect to cancel shows
-    this.showFacade.cancelShows(show);
-    // this.showsService.cancelShow(show).subscribe(respone=>this.response = respone);
-    // if(this.response.status == 200){
-    //     //show canceled
-    // } else if (this.response.status == 400){
-    //     //can't cancel show now
-    // }
+    this.router.navigate(['cancel_show'],{state:{show:show}});
   }
 
   addShow(audiId:number) {
     console.log("addShow()  audiId-"+audiId+" theatreId="+this.theatre.id);
-
-    this.router.navigate(['/add_show'],{state : { audiId : audiId,theatreId:this.theatre.id}});
+    this.router.navigate(['/add_show'],{state : { audiId : audiId, theatreId : this.theatre.id}});
   }
 
   deleteAudi(audiId:number) {

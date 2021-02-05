@@ -39,6 +39,7 @@ export class AddAudiComponent implements OnInit {
     else {
       this.message = "";
       this.theatreFacade.addAudi(this.theatreId,this.audi);
+      this.router.navigateByUrl('/theatre');
     }
   }
   
