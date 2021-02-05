@@ -1,6 +1,4 @@
-import { HttpResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 //import * as moment from 'moment';
 import { TicketFacade } from 'src/app/facade/TicketFacade.js';
 import { UserFacade } from 'src/app/facade/UserFacade.js';
@@ -8,8 +6,8 @@ import { RazorpayDTO } from 'src/app/models/razorpayDTO.model';
 import { Seat } from 'src/app/models/seat.model.js';
 import { Ticket } from 'src/app/models/ticket.model';
 import { PaymentService } from 'src/app/services/payment.service';
-import '../../../assets/checkout.js';
-declare const Razorpay: any;
+
+import { RazorpayObject } from '../../../Razorpay'
 
 @Component({
   selector: 'app-ticket-page',
@@ -75,8 +73,7 @@ export class TicketPageComponent implements OnInit {
   } 
   
   ngOnInit(): void {
-    this.sessionTime = "Hello"
-    this.sessionTimeMinutes = 10 ;
+    this.sessionTimeMinutes = 9 ;
     this.sessionTimeSeconds = 60 ;
     let timer1 = setInterval(() => {
         this.sessionTimeMinutes--;
@@ -95,9 +92,6 @@ export class TicketPageComponent implements OnInit {
     this.ticketFacade.createTicket(this.showId,this.selectedSeats).subscribe(ticket =>  this.ticket = ticket);
   }
   
-  invalidateTicket() {
-    this.ticketFacade.invalidateTicket(this.ticket.id);
-  }
   displayTime() {
     let minutes = this.sessionTimeMinutes.toString() ;
     let seconds = this.sessionTimeSeconds.toString() ;
@@ -105,56 +99,76 @@ export class TicketPageComponent implements OnInit {
         minutes = "0" + this.sessionTimeMinutes ;
     if(this.sessionTimeSeconds < 10)
         seconds = "0" + this.sessionTimeMinutes ;
-    let sessionTime = minutes + ":" + seconds ;  
-    console.log(sessionTime)
+    this.sessionTime = minutes + ":" + seconds ;  
   }
 
 
-  initiatePayment(amount: number) {
-    this.paymentService.createOrder(amount).subscribe(order=> {
-      this.order = order
-      console.log(this.order.id);
-      this.options = {
-        "key": "rzp_test_l5ZltcixJREBlt", // Enter the Key ID generated from the Dashboard
-        "amount": amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-        "currency": "INR",
-        "name": "MTBS Ltd",
-        "description": "Test Transaction",
-        "order_id": this.order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-        "handler": (razorpayDTO:RazorpayDTO) => {
-          console.log(razorpayDTO); 
-          this.paymentService.paymentSuccess(razorpayDTO,this.ticket.id).subscribe(ticket => {
-            this.ticket = ticket
-            this.ticketFacade.addTicket(ticket);
-          })
+  invalidateTicket() {
+    this.ticketFacade.invalidateTicket(this.ticket.id);
+  }
+  
+  initiatePayment() {
+    this.paymentService.createOrder(this.ticket.amount * 100 ).subscribe(order => {
+        let razorpayObject:RazorpayObject = new RazorpayObject();
+        razorpayObject.initiatePayment(order , this.ticket.amount , 
+          (razorpayDTO:RazorpayDTO) => {
+            // On Payment Success
+            console.log(razorpayDTO); 
+            this.paymentService.paymentSuccess(razorpayDTO,this.ticket.id).subscribe(ticket => {
+              this.ticket = ticket
+              this.ticketFacade.addTicket(ticket);
+            })      
+        }, () => {
+          this.invalidateTicket();
+          //On Payment Failure       
+        }) 
+    })
+  }
+  //   console.log(this.ticket.amount)
+  //   this.paymentService.createOrder(this.ticket.amount * 100).subscribe(order=> {
+  //     this.order = order
+  //     console.log(this.order.id);
+  //     this.options = {
+  //       "key": "rzp_test_l5ZltcixJREBlt", // Enter the Key ID generated from the Dashboard
+  //       "amount": this.ticket.amount * 100 , // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+  //       "currency": "INR",
+  //       "name": "MTBS Ltd",
+  //       "description": "Test Transaction",
+  //       "order_id": this.order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+  //       "handler": (razorpayDTO:RazorpayDTO) => {
+  //         console.log(razorpayDTO); 
+  //         this.paymentService.paymentSuccess(razorpayDTO,this.ticket.id).subscribe(ticket => {
+  //           this.ticket = ticket
+  //           this.ticketFacade.addTicket(ticket);
+  //         })
           
-        },
-        "theme": {
-          "color": "#1F1F1F",
-        },
-        "modal": {
-          "confirm_close": true,
-          "ondismiss": () => {
-            console.log("Dismissed");
-            this.invalidateTicket();
-          },
-        },
-        "timeout": 600
-      };
-      let rzp1 = new Razorpay(this.options);
-      rzp1.on('payment.failed', (response:any) => {
-        alert(response.error.code);
-        alert(response.error.description);
-        alert(response.error.source);
-        alert(response.error.step);
-        alert(response.error.reason);
-        alert(response.error.metadata.order_id);
-        alert(response.error.metadata.payment_id);
-        console.log("Failed");
-        this.invalidateTicket();
-      });
-      rzp1.open();
-    });
-  }
+  //       },
+  //       "theme": {
+  //         "color": "#1F1F1F",
+  //       },
+  //       "modal": {
+  //         "confirm_close": true,
+  //         "ondismiss": () => {
+  //           console.log("Dismissed");
+  //           this.invalidateTicket();
+  //         },
+  //       },
+  //       "timeout": 600
+  //     };
+  //     let rzp1 = new Razorpay(this.options);
+  //     rzp1.on('payment.failed', (response:any) => {
+  //       alert(response.error.code);
+  //       alert(response.error.description);
+  //       alert(response.error.source);
+  //       alert(response.error.step);
+  //       alert(response.error.reason);
+  //       alert(response.error.metadata.order_id);
+  //       alert(response.error.metadata.payment_id);
+  //       console.log("Failed");
+  //       this.invalidateTicket();
+  //     });
+  //     rzp1.open();
+  //   });
+  // }
 }
 
