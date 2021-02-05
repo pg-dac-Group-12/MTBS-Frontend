@@ -17,14 +17,14 @@ export class PaymentService {
     return this.http.get<String>(`${this.baseUrl}order_id`, { params: params });
   }
 
-  paymentSuccess(razorpayDTO:RazorpayDTO): Observable<Ticket> {
-    //let params = new HttpParams().append('razorpayDTO', razorpayDTO.toString());
+  paymentSuccess(razorpayDTO:RazorpayDTO, tempTicketId:number|undefined): Observable<Ticket> {
+    let params = new HttpParams().append('tempTicketId', tempTicketId!.toString() );
     console.log(razorpayDTO);
     return this.http.post<Ticket>(`${this.baseUrl}success`, {
       "razorpayOrderId": razorpayDTO.razorpay_order_id,
       "razorpayPaymentId": razorpayDTO.razorpay_payment_id,
       "razorpaySignature": razorpayDTO.razorpay_signature
-    });
+    }, {params:params});
     
   }
 }

@@ -81,8 +81,11 @@ export class TicketPageComponent implements OnInit {
     let timer1 = setInterval(() => {
         this.sessionTimeMinutes--;
         this.sessionTimeSeconds = 60 ;
-        if(this.sessionTimeMinutes === 0)
+        if(this.sessionTimeMinutes === 0){
+          clearInterval(timer1)
+          clearInterval(timer2)
           this.invalidateTicket();
+        }
     },60000)
     let timer2 = setInterval(() => {
       this.sessionTimeSeconds-- ;

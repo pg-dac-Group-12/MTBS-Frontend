@@ -27,5 +27,8 @@ export class TicketService {
   cancelTicket(ticket: Ticket): Observable<any>{
     return this.http.post<Ticket>(`${this.baseUrl}cancel/${ticket.id}`, ticket);
   }
+  invalidateTicket(tempTicketId:number) {
+    return this.http.get(`${this.baseUrl}invalidate/${tempTicketId}`)
+  }
 }
 

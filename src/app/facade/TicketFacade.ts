@@ -35,6 +35,10 @@ export class TicketFacade {
         return this.ticketService.cancelTicket(ticket);
     }
 
+    invalidateTicket(tempTicketId:number | undefined) {
+        this.ticketService.invalidateTicket(tempTicketId!);
+    }
+
     loadTicketsByUserId(userId:number) {
         return this.ticketService.getAllTicketsByUserId(userId);
     }
