@@ -16,6 +16,10 @@ import { UserWorkflowModule } from './user-workflow/user-workflow.module';
 import { SharedModule } from "./shared/shared.module";
 import { SeatMapComponent } from "./components/seat-map/seat-map.component";
 import { JwtInterceptor } from "src/JwtInterceptor";
+import { DeleteAudiComponent } from "./theatre-workflow/delete-audi/delete-audi.component";
+import { AddShowComponent } from "./theatre-workflow/add-show/add-show.component";
+import { CancelShowComponent } from "./theatre-workflow/cancel-show/cancel-show.component";
+import { TicketPageComponent } from "./user-workflow/ticket-page/ticket-page.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,5 +45,15 @@ import { JwtInterceptor } from "src/JwtInterceptor";
     multi:true
   }],
   bootstrap: [AppComponent],
+  entryComponents:[
+    LoginComponent,
+    DeleteAudiComponent,
+    SeatMapComponent,
+    UserRegisterComponent,
+    TheatreRegisterComponent,
+    AddShowComponent,
+    CancelShowComponent,
+    TicketPageComponent
+  ]
 })
 export class AppModule { }

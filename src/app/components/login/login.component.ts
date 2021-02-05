@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TheatreFacade } from 'src/app/facade/TheatreFacade';
 import { UserFacade } from 'src/app/facade/UserFacade';
 import { Theatre } from 'src/app/models/theatre.model';
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   email:string = "";
   password:string = "";
   isTheatreAdmin:boolean = true;
-  constructor(private authService:AuthService, private modalService:NgbModal ,private userFacade:UserFacade, private theatreFacade:TheatreFacade ,private router:Router) { }
+  constructor(private authService:AuthService, private activeModal:NgbActiveModal, private modalService:NgbModal ,private userFacade:UserFacade, private theatreFacade:TheatreFacade ,private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -31,7 +31,12 @@ export class LoginComponent implements OnInit {
   //   this.authService.authenticateUser(myform.,this.password,this.isTheatreAdmin);
   // }
 
+  close() {
+    this.activeModal.close();
+  }
+
   login(myform:NgForm) {
+    close();
     this.authService.authenticateUser(myform.value.email,myform.value.password,this.isTheatreAdmin)
     .subscribe(resp => {
       localStorage.setItem('id_token', resp.jwt)
@@ -50,6 +55,7 @@ export class LoginComponent implements OnInit {
     })
   }   
   openUserRegisterModal() {
+    close();
     this.modalService.open(UserRegisterComponent);
   }
 }

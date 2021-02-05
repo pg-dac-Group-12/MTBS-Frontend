@@ -17,9 +17,8 @@ import { ShowPageComponent } from './user-workflow/show-page/show-page.component
 import { SeatMapComponent } from './components/seat-map/seat-map.component';
 
 const routes: Routes = [
-  {path: '',component:LoginComponent},
   {path:'user',component: UserDashboardComponent },
-  {path: 'movie_list',component:HomepageComponent},
+  {path: '',component:HomepageComponent},
   {path:'shows_list',component: ShowsListComponent },
   {path: 'shows_page',component:ShowPageComponent},
   {path: 'ticket', component: TicketComponent},
