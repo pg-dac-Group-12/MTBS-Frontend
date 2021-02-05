@@ -27,6 +27,7 @@ export class ShowsListComponent implements OnInit {
   currentDialog:any;
   constructor(private showsFacade: ShowsFacade, private userFacade:UserFacade, private router: Router, private modalService:NgbModal) {
    // this.movieId = this.router.getCurrentNavigation()?.extras.state!.movieId;
+   
   }
 
   ngOnInit(): void {

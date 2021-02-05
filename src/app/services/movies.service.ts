@@ -30,7 +30,12 @@ export class MoviesService {
  }
 // check pending
   getAllMovies():Observable<Movie[]> {
-    console.log("Hello")
+    console.log("Hello");
     return this.http.get<Movie[]>(`${this.baseUrl}`);
+  }
+
+  getIcon():Observable<imgDTO[]>{
+    console.log("hello");
+    return this.http.get<imgDTO[]>(`${this.baseUrl}/download/${id}`);
   }
 }

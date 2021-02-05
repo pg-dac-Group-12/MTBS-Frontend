@@ -18,6 +18,7 @@ export class PaymentService {
   }
 
   paymentSuccess(razorpayDTO:RazorpayDTO, tempTicketId:number|undefined): Observable<Ticket> {
+    console.log(tempTicketId);
     let params = new HttpParams().append('tempTicketId', tempTicketId!.toString() );
     console.log(razorpayDTO);
     return this.http.post<Ticket>(`${this.baseUrl}success`, {
