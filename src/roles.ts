@@ -1,6 +1,6 @@
 import { ENOTSUP } from "constants";
 
 export enum Roles {
-    User,
-    Theatre
+    USER = "USER",
+    THEATRE = "THEATRE"
 }

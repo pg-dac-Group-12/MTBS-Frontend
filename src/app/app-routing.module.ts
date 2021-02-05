@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: '',component:HomepageComponent},
   {path: 'shows_list',component: ShowsListComponent },
   {path: 'shows_page',component:ShowPageComponent},
-  {path: 'ticket', component: TicketComponent},
+  {path: 'tickets', component: TicketComponent},
   {path: 'ticket_page', component:TicketPageComponent},
   {path: 'theatre', component: TheatreDashboardComponent},
   {path: 'add_audi', component: AddAudiComponent},

@@ -5,6 +5,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TheatreFacade } from 'src/app/facade/TheatreFacade';
 import { UserFacade } from 'src/app/facade/UserFacade';
 import { AuthService } from 'src/app/services/auth.service';
+import { Roles } from 'src/roles';
 import { UserRegisterComponent } from '../user-register/user-register.component';
 
 
@@ -38,12 +39,14 @@ export class LoginComponent implements OnInit {
   login(myform:NgForm) {
     this.authService.authenticateUser(myform.value.email,myform.value.password,this.isTheatreAdmin)
     .subscribe(resp => {
-      localStorage.setItem('id_token', resp.jwt)
       if(resp == null)
-        this.router.navigateByUrl("/login");
+        this.message = "Email or Password is incorrect"
       else {
-          this.close();
-          if(!this.isTheatreAdmin) {
+        console.log(resp);
+        localStorage.setItem('id_token', resp.jwt)
+          this.activeModal.close(resp);
+          console.log(Roles.USER.toString())
+          if(resp.actor.role === Roles.USER.toString()) {
               console.log(resp.actor);
               this.userFacade.setUser(resp.actor);
               this.router.navigateByUrl("/");

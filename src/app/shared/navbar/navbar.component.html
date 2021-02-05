@@ -22,6 +22,16 @@
       </div>
     </div>
     <div class = "me-5">
-      <button class = "nav-item btn btn-danger text-nowrap" (click) = openLoginModal() >Sign In</button>
+      <button [hidden] = "loggedIn" class = "nav-item btn btn-danger text-nowrap" (click) = openLoginModal() >Sign In</button>
+      <div class="nav-item dropdown">
+        <a [hidden] = "!loggedIn" class="nav-link dropdown-toggle dropstart" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="far fa-user"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-lg-end dropdown-menu" data-bs-display="static"  aria-labelledby="navbarDarkDropdownMenuLink">
+          <li><a class="dropdown-item" href="/user">Profile</a></li>
+          <li><a [hidden] = "!showTicketsMenu" class="dropdown-item" href="/tickets">Tickets</a></li>
+          <li><a class="dropdown-item" href="" (click) = logout() >Logout</a></li>
+        </ul>
+      </div>
     </div>
   </nav>

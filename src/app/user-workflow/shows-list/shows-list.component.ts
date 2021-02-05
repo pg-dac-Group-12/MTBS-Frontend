@@ -41,9 +41,8 @@ export class ShowsListComponent implements OnInit {
   getShowSeatMap(showId:number) {
     console.log(showId + "I am here ");
     this.user = this.userFacade.getUser();
-    if(this.user == null) {
-      this.currentDialog = this.modalService.open(LoginComponent,{}).closed
-      .subscribe(resp => this.getShowSeatMap(showId));
+    if(this.user.id == 0) {
+      this.currentDialog = this.modalService.open(LoginComponent,{});
     } else {
         console.log(this.user);
         let show = this.showsFacade.getShowById(showId);
