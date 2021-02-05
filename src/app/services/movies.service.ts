@@ -4,6 +4,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Movie } from '../models/movie.model';
 import { Utils } from '../Utils';
+import { imgDTO } from '../models/imgDTO.model';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,7 @@ export class MoviesService {
     return this.http.get<Movie[]>(`${this.baseUrl}`);
   }
 
-  getIcon():Observable<imgDTO[]>{
+  getIcon(id:number):Observable<imgDTO[]>{
     console.log("hello");
     return this.http.get<imgDTO[]>(`${this.baseUrl}/download/${id}`);
   }

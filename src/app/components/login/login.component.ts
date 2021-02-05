@@ -43,8 +43,9 @@ export class LoginComponent implements OnInit {
       else {
           this.close();
           if(!this.isTheatreAdmin) {
+              console.log(resp.actor);
               this.userFacade.setUser(resp.actor);
-              this.router.navigateByUrl("/movie_list");
+              this.router.navigateByUrl("/");
           } else {
             this.theatreFacade.setTheatre(resp.actor);
             this.router.navigateByUrl("/theatre");

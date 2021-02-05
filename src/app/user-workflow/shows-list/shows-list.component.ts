@@ -1,5 +1,4 @@
-import { HttpResponse } from '@angular/common/http';
-import { Component, Input, OnInit, ɵisDefaultChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { ShowsFacade } from 'src/app/facade/ShowsFacade';
 import { Shows } from 'src/app/models/shows.model';
 import { Theatre } from 'src/app/models/theatre.model';
@@ -40,7 +39,7 @@ export class ShowsListComponent implements OnInit {
   }
 
   getShowSeatMap(showId:number) {
-    console.log(showId);
+    console.log(showId + "I am here ");
     this.user = this.userFacade.getUser();
     if(this.user == null) {
       this.currentDialog = this.modalService.open(LoginComponent,{}).closed
@@ -56,10 +55,6 @@ export class ShowsListComponent implements OnInit {
 
   }
   getAllShowsByMovieIdAndDate(movieDate:moment.Moment) {
-    // this.selectedDate = movieDate.toDate();
-    // console.log(this.selectedDate);
-    // let movieId= this.router.getCurrentNavigation()!.extras.state!.movieId;
-    //console.log(this.selectedDate.format("YYYY-MM-DD"))
     this.showsFacade.loadShowsByMovieIdAndDate(this.movieId, movieDate.format("YYYY-MM-DD"));
     this.showsFacade.getShows()
       .subscribe(shows => {

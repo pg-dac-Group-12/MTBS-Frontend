@@ -1,10 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ShowsFacade } from 'src/app/facade/ShowsFacade';
 import { Seat } from 'src/app/models/seat.model';
 import { Shows } from 'src/app/models/shows.model';
 import { TicketPageComponent } from 'src/app/user-workflow/ticket-page/ticket-page.component';
-import { TicketComponent } from 'src/app/user-workflow/ticket/ticket.component';
 
 @Component({
   selector: 'app-seat-map',
@@ -22,13 +21,15 @@ export class SeatMapComponent implements OnInit {
   // rows!:number;
   // columns!:number;
 
-  constructor(private showsFacade:ShowsFacade , private modalService:NgbModal) { }
+  constructor(private showsFacade:ShowsFacade , private modalService:NgbModal , private activeModal:NgbActiveModal) { 
+    
+  }
 
   ngOnInit(): void {
     //this.show = this.showsFacade.getShowByID(this.showID);
     console.log(this.showId);
     this.show = this.showsFacade.getShowById(this.showId);
-    console.log(this.show);
+    console.log(this.show.seatmap);
     this.seatMap = this.show.seatmap;
     console.log(this.seatMap);
     this.countRowsAndColumns();
@@ -113,8 +114,11 @@ export class SeatMapComponent implements OnInit {
     this.currentDialog = this.modalService.open(TicketPageComponent,{});
     this.currentDialog.componentInstance.showId = this.showId;
     this.currentDialog.componentInstance.selectedSeats = this.selectedSeats;
+    close()
   }
-  resetSelectedSeats(){
+
+  close() {
+    this.activeModal.close();
     this.selectedSeats=[];
   }
 }
