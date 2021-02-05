@@ -1,15 +1,13 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+//import * as moment from 'moment';
 import { TicketFacade } from 'src/app/facade/TicketFacade.js';
 import { UserFacade } from 'src/app/facade/UserFacade.js';
 import { RazorpayDTO } from 'src/app/models/razorpayDTO.model';
 import { Seat } from 'src/app/models/seat.model.js';
-import { Shows } from 'src/app/models/shows.model.js';
 import { Ticket } from 'src/app/models/ticket.model';
 import { PaymentService } from 'src/app/services/payment.service';
-import { TicketService } from 'src/app/services/ticket.service.js';
-import { SeatState } from 'src/app/states/SeatState.js';
 import '../../../assets/checkout.js';
 declare const Razorpay: any;
 
@@ -24,6 +22,9 @@ export class TicketPageComponent implements OnInit {
   order!: any;
   options: any = null;
   ticket!: Ticket;
+  sessionTimeMinutes!:number;
+  sessionTimeSeconds!:number;
+  sessionTime!:string ;
   //   show: {
   //     audi: {
   //       number: 3
@@ -70,30 +71,43 @@ export class TicketPageComponent implements OnInit {
   //   amount: 2000
   // };
 
-  constructor(private paymentService: PaymentService, private userFacade: UserFacade, private ticketFacade: TicketFacade) {
- 
-  }
-
+  constructor(private paymentService: PaymentService, private userFacade: UserFacade, private ticketFacade: TicketFacade) { 
+  } 
+  
   ngOnInit(): void {
-    // this.ticket = {
-    //   show:this.show,
-    //   seats:this.selectedSeats,
-    //   amount:this.amount,
-    //   date:new Date(Date.now()),
-    //   time: {
-    //     hours:new Date(Date.now()).getHours(),
-    //     minutes: new Date(Date.now()).getMinutes()
-    //   },
-    //   user: this.userFacade.getUser()
-    // }
-    console.log("rohan");
+    this.sessionTime = "Hello"
+    this.sessionTimeMinutes = 10 ;
+    this.sessionTimeSeconds = 60 ;
+    let timer1 = setInterval(() => {
+        this.sessionTimeMinutes--;
+        this.sessionTimeSeconds = 60 ;
+        if(this.sessionTimeMinutes === 0)
+          this.invalidateTicket();
+    },60000)
+    let timer2 = setInterval(() => {
+      this.sessionTimeSeconds-- ;
+      this.displayTime()
+    },1000)
+    
     this.ticketFacade.createTicket(this.showId,this.selectedSeats).subscribe(ticket =>  this.ticket = ticket);
-    console.log(this.ticket);
+  }
+  
+  invalidateTicket() {
+    this.ticketFacade.invalidateTicket(this.ticket.id);
+  }
+  displayTime() {
+    let minutes = this.sessionTimeMinutes.toString() ;
+    let seconds = this.sessionTimeSeconds.toString() ;
+    if(this.sessionTimeMinutes < 10 )
+        minutes = "0" + this.sessionTimeMinutes ;
+    if(this.sessionTimeSeconds < 10)
+        seconds = "0" + this.sessionTimeMinutes ;
+    let sessionTime = minutes + ":" + seconds ;  
+    console.log(sessionTime)
   }
 
 
   initiatePayment(amount: number) {
-    this.ticketFacade.addTicket(this.ticket);
     this.paymentService.createOrder(amount).subscribe(order=> {
       this.order = order
       console.log(this.order.id);
@@ -106,7 +120,7 @@ export class TicketPageComponent implements OnInit {
         "order_id": this.order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
         "handler": (razorpayDTO:RazorpayDTO) => {
           console.log(razorpayDTO); 
-          this.paymentService.paymentSuccess(razorpayDTO).subscribe(ticket => {
+          this.paymentService.paymentSuccess(razorpayDTO,this.ticket.id).subscribe(ticket => {
             this.ticket = ticket
             this.ticketFacade.addTicket(ticket);
           })
@@ -117,14 +131,15 @@ export class TicketPageComponent implements OnInit {
         },
         "modal": {
           "confirm_close": true,
-          "ondismiss": function () {
+          "ondismiss": () => {
             console.log("Dismissed");
+            this.invalidateTicket();
           },
         },
         "timeout": 600
       };
       let rzp1 = new Razorpay(this.options);
-      rzp1.on('payment.failed', function (response: any) {
+      rzp1.on('payment.failed', (response:any) => {
         alert(response.error.code);
         alert(response.error.description);
         alert(response.error.source);
@@ -133,14 +148,9 @@ export class TicketPageComponent implements OnInit {
         alert(response.error.metadata.order_id);
         alert(response.error.metadata.payment_id);
         console.log("Failed");
+        this.invalidateTicket();
       });
       rzp1.open();
-    });
-  }
-  paymentSuccess(razorpayDTO: RazorpayDTO) {
-    this.paymentService.paymentSuccess(razorpayDTO).subscribe(ticket => {
-      this.ticket = ticket
-      this.ticketFacade.addTicket(ticket);
     });
   }
 }
