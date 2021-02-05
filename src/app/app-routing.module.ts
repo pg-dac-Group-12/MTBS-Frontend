@@ -27,7 +27,6 @@ const routes: Routes = [
   {path: 'add_audi', component: AddAudiComponent},
   {path: 'register_user',component:UserRegisterComponent},
   {path: 'register_theatre',component:TheatreRegisterComponent },
-  {path: 'add_audi',component:AddAudiComponent},
   {path: 'carousel',component:CarouselComponent},
   {path: 'movie',component:MovieComponent},
   {path: 'seat_map',component:SeatMapComponent}

@@ -16,6 +16,7 @@ import { UserWorkflowModule } from './user-workflow/user-workflow.module';
 import { SharedModule } from "./shared/shared.module";
 import { SeatMapComponent } from "./components/seat-map/seat-map.component";
 import { JwtInterceptor } from "src/JwtInterceptor";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteAudiComponent } from "./theatre-workflow/delete-audi/delete-audi.component";
 import { AddShowComponent } from "./theatre-workflow/add-show/add-show.component";
 import { CancelShowComponent } from "./theatre-workflow/cancel-show/cancel-show.component";

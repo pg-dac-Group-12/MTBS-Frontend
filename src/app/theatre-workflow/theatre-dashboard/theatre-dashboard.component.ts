@@ -1,11 +1,13 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ShowsFacade } from 'src/app/facade/ShowsFacade';
 import { TheatreFacade } from 'src/app/facade/TheatreFacade';
 import { Audi } from 'src/app/models/audi.model';
 import { Shows } from 'src/app/models/shows.model';
 import { Theatre } from 'src/app/models/theatre.model';
+import { DeleteAudiComponent } from '../delete-audi/delete-audi.component';
 
 @Component({
   selector: 'app-theatre-dashboard',
@@ -17,36 +19,17 @@ export class TheatreDashboardComponent implements OnInit {
   shows: Shows[] = [];
   showsByAudi:Shows[]=[];
   theatre!: Theatre;
-  response = new HttpResponse<any>();
-  constructor(private theatreFacade: TheatreFacade, private showFacade: ShowsFacade, private router:Router) { }
+  currentDialog:any;
+  constructor(private theatreFacade: TheatreFacade, private showFacade: ShowsFacade,
+     private router:Router, private modalService:NgbModal) { }
 
   ngOnInit(): void {
     this.theatre = this.theatreFacade.getTheatre();
     console.log(this.theatre);
-    //this.theatreFacade.loadAudiByTheatreId(this.theatre.id);
-    //this.theatreFacade.getAudis().subscribe(audis => this.audis = audis);
-    // this.theatre = this.theatreFacade.getTheatre();
+
     this.showFacade.loadShowsByTheatreId(this.theatre.id);
     this.showFacade.getShows().subscribe(shows => this.shows = shows);
     console.log(this.shows);
-    // this.theatreService.getTheatreFromSession().subscribe((response) => this.response = response);
-    // if (this.response.status == 401) {
-    //   //Theatre not in session. redirection code goes here
-    // } else if (this.response.status == 200 && this.response.body != null) {
-    //   this.theatre = this.response.body;
-    // }
-    // this.theatreService.getAllAudis(this.theatre.id).subscribe(response=>this.response=response);
-    // if(this.response.status == 200){
-    //   this.audis = this.response.body;
-    // } else if (this.response.status == 204){
-    //   //no audis registered
-    // }
-    // this.showsService.getAllShowsByTheatreId(this.theatre.id).subscribe(response => this.response = response);
-    // if(this.response.status == 200){
-    //   this.shows = this.response.body;
-    // } else if (this.response.status == 204){
-    //   //no shows running for this theatre
-    // }
   }
 
   getShowsByAudiId(audiId:number){
@@ -68,11 +51,18 @@ export class TheatreDashboardComponent implements OnInit {
   }
 
   addShow(audiId:number) {
-    this.router.navigate(['/add_show'],{state : { audiId : audiId}});
+    console.log("addShow()  audiId-"+audiId+" theatreId="+this.theatre.id);
+
+    this.router.navigate(['/add_show'],{state : { audiId : audiId,theatreId:this.theatre.id}});
   }
 
   deleteAudi(audiId:number) {
-    //this.theatreFacade.deleteAudi(this.theatre.id, audiId);
+    console.log("deleteAudi "+audiId);
+    this.getShowsByAudiId(audiId);
+    this.currentDialog = this.modalService.open(DeleteAudiComponent,{});
+    this.currentDialog.componentInstance.audiId = audiId;
+    this.currentDialog.componentInstance.showsByAudi = this.showsByAudi;
+    this.currentDialog.componentInstance.theatreId = this.theatre.id;
   }
   addAudi(){
     this.router.navigate(['/add_audi'],{state:{theatreId:this.theatre.id}})

@@ -1,13 +1,47 @@
 <p>add-show works!</p>
 
 <div>
-    <form novalidate #myform ngForm (ngSubmit) = "onSubmit(myform.value)">
-        Time : <input type = "number" name = "time" placeholder="start time of the show" ngModel required><br>
-       
-        Price <input type = "number" name = "price" placeholder="price in INR" ngModel required><br>
-        <!--seat map input-->
-        <input type = "submit"  value = "Create Show" [disabled] = "!myform.valid"><br>
+    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#myModal"
+    click)="loadMovieList()" data-toggle="modal">Select Movie</button><br>
+    <form novalidate #myform ngForm (ngSubmit)="addShow(myform)">
+        Date: <input type="Date" name="date" placeholder="date" ngModel required><br>
+
+        Time : <input type="number" name="time" placeholder="start time of the show" ngModel required><br>
+
+        Price <input type="number" name="price" placeholder="price in INR" ngModel required><br>
+
+        <input type="submit" value="Create Show" [disabled]="!myform.valid"><br>
     </form>
 
     <div></div>
+</div>
+
+<div class="modal modal-dialog-centered modal-dialog-scrollable" data-bs-backdrop="static" id="myModal" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content"> -->
+            <div class="modal-header">
+                <legend class="modal-title">Movie List</legend>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body mx-auto">
+                <div class="container-fluid " style="width: 80%;">
+                   <div class="row"  style=" margin-top: 5vh;">
+                        <div *ngFor="let movie of movies" class="card" style="width: 18rem;">
+                            <div class="col-sm-12">
+                                <img class="card-img-top" src="../../../assets/dummy-pics/deja-vu-1920×1080.jpg" alt="{{movie.title}}">
+                                <div class="card-body">
+                                    <h4 class="card-title"><strong>{{movie.title}}</strong></h4>
+                                    <p class="card-text">{{movie.duration}} mins | {{movie.rating}}</p>
+                                    <button class="btn btn-dark" (click)="SelectMovie(movie.id)">Select</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+            <div class="modal-footer" style="text-align: left;">
+            </div>
+        </div>
+    </div>
 </div>

@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
               this.router.navigateByUrl("/");
           } else {
             this.theatreFacade.setTheatre(resp.actor);
+              //document.getElementById('login-btn')?.setAttribute("data-bs-dismiss","modal");
             this.router.navigateByUrl("/theatre");
           }
       }

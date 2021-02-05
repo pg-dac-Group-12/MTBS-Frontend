@@ -7,6 +7,7 @@ import { UpdateAudiComponent } from './update-audi/update-audi.component';
 import { AddShowComponent } from './add-show/add-show.component';
 import { CancelShowComponent } from './cancel-show/cancel-show.component';
 import { FormsModule } from '@angular/forms';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -14,7 +15,8 @@ import { FormsModule } from '@angular/forms';
   declarations: [TheatreDashboardComponent, AddAudiComponent, DeleteAudiComponent, UpdateAudiComponent, AddShowComponent, CancelShowComponent],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    NgbModalModule
   ]
 })
 export class TheatreWorkflowModule { }
