@@ -1,13 +1,13 @@
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userForm">
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userForm">
     Register as User    
-</button>
-
+</button> -->
+<!-- 
 <div class="modal " tabindex="-1" id = "userForm">
     <div class = "modal-dialog modal-dialog-centered modal-lg modal-dialog-scorllable">
-        <div class = "modal-content">
+        <div class = "modal-content"> -->
             <div class = "modal-header">
                 <h1>Register </h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" (click) = close() aria-label="Close"></button>
             </div>
             <div class = "modal-body container-fluid col-md-8 offset-md-2">
         <form class="form-control form-control-lg form-horizontal" novalidate #myform="ngForm" (ngSubmit) = "onSubmit(myform.value)">
@@ -50,6 +50,6 @@
     <div class="hint-text  margin-bottom">Already have an account  ? <a href="#">Login here</a></div>
    
 </div>
+<!-- </div>
 </div>
-</div>
-</div>
+</div> -->

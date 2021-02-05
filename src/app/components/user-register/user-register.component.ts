@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
@@ -13,11 +14,14 @@ export class UserRegisterComponent implements OnInit {
 
   user!:User;
   message:string ="";
-  constructor(private userService :UserService) { }
+  constructor(private userService :UserService , private activeModal:NgbActiveModal) { }
 
   ngOnInit(): void {
   }
 
+  close() {
+    this.activeModal.close();
+  }
 
   onSubmit(myform:NgForm) {
     this.user = myform.value ; 

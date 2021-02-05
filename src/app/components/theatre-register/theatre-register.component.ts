@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Theatre } from 'src/app/models/theatre.model';
 import { TheatreService } from 'src/app/services/theatre.service';
 
@@ -11,11 +12,16 @@ import { TheatreService } from 'src/app/services/theatre.service';
 export class TheatreRegisterComponent implements OnInit {
   theatre!:Theatre;
   message!:string;
-  constructor(private theatreService:TheatreService) {
+  constructor(private theatreService:TheatreService, private activeModal:NgbActiveModal) {
    }
 
   ngOnInit(): void {
   }
+
+  close() {
+    this.activeModal.close();
+  }
+
   onSubmit(myform:NgForm) {
     console.log(myform);
     this.theatre = myform.value ; 

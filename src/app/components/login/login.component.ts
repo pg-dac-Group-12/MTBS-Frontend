@@ -6,6 +6,7 @@ import { TheatreFacade } from 'src/app/facade/TheatreFacade';
 import { UserFacade } from 'src/app/facade/UserFacade';
 import { AuthService } from 'src/app/services/auth.service';
 import { Roles } from 'src/roles';
+import { TheatreRegisterComponent } from '../theatre-register/theatre-register.component';
 import { UserRegisterComponent } from '../user-register/user-register.component';
 
 
@@ -60,7 +61,11 @@ export class LoginComponent implements OnInit {
     })
   }   
   openUserRegisterModal() {
-    close();
+    this.close();
     this.modalService.open(UserRegisterComponent);
+  }
+  openTheatreRegisterModal() {
+    this.close();
+    this.modalService.open(TheatreRegisterComponent, {size:"lg"});
   }
 }
