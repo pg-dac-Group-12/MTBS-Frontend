@@ -40,6 +40,7 @@ export class TicketFacade {
     }
 
     loadTicketsByUserId(userId:number) {
-        return this.ticketService.getAllTicketsByUserId(userId);
+        return this.ticketService.getAllTicketsByUserId(userId)
+        .subscribe(tickets => this.ticketState$.setTickets(tickets));
     }
 }

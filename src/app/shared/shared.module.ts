@@ -7,13 +7,15 @@ import { MovieComponent } from './movie/movie.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpInterceptorService } from '../services/HttpInterceptorService';
 import { JwtInterceptor } from 'src/JwtInterceptor';
+import { RouterModule } from '@angular/router';
 
 
 
 @NgModule({
   declarations: [NavbarComponent,CarouselComponent,BannerComponent,MovieComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports:[NavbarComponent,CarouselComponent,BannerComponent,MovieComponent],
   providers: [{

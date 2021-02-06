@@ -35,8 +35,8 @@ export class MoviesService {
     return this.http.get<Movie[]>(`${this.baseUrl}`);
   }
 
-  getIcon(id:number):Observable<imgDTO[]>{
+  getIcons(id:number):Observable<imgDTO[]>{
     console.log("hello");
-    return this.http.get<imgDTO[]>(`${this.baseUrl}/download/${id}`);
+    return this.http.get<imgDTO[]>(`${this.baseUrl}download/${id}`);
   }
 }

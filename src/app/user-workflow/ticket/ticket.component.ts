@@ -21,7 +21,8 @@ export class TicketComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.userFacade.getUser();
-    this.ticketFacade.loadTicketsByUserId(this.user.id).subscribe(tickets => this.tickets = tickets);
+    this.ticketFacade.loadTicketsByUserId(this.user.id);
+    this.ticketFacade.getAllTickets().subscribe(tickets => this.tickets = tickets);
   }
 
   

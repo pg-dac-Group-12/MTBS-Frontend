@@ -13,9 +13,9 @@ export class TicketService {
   constructor(private http: HttpClient) { }
 
   getAllTicketsByUserId(userId: number): Observable<Ticket[]> {
-    let reqParams = new HttpParams()
+    let params = new HttpParams()
     .append('userId', String(userId));
-    return this.http.get<Ticket[]>(`${this.baseUrl}`, { params: reqParams });
+    return this.http.get<Ticket[]>(`${this.baseUrl}`, { params: params });
   }
   getTicketById(id: number):Ticket {
     return Utils.validateResponse(this.http.get<Ticket>(`${this.baseUrl}${id}`, { observe: 'response' }));

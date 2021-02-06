@@ -18,7 +18,7 @@ export class TicketState{
         return currentTicketsList[indexOfMatchedTicket]  ;
     }
  
-    setTicket(tickets :Ticket[]) {
+    setTickets(tickets :Ticket[]) {
         this.ticket$.next(tickets);
     }
 

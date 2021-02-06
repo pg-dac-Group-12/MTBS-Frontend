@@ -19,7 +19,9 @@ export class MovieListComponent implements OnInit {
 
   ngOnInit(): void {
    this.moviesFacade.loadMovieList();
-   this.moviesFacade.getAllMovies().subscribe(movieList => this.movies = movieList);
+   this.moviesFacade.getAllMovies().subscribe(movieList => { console.log(movieList);this.movies = movieList});
+   this.moviesFacade.loadMovieIcons()
+  
       // this.movies = [{
       //   id:1234,
       //   cast :["Cast"],

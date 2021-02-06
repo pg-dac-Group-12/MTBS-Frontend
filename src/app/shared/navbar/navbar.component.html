@@ -28,8 +28,8 @@
           <i class="far fa-user"></i>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg-end dropdown-menu" data-bs-display="static"  aria-labelledby="navbarDarkDropdownMenuLink">
-          <li><a class="dropdown-item" href="/user">Profile</a></li>
-          <li><a [hidden] = "!showTicketsMenu" class="dropdown-item" href="/tickets">Tickets</a></li>
+          <li><a class="dropdown-item" [routerLink] = "['user']">Profile</a></li>
+          <li><a [hidden] = "!showTicketsMenu" class="dropdown-item" [routerLink] = "['tickets']" > Tickets</a></li>
           <li><a class="dropdown-item" href="" (click) = logout() >Logout</a></li>
         </ul>
       </div>
