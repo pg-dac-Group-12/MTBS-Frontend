@@ -21,6 +21,7 @@ export class AudiState {
 
     setAudis(audis :Audi[]) {
         this.audis$.next(audis);
+        console.log(this.audis$.getValue());
     }
 
     addAudi(audi: Audi) {

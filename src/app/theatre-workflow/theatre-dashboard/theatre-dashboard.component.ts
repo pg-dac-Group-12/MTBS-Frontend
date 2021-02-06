@@ -30,7 +30,7 @@ export class TheatreDashboardComponent implements OnInit {
     this.theatreFacade.getTheatre().subscribe(theatre => {
       this.theatre = theatre;  
       this.theatreFacade.loadAudiByTheatreId(this.theatre.id);
-      this.theatreFacade.getAudis().subscribe(audis=>this.audis=audis);
+      this.theatreFacade.getAudis().subscribe(audis=>{this.audis=audis;});
       console.log(this.theatre);
       console.log(this.audis);
       this.showFacade.loadShowsByTheatreId(this.theatre.id);
@@ -47,7 +47,8 @@ export class TheatreDashboardComponent implements OnInit {
   }
   
   cancelShow(show:Shows){
-    this.router.navigate(['cancel_show'],{state:{show:show}});
+    this.currentDialog = this.modalService.open(AddShowComponent,{});
+    this.currentDialog.componentInstance.show=show;
   }
 
   addShow(audiId:number) {
