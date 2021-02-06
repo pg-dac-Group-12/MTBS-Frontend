@@ -1,19 +1,19 @@
-
-
-
- <div class="container-fluid " style="width: 80%;">
+<div class="container-fluid " style="width: 80%;">
     <h3 class="h3" style=" margin-top: 5vh;">Movies</h3>
     <hr>
-    <div class="row"  style=" margin-top: 5vh;">
-        <div *ngFor="let movie of movies" class="card" style="width: 18rem;">
-            <div class="col-sm-12" >
-                <img class="card-img-top" src="http://localhost:8080/{{movie.id}}/1.{{movie.iconContentType[0]}}" alt="{{movie.title}}">
-                <div class="card-body">
-                    <h4 class="card-title"><strong>{{movie.title}}</strong></h4>
-                    <p class="card-text">{{movie.duration}} mins | {{movie.rating}}</p>
-                    <button class="btn btn-dark" (click)="dispatchMovie(movie.id)">book</button>
+    <div style=" margin-top: 5vh;">
+        <div class="row row-cols-1 row-cols-md-4 g-4 gy-5">
+            <div *ngFor="let movie of movies" class="col">
+                <div  class="card">
+                    <img class="card-img-top" src="http://localhost:8080/{{movie.id}}/1.{{movie.iconContentType[0]}}"
+                        alt="{{movie.title}}">
+                    <div class="card-body">
+                        <h4 class="card-title"><strong>{{movie.title}}</strong></h4>
+                        <p class="card-text">{{movie.duration}} mins | {{movie.rating}}</p>
+                        <button class="btn btn-dark" (click)="dispatchMovie(movie.id)">book</button>
+                    </div>
                 </div>
-            </div>
+            </div>    
         </div>
     </div>
- </div>
+</div>

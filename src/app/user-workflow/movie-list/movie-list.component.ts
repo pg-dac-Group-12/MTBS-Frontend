@@ -23,8 +23,8 @@ export class MovieListComponent implements OnInit {
 
   ngOnInit(): void {
    this.moviesFacade.loadMovieList();
-   this.moviesFacade.getAllMovies().subscribe(movieList => this.movies = movieList);
-
+   this.moviesFacade.getAllMovies().subscribe(movieList => {this.movies = movieList;
+    console.log(this.movies)});
   // LATER 
   //  let buttons = document.getElementsByTagName("button");
   //  for(var i =0; i < buttons.length ; i++){

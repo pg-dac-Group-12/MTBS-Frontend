@@ -6,8 +6,9 @@ import { Injectable } from "@angular/core";
     providedIn:'root',
 })
 export class MovieState {
-    getAllMoviesById(id: number) {
-        throw new Error("Method not implemented.");
+    getMovieById(id: number) {
+        const currentMoviesList = this.movies$.getValue();
+        return currentMoviesList[currentMoviesList.findIndex(movie => movie.id == id)];
     }
     getAllMovies() {
         return this.movies$.asObservable();

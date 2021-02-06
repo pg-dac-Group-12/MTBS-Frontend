@@ -16,8 +16,8 @@ export class MovieFacade {
     getAllMovies() {
         return this.movieState$.getAllMovies();
     }
-    getAllMoviesById(id:number) {
-        return this.movieState$.getAllMoviesById(id);
+    getMovieById(id:number) {
+        return this.movieState$.getMovieById(id);
     }
     loadMovieList() {
         console.log("In Movie Facade")

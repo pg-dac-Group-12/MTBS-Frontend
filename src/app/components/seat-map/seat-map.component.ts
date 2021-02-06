@@ -45,37 +45,37 @@ export class SeatMapComponent implements OnInit {
   }
 
   // from add audi
-  createSeatMap(rows: number, columns: number) {
-    this.seatMap=[];
-    const alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-    console.log(rows + " " + columns);
-    for (var col = 1; col <= columns; col++) {
-      for (var row = 1; row <= rows; row++) {
+  // createSeatMap(rows: number, columns: number) {
+  //   this.seatMap=[];
+  //   const alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  //   console.log(rows + " " + columns);
+  //   for (var col = 1; col <= columns; col++) {
+  //     for (var row = 1; row <= rows; row++) {
 
-        if(row === Math.floor(rows/2)+1){
-          this.seatMap.push(
-            {
-              "rowNumber": 0,
-              "colNumber": '0',
-              "isBooked": false
-            }
-          )
-        }
-        if(row%2==1){
-          this.seatMap.push({
-            "rowNumber": row,
-            "colNumber": alphabets[col - 1],
-            "isBooked": true
-          })
-        }else {
-        this.seatMap.push({
-          "rowNumber": row,
-          "colNumber": alphabets[col - 1],
-          "isBooked": false
-        })
-      }
-      }
-    }
+  //       if(row === Math.floor(rows/2)+1){
+  //         this.seatMap.push(
+  //           {
+  //             "rowNumber": 0,
+  //             "colNumber": '0',
+  //             "isBooked": false
+  //           }
+  //         )
+  //       }
+  //       if(row%2==1){
+  //         this.seatMap.push({
+  //           "rowNumber": row,
+  //           "colNumber": alphabets[col - 1],
+  //           "isBooked": true
+  //         })
+  //       }else {
+  //       this.seatMap.push({
+  //         "rowNumber": row,
+  //         "colNumber": alphabets[col - 1],
+  //         "isBooked": false
+  //       })
+  //     }
+  //     }
+  //   }
 
     // for (var i = 1; i <= rows; i++) {
     //   this.seatMap.push(
@@ -95,8 +95,8 @@ export class SeatMapComponent implements OnInit {
     //     })
     //   }
     // }
-    console.log(this.seatMap);
-  }
+  //   console.log(this.seatMap);
+  // }
   addSeat(seatId:number){
     const output = document.getElementById('seat-'+seatId);
     if(output?.classList.contains("isSelected")){
