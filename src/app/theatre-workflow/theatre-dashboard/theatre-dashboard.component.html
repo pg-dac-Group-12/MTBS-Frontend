@@ -1,37 +1,104 @@
-<p>theatre-dashboard works!</p>
-
-<div *ngFor="let audi of theatre.audis">
-    <button class="btn btn-outline-dark" (click)="getShowsByAudiId(audi.id)">{{audi.number}}</button>
-    <!--<a [routerLink] = "'/updateAudi/{{theatre.id}}/{{audi.id}}'"></a>-->
-    <button class="btn btn-danger" (click)="deleteAudi(audi.id)">Delete Audi</button>
-    <button class="btn btn-primary" (click)="addShow(audi.id)">Add Show</button>
-</div>
-<button class="btn btn-primary" (click)="addAudi()">Add Audi</button>
-<!-- <li *ngFor = "let show of showsByAudi">
-    <h5>Movie: {{show.movie.title}}</h5>
-    <span>Time : {{show.time}} {{show.date}}</span>
-    <span>Price: {{show.price}}</span>
-    <a [routerLink] = "'/cancelShow/{show.id}}'"></a>
-</li> -->
-
-
-<div class="card mb-4" style="width: 40vw;" *ngFor="let show of showsByAudi" >
-    <div class="row g-0">
-        <div class="col-md-4">
-            <img class="img-thumbnail img-fluid" src="../../../assets/dummy-pics/phonewallpaper.jpg"
-                alt="{{show.movie.title}}">
+<div class="position-sticky top-0 start-0" style="z-index:0;">
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 5vh;">
+            <div class="col-2"></div>
+            <div class="col-4 text-center">
+                <h2 class="h2">Theatre Dashboard</h2>
+            </div>
+            <div class="col-2"></div>
+            <div class="col-4 text-center">
+                <button class="btn btn-primary btn-lg" (click)="addAudi()">Add Audi</button>
+            </div>
         </div>
-        <div class="col-md-7">
-            <div class="card-body">
-                <h5 class="card-title">{{show.movie.title}}</h5>
-                <p class="card-text">Audi-number: {{show.audi.number}}</p>
-                <p class="card-text">time: {{show.time +" on "+ show.date}}</p>
-                <p class="card-text">Price: INR {{show.price}}</p>
-                <p class="card-text">tickets booked: {{show.tickets.length}}</p>
-                <div>
-                    <button i class="btn btn-danger" (click)=cancelShow(show)>CancelShow</button>
+        <hr>
+        <div class="row">
+            <div class="col border border-2 rounded-2 border-dark m-1" *ngFor="let audi of audis">
+                <div class="row">
+                    <div class="col-6 text-start">
+                        <button class="btn btn-danger m-3" (click)="deleteAudi(audi.id)">Delete</button>
+                    </div>
+                    <div class="col-6 text-end">
+                        <button class="btn btn-outline-primary m-3" (click)="addShow(audi.id)">Add Show</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <button class="btn btn-outline-dark audi-number" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
+                        (click)=" getShowsByAudiId(audi.id)">  
+                        <h1 style="font-size: 400%;">{{audi.number}}</h1>
+                       </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <hr class="dark">
 </div>
+
+<div class="collapse" id="collapseExample">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div style="overflow: scroll;height: 50vh;">
+                <div class="accordian" id="shows-accordian">
+                    <div class="accordian-item" *ngFor="let show of showsByAudi">
+                        <h2 class="accordion-header" id="header-{{show.id}}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" attr.data-bs-target="#collapse-{{show.id}}"
+                                aria-expanded="false" attr.aria-controls="collapse-{{show.id}}">
+                                <strong >{{show.time}} on {{show.date}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{show.movie.title}}</strong>   
+                            </button>
+                        </h2>
+                        <div id="collapse-{{show.id}}" class="accordion-collapse collapse" attr.aria-labelledby="header-{{show.id}}"
+                            attr.data-bs-parent="#shows-accordian">
+                            <div class="accordion-body row">
+                                <div class="col-2"></div>
+                                <div class="col-3">
+                                    <img class="img-thumbnail img-fluid" src="../../../assets/dummy-pics/deja-vu-1920×1080.jpg"
+                                        alt="{{show.movie.title}}" style="height: 30vh;">
+                                </div>
+                                <div class="col-2"></div>
+                                <div class="col-3">
+                                        <h5 class="card-text">Price: INR {{show.price}}</h5>
+                                        <h5 class="card-text">tickets booked: {{show.tickets.length}}</h5>
+                                        <div>
+                                            <button i class="btn btn-danger" (click)=cancelShow(show)>CancelShow</button>
+                                        </div>
+                                </div>
+                                <div class="col-2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+
+
+
+<!-- 
+    <div class="card mb-4" style="width: 40vw;" *ngFor="let show of showsByAudi" z-index="-1">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img class="img-thumbnail img-fluid" src="../../../assets/dummy-pics/phonewallpaper.jpg"
+                    alt="{{show.movie.title}}">
+            </div>
+            <div class="col-md-7">
+                <div class="card-body">
+                    <h5 class="card-title">{{show.movie.title}}</h5>
+                    <p class="card-text">Audi-number: {{show.audi.number}}</p>
+                    <p class="card-text">time: {{show.time +" on "+ show.date}}</p>
+                    <p class="card-text">Price: INR {{show.price}}</p>
+                    <p class="card-text">tickets booked: {{show.tickets.length}}</p>
+                    <div>
+                        <button i class="btn btn-danger" (click)=cancelShow(show)>CancelShow</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+

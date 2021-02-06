@@ -8,6 +8,7 @@ import { AddShowComponent } from './add-show/add-show.component';
 import { CancelShowComponent } from './cancel-show/cancel-show.component';
 import { FormsModule } from '@angular/forms';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { MovieListComponent } from '../user-workflow/movie-list/movie-list.component';
 
 
 

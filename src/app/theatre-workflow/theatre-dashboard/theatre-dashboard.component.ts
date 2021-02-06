@@ -8,6 +8,8 @@ import { TheatreFacade } from 'src/app/facade/TheatreFacade';
 import { Audi } from 'src/app/models/audi.model';
 import { Shows } from 'src/app/models/shows.model';
 import { Theatre } from 'src/app/models/theatre.model';
+import { AddAudiComponent } from '../add-audi/add-audi.component';
+import { AddShowComponent } from '../add-show/add-show.component';
 import { DeleteAudiComponent } from '../delete-audi/delete-audi.component';
 
 @Component({
@@ -26,9 +28,10 @@ export class TheatreDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.theatre = this.theatreFacade.getTheatre();
-    this.theatreFacade.loadTheatreById(this.theatre.id);
-    this.theatre = this.theatreFacade.getTheatre();
+    this.theatreFacade.loadAudiByTheatreId(this.theatre.id);
+    this.theatreFacade.getAudis().subscribe(audis=>this.audis=audis);
     console.log(this.theatre);
+    console.log(this.audis);
     this.showFacade.loadShowsByTheatreId(this.theatre.id);
     this.showFacade.getShows().subscribe(shows => this.shows = shows);
     console.log(this.shows);
@@ -47,18 +50,21 @@ export class TheatreDashboardComponent implements OnInit {
 
   addShow(audiId:number) {
     console.log("addShow()  audiId-"+audiId+" theatreId="+this.theatre.id);
-    this.router.navigate(['/add_show'],{state : { audiId : audiId, theatreId : this.theatre.id}});
+    this.currentDialog = this.modalService.open(AddShowComponent,{});
+    this.currentDialog.componentInstance.audiId = audiId;
+    this.currentDialog.componentInstance.theatreId = this.theatre.id;
   }
 
   deleteAudi(audiId:number) {
     console.log("deleteAudi "+audiId);
     this.getShowsByAudiId(audiId);
-    this.currentDialog = this.modalService.open(DeleteAudiComponent,{});
+    this.currentDialog = this.modalService.open(DeleteAudiComponent,{backdrop:false});
     this.currentDialog.componentInstance.audiId = audiId;
     this.currentDialog.componentInstance.showsByAudi = this.showsByAudi;
     this.currentDialog.componentInstance.theatreId = this.theatre.id;
   }
   addAudi(){
-    this.router.navigate(['/add_audi'],{state:{theatreId:this.theatre.id}})
+    this.currentDialog = this.modalService.open(AddAudiComponent,{backdrop:false});
+    this.currentDialog.componentInstance.theatreId = this.theatre.id;
   }
 }

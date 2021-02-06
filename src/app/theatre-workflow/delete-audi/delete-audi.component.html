@@ -1,19 +1,18 @@
-<p>delete-audi works!</p>
-
 
 <div class="modal-header">
-
+    <legend class="modal-title">Delete Audi</legend>
+    <button (click)="close()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="modal-body">
-    <h2>this Audi has the following shows still running or planned.</h2>
-    <li *ngFor="let show of showsByAudi">
-        <h5>Movie: {{show.movie.title}}</h5>
-        <span>Time : {{show.time}} {{show.date}}</span>
-        <span>Price: {{show.price}}</span>
-    </li>
-
-    <h3>You wont be able to schedule future shows if you delete and You'll have to cancel these shows seperately</h3>
-
+    <label>This Audi has the following shows still running or planned.</label>
+    <div style="overflow: scroll;height: 60vh;">
+        <div class="card" *ngFor="let show of showsByAudi">
+            <div class="card-body" >
+                <h5>Movie: {{show.movie.title}} | Time : {{show.time}} on {{show.date}}</h5>
+            </div>
+        </div>
+    </div>
+    <label>You wont be able to schedule future shows if you delete and You'll have to cancel these shows seperately</label>
     <button class="btn btn-danger" (click)="deleteAudi()">Proceed to Delete </button>
 </div>
 <div class="modal-footer">

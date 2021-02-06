@@ -1,48 +1,66 @@
-<p>add-show works!</p>
+<div class="modal-header">
+    <h1 class="modal-title">Add Show</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="close()" aria-label="Close"></button>
+</div>
+<div class="modal-body mx-auto">
+    <div>
+        <form novalidate #myform="ngForm">
+            <div class="mb-3">
+                <label class="form-label ">Date</label>
+                <input class="form-control" type="Date" #date name="date" placeholder="Date of to Show" ngModel
+                    required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label ">Time</label>
+                <input class="form-control" type="time" #time name="time" placeholder="start time of the show" ngModel
+                    required>
+            </div>
 
-<div>
-    <button type="button" class="btn btn-info" 
-    (click)="loadMovieList()" >Select Movie</button><br>
-    
-    <form novalidate #myform ngForm >
-        Date: <input type="Date" #date name="date" placeholder="date" ngModel required><br>
-
-        hours : <input type="time" #time  name="time" placeholder="start time of the show" ngModel required>
-        
-        <br>
-
-        Price <input type="number" #price name="price" placeholder="price in INR" ngModel required><br>
-
-        <button class="btn btn-primary" type="submit" value="Create Show" (click)="addShow(date.value,time.value,price.value)"></button><br>
-    </form>
+            <div class="mb-3">
+                <label class="form-label ">Price</label>
+                <input class="form-control" type="number" #price name="price" placeholder="Price per seat in INR"
+                    ngModel required>
+            </div>
+            <div class="mb-3">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal"
+                    (click)="loadMovieList()" data-toggle="modal">Select Movie</button><br>
+            </div>
+            <button class="btn btn-success" type="submit" value="Create Show"
+                (click)="addShow(date.value,time.value,price.value)">Add Show</button><br>
+        </form>
+        <div class="alert alert-warning" role="alert">
+            {{message}}
+        </div>
+    </div>
 </div>
 
-<!-- <div class="modal modal-dialog-centered modal-dialog-scrollable" data-bs-backdrop="static" id="myModal" tabindex="-1">
+
+<div class="modal " data-bs-backdrop="static" id="myModal">
     <div class="modal-dialog modal-xl modal-dialog-centered">
-        <div class="modal-content"> 
+        <div class="modal-content">
             <div class="modal-header">
-                <legend class="modal-title">Movie List</legend>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
+                <legend class="modal-title">Select a movie for the show</legend>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body mx-auto"> -->
+            <div class="modal-body mx-auto">
                 <div class="container-fluid " style="width: 80%;">
-                   <div class="row"  style=" margin-top: 5vh;">
+                    <div class="row" style=" margin-top: 5vh;">
                         <div *ngFor="let movie of movies" class="card" style="width: 18rem;">
                             <div class="col-sm-12">
-                                <img class="card-img-top" src="../../../assets/dummy-pics/deja-vu-1920×1080.jpg" alt="{{movie.title}}">
+                                <img class="card-img-top" src="../../../assets/dummy-pics/deja-vu-1920×1080.jpg"
+                                    alt="{{movie.title}}">
                                 <div class="card-body">
                                     <h4 class="card-title"><strong>{{movie.title}}</strong></h4>
                                     <p class="card-text">{{movie.duration}} mins | {{movie.rating}}</p>
-                                    <button class="btn btn-dark" (click)="SelectMovie(movie.id)">Select</button>
+                                    <button class="btn btn-dark" data-bs-dismiss="modal" (click)="selectMovie(movie.id)">Select</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                 </div>
-            <!-- </div>
+                </div>
+            </div>
             <div class="modal-footer" style="text-align: left;">
             </div>
         </div>
     </div>
-</div> -->
+</div>

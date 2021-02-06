@@ -21,7 +21,7 @@ import { JwtInterceptor } from 'src/JwtInterceptor';
 
 
 @NgModule({
-  declarations: [HomepageComponent , UserDashboardComponent, MovieListComponent, ShowsListComponent, TicketComponent,
+  declarations: [HomepageComponent , UserDashboardComponent,MovieListComponent, ShowsListComponent, TicketComponent,
      TicketPageComponent, ShowPageComponent],
   imports: [
     CommonModule , FormsModule , SharedModule, NgbModalModule

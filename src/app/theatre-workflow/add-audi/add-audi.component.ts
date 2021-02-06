@@ -1,10 +1,12 @@
 import { HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Audi } from 'src/app/models/audi.model';
 import { Seat } from 'src/app/models/seat.model';
 import { Theatre } from 'src/app/models/theatre.model';
+import { threadId } from 'worker_threads';
 import { TheatreFacade } from '../../facade/TheatreFacade'
 
 @Component({
@@ -13,36 +15,35 @@ import { TheatreFacade } from '../../facade/TheatreFacade'
   styleUrls: ['./add-audi.component.css']
 })
 export class AddAudiComponent implements OnInit {
-  theatreId!:number;
-  seatMap:Seat[]=[];
-  audi: Audi ={
-    number :0,
-    totalSeats :0,
-    seatMap : []  
+  @Input() theatreId!: number;
+  seatMap: Seat[] = [];
+  audi: Audi = {
+    number: 0,
+    totalSeats: 0,
+    seatMap: []
   };
   message: string = "";
- 
-  constructor(private theatreFacade: TheatreFacade, private router: Router) {
-    this.theatreId = this.router.getCurrentNavigation()?.extras.state?.theatreId;
-    console.log(this.theatreId);
+
+  constructor(private theatreFacade: TheatreFacade, private router: Router, private activeModal:NgbActiveModal) {
   }
 
   ngOnInit(): void {
-  
+
   }
   onSubmit(myForm: NgForm) {
-    if(this.audi.seatMap == []){
-      this.message="seatmap can't be empty"
-    }else if(this.audi.number === 0){
+    if (this.audi.seatMap == []) {
+      this.message = "seatmap can't be empty"
+    } else if (this.audi.number === 0) {
       this.message = "audinumber cant be zero";
     }
     else {
       this.message = "";
-      this.theatreFacade.addAudi(this.theatreId,this.audi);
+      this.theatreFacade.addAudi(this.theatreId, this.audi);
+      this.close();
       this.router.navigateByUrl('/theatre');
     }
   }
-  
+
 
   createSeatMap(rows: number, columns: number) {
     this.seatMap = [];
@@ -75,10 +76,13 @@ export class AddAudiComponent implements OnInit {
         }
       }
     }
-    
-    this.audi.totalSeats = rows*columns;
+
+    this.audi.totalSeats = rows * columns;
     this.audi.seatMap = this.seatMap;
     console.log(this.audi.seatMap);
     console.log(this.audi.totalSeats);
+  }
+  close() {
+    this.activeModal.close();
   }
 }

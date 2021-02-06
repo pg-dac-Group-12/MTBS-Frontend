@@ -1,28 +1,45 @@
-<p>add-audi works!</p>
-
-<div>
-    <form novalidate #myform="ngForm" (ngSubmit)="onSubmit(myform)">
-        Audi Number: <input type="number" [(ngModel)]="audi.number" name="number" placeholder="number" ngModel
-            required><br>
-
-        <!--seat map input-->
-        Columns:<input type="number" #rows required> Rows:<input type="number" #columns required>
-        <button type="button" class="btn btn-info btn-lg" data-bs-toggle="modal" data-bs-target="#myModal"
-            (click)="createSeatMap(rows.value,columns.value)" data-toggle="modal">Preview</button><br>
-        <input type="submit" value="add Audi"><br>
-    </form>
+<div class="modal-header">
+    <h1 class="modal-title">Add Auditorium</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="close()" aria-label="Close"></button>
+</div>
+<div class="modal-body mx-auto">
     <div>
-        <div>{{message}}</div>
+        <form novalidate #myform="ngForm" (ngSubmit)="onSubmit(myform)">
+            <div class="mb-3">
+                <label class="form-label ">Audi Number</label>
+                <input class="form-control" type="number" [(ngModel)]="audi.number" name="number" placeholder="number"
+                    ngModel required>
+            </div>
+            <!--seat map input-->
+            <div class="mb-3">
+                <div class="row">
+                    <div class="col">
+                        <input class="form-control" placeholder="Columns" type="number" #rows required>
+                    </div>
+                    <div class="col">
+                        <input class="form-control" placeholder="Rows" type="number" #columns required>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal"
+                        (click)="createSeatMap(rows.value,columns.value)" data-toggle="modal">Preview</button><br>
+                    </div>
+                </div>
+            </div>
+            <input class="btn btn-primary" type="submit" value="add Audi"><br>
+        </form>
+        <div>
+            {{message}}
+        </div>
     </div>
 </div>
 
-<div class="modal " data-bs-backdrop="static" id="myModal" tabindex="-1">
+
+<div class="modal " data-bs-backdrop="static" id="myModal">
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <legend class="modal-title">Seat Map</legend>
-                <button  type="button" class="btn-close" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body mx-auto">
                 <div>

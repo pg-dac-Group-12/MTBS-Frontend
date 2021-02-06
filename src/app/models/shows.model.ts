@@ -9,7 +9,7 @@ export interface Shows {
     id:number;
     audi:Audi;
     movie?:Movie;
-    theatre?:Theatre;
+    theatre:Theatre;
     tickets:Ticket[];
     time:Time;
     date:Date;

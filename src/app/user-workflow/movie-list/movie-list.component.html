@@ -1,12 +1,6 @@
 
 
-<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
 
-<!-- <li *ngFor="let movie of movies">
-    <b> {{movie.title}} </b>   
-    <button  class="btn btn-primary" (click)="getShowsForMovie(movie.id)">book</button>        
- </li> -->
  <div class="container-fluid " style="width: 80%;">
     <h3 class="h3" style=" margin-top: 5vh;">Movies</h3>
     <hr>
@@ -17,7 +11,7 @@
                 <div class="card-body">
                     <h4 class="card-title"><strong>{{movie.title}}</strong></h4>
                     <p class="card-text">{{movie.duration}} mins | {{movie.rating}}</p>
-                    <button class="btn btn-dark" (click)="getShowsForMovie(movie.id)">book</button>
+                    <button class="btn btn-dark" (click)="dispatchMovie(movie.id)">book</button>
                 </div>
             </div>
         </div>

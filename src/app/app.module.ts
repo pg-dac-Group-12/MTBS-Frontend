@@ -21,6 +21,7 @@ import { DeleteAudiComponent } from "./theatre-workflow/delete-audi/delete-audi.
 import { AddShowComponent } from "./theatre-workflow/add-show/add-show.component";
 import { CancelShowComponent } from "./theatre-workflow/cancel-show/cancel-show.component";
 import { TicketPageComponent } from "./user-workflow/ticket-page/ticket-page.component";
+import { MovieListComponent } from "./user-workflow/movie-list/movie-list.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +55,8 @@ import { TicketPageComponent } from "./user-workflow/ticket-page/ticket-page.com
     TheatreRegisterComponent,
     AddShowComponent,
     CancelShowComponent,
-    TicketPageComponent
+    TicketPageComponent,
+    MovieListComponent
   ]
 })
 export class AppModule { }

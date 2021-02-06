@@ -29,6 +29,7 @@ export class DeleteAudiComponent implements OnInit {
   deleteAudi(){
     console.log("in deleteAudi() of delete audi component audi-"+this.audiId);
     this.theatreFacade.deleteAudi(this.theatreId,this.audiId);
+    this.router.navigateByUrl('/theatre'); 
     this.close();
   }
   close() {
