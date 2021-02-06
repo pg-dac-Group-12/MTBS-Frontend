@@ -11,7 +11,7 @@ export class TheatreState{
     private theatre$ = new BehaviorSubject<Theatre>(null!);    
 
     getTheatre() {
-        return this.theatre$.value ;
+        return this.theatre$ ;
     }
 
     setTheatre(theatre :Theatre) {

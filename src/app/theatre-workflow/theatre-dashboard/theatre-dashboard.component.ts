@@ -27,14 +27,16 @@ export class TheatreDashboardComponent implements OnInit {
      private router:Router, private modalService:NgbModal) { }
 
   ngOnInit(): void {
-    this.theatre = this.theatreFacade.getTheatre();
-    this.theatreFacade.loadAudiByTheatreId(this.theatre.id);
-    this.theatreFacade.getAudis().subscribe(audis=>this.audis=audis);
-    console.log(this.theatre);
-    console.log(this.audis);
-    this.showFacade.loadShowsByTheatreId(this.theatre.id);
-    this.showFacade.getShows().subscribe(shows => this.shows = shows);
-    console.log(this.shows);
+    this.theatreFacade.getTheatre().subscribe(theatre => {
+      this.theatre = theatre;  
+      this.theatreFacade.loadAudiByTheatreId(this.theatre.id);
+      this.theatreFacade.getAudis().subscribe(audis=>this.audis=audis);
+      console.log(this.theatre);
+      console.log(this.audis);
+      this.showFacade.loadShowsByTheatreId(this.theatre.id);
+      this.showFacade.getShows().subscribe(shows => this.shows = shows);
+      console.log(this.shows);
+    })
   }
 
   getShowsByAudiId(audiId:number){

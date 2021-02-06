@@ -29,6 +29,12 @@ export class AuthService {
     params.append('newPassword',newPassword);
     return this.http.post<any>(`${this.baseUrl}password/change`,null,{observe:'response',params:params});
   }
+
+  refreshUser(jwt:string) {
+    let params = new HttpParams()
+    .append("jwt", jwt)
+    return this.http.post<any>(`http://localhost:8080/validate`, null , {params:params});
+  }
  
   private setJWT(auth:Observable<any>) : User|Theatre {
     let actor!:User|Theatre;

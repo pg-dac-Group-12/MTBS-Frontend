@@ -9,7 +9,7 @@ export  class UserState {
     private user$ = new BehaviorSubject<User>({"email":"","id":0,"name":"","password":"","phoneNo":"","tickets":[]});
 
     getUser(){
-        return this.user$.value;
+        return this.user$
     }
 
     setUser(user$:User){

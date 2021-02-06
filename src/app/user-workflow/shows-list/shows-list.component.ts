@@ -40,15 +40,17 @@ export class ShowsListComponent implements OnInit {
 
   getShowSeatMap(showId:number) {
     console.log(showId + "I am here ");
-    this.user = this.userFacade.getUser();
-    if(this.user.id == 0) {
-      this.currentDialog = this.modalService.open(LoginComponent,{});
-    } else {
-        console.log(this.user);
-        let show = this.showsFacade.getShowById(showId);
-        this.currentDialog = this.modalService.open(SeatMapComponent,{});
-        this.currentDialog.componentInstance.showId = showId;
-    }
+    this.userFacade.getUser().subscribe(user => {
+        if(user.id == 0) {
+          this.currentDialog = this.modalService.open(LoginComponent,{});
+        } else {
+          this.user = user ;        
+          console.log(this.user);
+          let show = this.showsFacade.getShowById(showId);
+          this.currentDialog = this.modalService.open(SeatMapComponent,{});
+          this.currentDialog.componentInstance.showId = showId;
+        }
+    })
   }
   getDate() {
 

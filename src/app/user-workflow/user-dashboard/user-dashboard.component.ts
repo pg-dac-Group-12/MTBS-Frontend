@@ -16,7 +16,8 @@ export class UserDashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user = this.userFacade.getUser(); 
+
+    this.userFacade.getUser().subscribe(user => this.user = user )
     console.log(this.user);
   }
 
