@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   message:string = "";
   email:string = "";
   password:string = "";
+  @Input() redirect:boolean = true ;
   isTheatreAdmin:boolean = true;
   constructor(private authService:AuthService, private activeModal:NgbActiveModal,
      private modalService:NgbModal ,private userFacade:UserFacade, private theatreFacade:TheatreFacade ,
@@ -50,7 +51,8 @@ export class LoginComponent implements OnInit {
           if(resp.actor.role === Roles.USER.toString()) {
               console.log(resp.actor);
               this.userFacade.setUser(resp.actor);
-              this.router.navigateByUrl("/");
+              if(this.redirect)
+                this.router.navigateByUrl("/") ;
           } else {
             this.theatreFacade.setTheatre(resp.actor);
               //document.getElementById('login-btn')?.setAttribute("data-bs-dismiss","modal");
