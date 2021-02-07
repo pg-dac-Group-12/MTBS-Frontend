@@ -3,7 +3,7 @@ import { Roles } from "./roles";
 
 export class PermssionsTable {
     static readonly permssions: Record<string,string> = {
-        "/user/show_list": Roles.User.toString()
+        "/user/show_list": Roles.USER.toString()
     }   
     static urlString: string = "";
     static isPermitted( url:UrlSegment[], role:String):boolean {

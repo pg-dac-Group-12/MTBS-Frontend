@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit {
       if(user.id == 0){
         console.log(user);
           this.theatreFacade.getTheatre().subscribe(theatre => {
-            if(theatre == null)
+            if(theatre.id == undefined )
               this.loggedIn = false ;
             else {
                 this.loggedIn = true ;
