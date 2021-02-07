@@ -30,7 +30,7 @@ export class ShowsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fillDateArray(Date.now())
+    this.fillDateArray(Date.now());
   }
 
   fillDateArray(date: number) {
@@ -44,7 +44,7 @@ export class ShowsListComponent implements OnInit {
           this.currentDialog = this.modalService.open(LoginComponent,{});
           this.currentDialog.componentInstance.redirect= false ;
         } else {
-          this.currentDialog = this.modalService.open(SeatMapComponent,{size:"xl"});
+          this.currentDialog = this.modalService.open(SeatMapComponent,{});
           this.currentDialog.componentInstance.showId = showId;
         }
     })

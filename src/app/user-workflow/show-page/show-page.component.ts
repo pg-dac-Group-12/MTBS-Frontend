@@ -11,7 +11,6 @@ export class ShowPageComponent implements OnInit {
   constructor(private router: Router) {
     this.movieId = this.router.getCurrentNavigation()?.extras.state!.movieId;
   }
-
   ngOnInit(): void {
   }
 

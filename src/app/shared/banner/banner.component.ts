@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { MovieFacade } from 'src/app/facade/MovieFacade';
+import { Movie } from 'src/app/models/movie.model';
 
 @Component({
   selector: 'app-banner',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BannerComponent implements OnInit {
 
-  constructor() { }
 
+  @Input() movieId!:number;
+  movie:Movie = null!; 
+  
+  constructor (private movieFacade:MovieFacade) { }
+  
   ngOnInit(): void {
+    this.movie= this.movieFacade.getMovieById(this.movieId);
   }
+
 
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MovieFacade } from 'src/app/facade/MovieFacade';
+import { Movie } from 'src/app/models/movie.model';
 
 @Component({
   selector: 'app-carousel',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarouselComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private moviesFacade: MovieFacade) { }
+  movies!: Movie[];
   ngOnInit(): void {
+    this.moviesFacade.getAllMovies().subscribe(movieList => {
+      this.movies = movieList.sort((a, b) => {
+        return b.totalShows - a.totalShows;
+      }).slice(0, 5);
+    });
   }
-
 }

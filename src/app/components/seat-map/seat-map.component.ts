@@ -47,6 +47,34 @@ export class SeatMapComponent implements OnInit {
     this.columns = Math.floor(this.seatMap.length/this.rows);
   }
 
+
+  addSeat(seatId:number){
+    const output = document.getElementById('seat-'+seatId);
+    if(output?.classList.contains("isSelected")){
+      output.classList.remove("isSelected");  
+      this.selectedSeats = this.selectedSeats.filter(seat => seat !== this.seatMap[seatId]);
+      console.log(this.selectedSeats);
+    } else if(output) {
+      output.classList.add('isSelected');
+      this.selectedSeats.push(this.seatMap[seatId]);
+      console.log(this.selectedSeats); 
+    }
+  }
+  bookSeats(){
+    console.log(this.selectedSeats);
+    this.currentDialog = this.modalService.open(TicketPageComponent,{});
+    this.currentDialog.componentInstance.showId = this.showId;
+    this.currentDialog.componentInstance.selectedSeats = this.selectedSeats;
+    this.close();
+  }
+
+  close() {
+    this.activeModal.close();
+    this.selectedSeats=[];
+  }
+}
+
+
   // from add audi
   // createSeatMap(rows: number, columns: number) {
   //   this.seatMap=[];
@@ -100,30 +128,3 @@ export class SeatMapComponent implements OnInit {
     // }
   //   console.log(this.seatMap);
   // }
-  addSeat(seatId:number){
-    const output = document.getElementById('seat-'+seatId);
-    if(output?.classList.contains("isSelected")){
-      output.classList.remove("isSelected");  
-      this.selectedSeats = this.selectedSeats.filter(seat => seat !== this.seatMap[seatId]);
-      console.log(this.selectedSeats);
-    } else if(output) {
-      output.classList.add('isSelected');
-      this.selectedSeats.push(this.seatMap[seatId]);
-      console.log(this.selectedSeats); 
-    }
-  }
-  bookSeats(){
-    console.log(this.selectedSeats);
-    this.currentDialog = this.modalService.open(TicketPageComponent,{});
-    this.currentDialog.componentInstance.showId = this.showId;
-    this.currentDialog.componentInstance.selectedSeats = this.selectedSeats;
-    this.close();
-  }
-
-  close() {
-    this.activeModal.close();
-    this.selectedSeats=[];
-  }
-}
-
-

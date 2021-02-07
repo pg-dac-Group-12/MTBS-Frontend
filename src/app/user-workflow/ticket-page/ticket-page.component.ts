@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, NgZone, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 //import * as moment from 'moment';
 import { TicketFacade } from 'src/app/facade/TicketFacade.js';
@@ -32,7 +33,7 @@ export class TicketPageComponent implements OnInit {
   
   constructor(private paymentService: PaymentService, private userFacade: UserFacade ,
      private activeModal:NgbActiveModal, private ticketFacade: TicketFacade,
-     private ngZone:NgZone){   } 
+     private ngZone:NgZone, private router:Router){   } 
   
   ngOnInit(): void {
     this.startTimer();
@@ -100,6 +101,7 @@ export class TicketPageComponent implements OnInit {
   }
   close() {
     this.activeModal.close();
+    this.router.navigateByUrl("/");
   }
 
 }
