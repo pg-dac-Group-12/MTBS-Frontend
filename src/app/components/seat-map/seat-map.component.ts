@@ -11,7 +11,7 @@ import { TicketPageComponent } from 'src/app/user-workflow/ticket-page/ticket-pa
   styleUrls: ['./seat-map.component.css']
 })
 export class SeatMapComponent implements OnInit {
-  @Input() seatMap: Seat[]=[];
+  seatMap: Seat[]=[];
   @Input() showId!:number;
   rows!:number;
   columns!:number;
@@ -29,6 +29,9 @@ export class SeatMapComponent implements OnInit {
     //this.show = this.showsFacade.getShowByID(this.showID);
     console.log(this.showId);
     this.show = this.showsFacade.getShowById(this.showId);
+    // this.showsFacade.getShows().subscribe((shows)=>{
+
+    // })
     console.log(this.show.seatmap);
     this.seatMap = this.show.seatmap;
     console.log(this.seatMap);

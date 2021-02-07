@@ -10,6 +10,7 @@ import { Shows } from 'src/app/models/shows.model';
 import { Theatre } from 'src/app/models/theatre.model';
 import { AddAudiComponent } from '../add-audi/add-audi.component';
 import { AddShowComponent } from '../add-show/add-show.component';
+import { CancelShowComponent } from '../cancel-show/cancel-show.component';
 import { DeleteAudiComponent } from '../delete-audi/delete-audi.component';
 
 @Component({
@@ -47,7 +48,7 @@ export class TheatreDashboardComponent implements OnInit {
   }
   
   cancelShow(show:Shows){
-    this.currentDialog = this.modalService.open(AddShowComponent,{});
+    this.currentDialog = this.modalService.open(CancelShowComponent,{});
     this.currentDialog.componentInstance.show=show;
   }
 

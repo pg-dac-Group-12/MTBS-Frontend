@@ -19,18 +19,25 @@
                  
                     <div class="container-fluid">
                         <span style="white-space: nowrap;" *ngFor="let seat of seatMap;let i = index;let last = last">
-
-                            <button class="seat" id="seat-{{i}}" *ngIf="seatMap[i].rowNumber !== 0" [disabled]="seatMap[i].isBooked" value={{i}}
-                                (click)="addSeat(seatID.value)" #seatID>
-                            </button>
-                            <span style="white-space: nowrap;" *ngIf="seatMap[i].rowNumber === 0">
-                                <span style="padding-left:40px"></span>
-                            </span>
                             <span style="white-space: nowrap;" *ngIf="!last">
-                                <div *ngIf="seatMap[i].rowNumber == rows;">
-                                    <span class="br"></span>  
-                                </div>
+                                <button class="seat" id="seat-{{i}}"
+                                    *ngIf="seatMap[i].rowNumber !== seatMap[i+1].rowNumber"
+                                    [disabled]="seatMap[i].isBooked" value={{i}} (click)="addSeat(seatID.value)"
+                                    #seatID>
+                                </button>
+                                <span style="white-space: nowrap;"
+                                    *ngIf="seatMap[i].rowNumber === seatMap[i+1].rowNumber">
+                                    <span style="padding-left:40px"></span>
+                                </span>
+                                <span style="white-space: nowrap;" *ngIf="!last">
+                                    <div *ngIf="seatMap[i].rowNumber == rows">
+                                        <span class="br"></span>
+                                    </div>
+                                </span>
                             </span>
+                                <button class="seat" id="seat-{{i}}" *ngIf="last" [disabled]="seatMap[i].isBooked" value={{i}} (click)="addSeat(seatID.value)"
+                                #seatID></button>
+
                         </span>
                         <div style="text-align: right;">
                             <label>{{selectedSeats.length}} x {{show.price}} = INR {{selectedSeats.length * show.price}}</label>

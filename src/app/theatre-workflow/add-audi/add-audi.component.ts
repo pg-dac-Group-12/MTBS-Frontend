@@ -54,8 +54,8 @@ export class AddAudiComponent implements OnInit {
         if (row === Math.floor(rows / 2) + 1) {
           this.seatMap.push(
             {
-              "rowNumber": 0,
-              "colNumber": '0',
+              "rowNumber": row,
+              "colNumber": alphabets[col - 1],
               "isBooked": false
             }
           )

@@ -3,7 +3,7 @@ img {
     height: 50vh;
 }
 .card{
-    
+  
     box-shadow: 3px 3px 3px 3px whitesmoke;
 }
 .card:hover {

@@ -44,14 +44,15 @@ export class ShowsListComponent implements OnInit {
           this.currentDialog = this.modalService.open(LoginComponent,{});
           this.currentDialog.componentInstance.redirect= false ;
         } else {
-          this.currentDialog = this.modalService.open(SeatMapComponent,{});
+          this.currentDialog = this.modalService.open(SeatMapComponent,{size:"xl"});
           this.currentDialog.componentInstance.showId = showId;
         }
     })
   }
+  
   getDate() {
-
   }
+
   getAllShowsByMovieIdAndDate(movieDate:moment.Moment) {
     this.showsFacade.loadShowsByMovieIdAndDate(this.movieId, movieDate.format("YYYY-MM-DD"));
     this.showsFacade.getShows()
