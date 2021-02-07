@@ -10,7 +10,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" (click) = close() aria-label="Close"></button>
             </div>
             <div class = "modal-body container-fluid col-md-8 offset-md-2">
-        <form class="form-control form-control-lg form-horizontal" novalidate #myform="ngForm" (ngSubmit) = "onSubmit(myform.value)">
+        <form class="form-control form-control-lg form-horizontal" novalidate #myform="ngForm" (ngSubmit) = "onSubmit(myform)">
     <div class="">
         <input type="text" class="form-control form-control-lg margin-bottom" name="name" placeholder="Name" ngModel required>
     </div>

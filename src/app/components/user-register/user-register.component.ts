@@ -25,13 +25,16 @@ export class UserRegisterComponent implements OnInit {
 
   onSubmit(myform:NgForm) {
     this.user = myform.value ; 
+    console.log(this.user)
     this.userService.createUser(this.user).subscribe(response =>{
       if(response.status == 201){
         //registered. redirect?
         this.message="Registration Succesfull";
+        this.close();
       } else if (response.status == 400){
         this.message = "Registration Failed";
       }
+
     });
   }
 }

@@ -30,6 +30,7 @@ export class TheatreRegisterComponent implements OnInit {
       if(response.status == 201){
         //registered. redirect?
         this.message="Registration Succesfull";
+        this.close();
       } else if (response.status == 400){
         this.message = "Registration Failed";
       }
