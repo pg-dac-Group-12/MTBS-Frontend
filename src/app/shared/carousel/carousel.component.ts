@@ -13,9 +13,10 @@ export class CarouselComponent implements OnInit {
   movies!: Movie[];
   ngOnInit(): void {
     this.moviesFacade.getAllMovies().subscribe(movieList => {
-      this.movies = movieList.sort((a, b) => {
+      this.movies =movieList;});
+    
+    this.movies = this.movies.sort((a, b) => {
         return b.totalShows - a.totalShows;
       }).slice(0, 5);
-    });
   }
 }
