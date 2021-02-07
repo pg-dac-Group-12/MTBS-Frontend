@@ -26,51 +26,7 @@ export class TicketPageComponent implements OnInit {
   sessionTime!:string ;
   timer1:any ;
   timer2:any ;
-  //   show: {
-  //     audi: {
-  //       number: 3
-  //     },
-  //     movie: {
-  //       title: "movie title",
-  //       icon: "so-this-dropped-yesterday-and-i-loved-this-frame-1366×768.jpg"
-  //     },
-  //     theatre: {
-  //       name: "theatre name",
-  //       city: "city",
-  //       location: "location"
-  //     },
-  //     time: "00:00",
-  //     date: "0th Nov"
-  //   },
-  //   user: {
-  //     email: "a@a.com",
-  //     name: "username",
-  //     phoneNo: "0000000000"
-  //   },
-  //   seats: [
-  //     {
-  //       rowNumber: 3,
-  //       colNumber: 'A',
-  //       isBooked: false
-  //     },
-  //     {
-  //       rowNumber: 4,
-  //       colNumber: 'A',
-  //       isBooked: false
-  //     },
-  //     {
-  //       rowNumber: 3,
-  //       colNumber: 'B',
-  //       isBooked: false
-  //     },
-  //     {
-  //       rowNumber: 4,
-  //       colNumber: 'B',
-  //       isBooked: false
-  //     }
-  //   ],
-  //   amount: 2000
-  // };
+  isBooked:boolean = false;
 
   constructor(private paymentService: PaymentService, private userFacade: UserFacade , private activeModal:NgbActiveModal, private ticketFacade: TicketFacade) { 
   } 
@@ -129,6 +85,7 @@ export class TicketPageComponent implements OnInit {
               this.ticket = ticket
               this.ticketFacade.addTicket(ticket);
               this.stopTimer();
+              this.isBooked = true ;
             })      
         }, () => {
           this.invalidateTicket();
@@ -141,3 +98,51 @@ export class TicketPageComponent implements OnInit {
   }
 }
 
+
+
+
+  //   show: {
+  //     audi: {
+  //       number: 3
+  //     },
+  //     movie: {
+  //       title: "movie title",
+  //       icon: "so-this-dropped-yesterday-and-i-loved-this-frame-1366×768.jpg"
+  //     },
+  //     theatre: {
+  //       name: "theatre name",
+  //       city: "city",
+  //       location: "location"
+  //     },
+  //     time: "00:00",
+  //     date: "0th Nov"
+  //   },
+  //   user: {
+  //     email: "a@a.com",
+  //     name: "username",
+  //     phoneNo: "0000000000"
+  //   },
+  //   seats: [
+  //     {
+  //       rowNumber: 3,
+  //       colNumber: 'A',
+  //       isBooked: false
+  //     },
+  //     {
+  //       rowNumber: 4,
+  //       colNumber: 'A',
+  //       isBooked: false
+  //     },
+  //     {
+  //       rowNumber: 3,
+  //       colNumber: 'B',
+  //       isBooked: false
+  //     },
+  //     {
+  //       rowNumber: 4,
+  //       colNumber: 'B',
+  //       isBooked: false
+  //     }
+  //   ],
+  //   amount: 2000
+  // };

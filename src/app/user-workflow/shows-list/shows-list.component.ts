@@ -35,7 +35,7 @@ export class ShowsListComponent implements OnInit {
 
   fillDateArray(date: number) {
     [0, 1, 2, 3, 4].map(number => this.dates.push(moment(new Date()).add(number, "days")))
-    //Fix This
+    
   }
 
   getShowSeatMap(showId:number) {

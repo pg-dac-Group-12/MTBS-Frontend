@@ -19,10 +19,10 @@ export class SeatState{
         this.seats$.next([...currentValue, seats]);
     }
 
-    updateSeats(seat:Seat) {
-        const currentSeatsList = this.seats$.getValue();
-        const indexOfUpdated = currentSeatsList.findIndex(seatItem => seat.rowNumber == seatItem.rowNumber && seat.colNumber == seatItem.colNumber); 
-        currentSeatsList[indexOfUpdated] = seat ;
-    }
+    // updateSeats(seat:Seat) {
+    //     const currentSeatsList = this.seats$.getValue();
+    //     const indexOfUpdated = currentSeatsList.findIndex(seatItem => seat.rowNumber == seatItem.rowNumber && seat.colNumber == seatItem.colNumber); 
+    //     currentSeatsList[indexOfUpdated] = seat ;
+    // }
 
 }
