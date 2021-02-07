@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, NgZone, OnInit, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 //import * as moment from 'moment';
 import { TicketFacade } from 'src/app/facade/TicketFacade.js';
@@ -28,12 +28,18 @@ export class TicketPageComponent implements OnInit {
   timer2:any ;
   isBooked:boolean = false;
 
-  constructor(private paymentService: PaymentService, private userFacade: UserFacade , private activeModal:NgbActiveModal, private ticketFacade: TicketFacade) { 
-  } 
+   open: EventEmitter<any> = new EventEmitter();
+  
+  constructor(private paymentService: PaymentService, private userFacade: UserFacade ,
+     private activeModal:NgbActiveModal, private ticketFacade: TicketFacade,
+     private ngZone:NgZone){   } 
   
   ngOnInit(): void {
     this.startTimer();
     this.ticketFacade.createTicket(this.showId,this.selectedSeats).subscribe(ticket =>  this.ticket = ticket);
+    this.open.subscribe(() => {this.ngZone.run(()=>
+      this.isBooked = true)
+   });
   }
   
   stopTimer() {
@@ -47,7 +53,6 @@ export class TicketPageComponent implements OnInit {
         this.sessionTimeMinutes--;
         this.sessionTimeSeconds = 60 ;
         if(this.sessionTimeMinutes === 0){
-        
           this.invalidateTicket();
         }
     },60000)
@@ -85,7 +90,7 @@ export class TicketPageComponent implements OnInit {
               this.ticket = ticket
               this.ticketFacade.addTicket(ticket);
               this.stopTimer();
-              this.isBooked = true ;
+              this.open.emit(true);
             })      
         }, () => {
           this.invalidateTicket();
@@ -96,6 +101,7 @@ export class TicketPageComponent implements OnInit {
   close() {
     this.activeModal.close();
   }
+
 }
 
 

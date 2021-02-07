@@ -117,7 +117,7 @@ export class SeatMapComponent implements OnInit {
     this.currentDialog = this.modalService.open(TicketPageComponent,{});
     this.currentDialog.componentInstance.showId = this.showId;
     this.currentDialog.componentInstance.selectedSeats = this.selectedSeats;
-    close()
+    this.close();
   }
 
   close() {

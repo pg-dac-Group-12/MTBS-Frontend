@@ -8,14 +8,16 @@ import { Theatre } from "../models/theatre.model";
 export class TheatreState{
     //private theatre$ = new BehaviorSubject<Theatre[]>([]);
     
-    private theatre$ = new BehaviorSubject<Theatre>(null!);    
+    private theatre$ = new BehaviorSubject<any>({});    
 
     getTheatre() {
-        return this.theatre$ ;
+        return this.theatre$;
     }
 
     setTheatre(theatre :Theatre) {
+        console.log(theatre);
         this.theatre$.next(theatre);
+        console.log(this.theatre$.getValue());
     }
 
     // addTheatres(theatre :Theatre) {

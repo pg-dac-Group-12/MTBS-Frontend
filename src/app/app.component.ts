@@ -24,7 +24,6 @@ export class AppComponent implements OnInit{
               this.userFacade.setUser(actor);
           else 
               this.theatreFacade.setTheatre(actor);
-          
         })
     }
   }
