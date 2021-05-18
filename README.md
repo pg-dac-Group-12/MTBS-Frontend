@@ -1,4 +1,4 @@
-# MTBS-Frontend
+# MTBS-Frontends
 Angular frontend for movie ticket booking system
 
 # Frontend
